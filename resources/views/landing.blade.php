@@ -95,6 +95,7 @@
                     <li class="nav-item"><a href="#fitur" class="nav-link fw-semibold text-dark">Fitur</a></li>
                     <li class="nav-item"><a href="#paket" class="nav-link fw-semibold text-dark">Paket</a></li>
                     <li class="nav-item"><a href="#kontak" class="nav-link fw-semibold text-dark">Kontak</a></li>
+                    <li class="nav-item"><a href="/tutorial" class="nav-link fw-semibold text-dark">Tutorial</a></li>
                     <li class="nav-item">
                         <a href="/login" class="btn btn-primary ms-3">Login</a>
                     </li>

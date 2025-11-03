@@ -19,3 +19,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 //register user baru
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+
+Route::get('/tutorial', function () {
+    return view('tutorial');
+});
+
