@@ -52,6 +52,19 @@
         .feature-card:hover {
             transform: translateY(-5px);
         }
+        .pricing {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+        .pricing-card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
         .footer {
             background-color: #e7f6f2;
             padding: 40px 0;
@@ -80,6 +93,7 @@
                     <li class="nav-item"><a href="#home" class="nav-link fw-semibold text-dark">Beranda</a></li>
                     <li class="nav-item"><a href="#tentang" class="nav-link fw-semibold text-dark">Tentang</a></li>
                     <li class="nav-item"><a href="#fitur" class="nav-link fw-semibold text-dark">Fitur</a></li>
+                    <li class="nav-item"><a href="#paket" class="nav-link fw-semibold text-dark">Paket</a></li>
                     <li class="nav-item"><a href="#kontak" class="nav-link fw-semibold text-dark">Kontak</a></li>
                     <li class="nav-item">
                         <a href="/login" class="btn btn-primary ms-3">Login</a>
@@ -137,6 +151,39 @@
                 belajar dengan cara yang menyenangkan dan fleksibel. Kami percaya setiap anak bisa berkembang
                 dengan dukungan teknologi dan metode pengajaran yang tepat.
             </p>
+        </div>
+    </section>
+
+    <!-- Paket Pembayaran -->
+    <section class="pricing text-center" id="paket">
+        <div class="container">
+            <h2 class="text-primary fw-bold mb-5">Paket Pembelajaran</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card pricing-card p-4">
+                        <h5 class="fw-bold mb-3">Paket A</h5>
+                        <h3 class="text-success fw-bold mb-3">Rp500.000</h3>
+                        <p class="text-muted">Akses 1 bulan ke seluruh materi dasar dan latihan.</p>
+                        <button class="btn btn-primary">Pilih Paket</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card pricing-card p-4">
+                        <h5 class="fw-bold mb-3">Paket B</h5>
+                        <h3 class="text-success fw-bold mb-3">Rp1.000.000</h3>
+                        <p class="text-muted">Akses 3 bulan, termasuk kelas interaktif dan evaluasi mingguan.</p>
+                        <button class="btn btn-primary">Pilih Paket</button>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card pricing-card p-4">
+                        <h5 class="fw-bold mb-3">Paket C</h5>
+                        <h3 class="text-success fw-bold mb-3">Rp1.500.000</h3>
+                        <p class="text-muted">Akses 6 bulan penuh dengan bimbingan mentor pribadi.</p>
+                        <button class="btn btn-primary">Pilih Paket</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
