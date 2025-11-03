@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 
 // landing page untuk halaman pertama tanpa login
@@ -23,4 +24,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 Route::get('/tutorial', function () {
     return view('tutorial');
 });
+
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
