@@ -18,6 +18,17 @@
             color: #1b4965 !important;
             font-weight: 700;
         }
+        .btn-login {
+            background-color: #62b6cb;
+            border: none;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-login:hover {
+            background-color: #539bb0;
+            color: white;
+        }
         h1, h2 {
             color: #1b4965;
         }
@@ -48,7 +59,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/" class="nav-link text-dark fw-semibold">Beranda</a></li>
                     <li class="nav-item"><a href="/tutorial" class="nav-link text-dark fw-semibold">Tutorial</a></li>
-                    <li class="nav-item"><a href="/login" class="btn btn-primary ms-3">Login</a></li>
+                    <li class="nav-item"><a href="/login" class="btn btn-login ms-3">Login</a></li>
                 </ul>
             </div>
         </div>
