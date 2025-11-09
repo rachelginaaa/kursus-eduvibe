@@ -74,10 +74,13 @@
             <hr>
 
             <div class="text-start">
-                <p><strong>Email:</strong> Email@example.com</p>
-                <p><strong>No. HP:</strong> 0812-3456-7890</p>
-                <p><strong>Tanggal Bergabung:</strong> 15 Januari 2025</p>
+                <p><strong>Email:</strong> {{ $user->email ?? '-' }}</p>
+                <p><strong>No. HP:</strong> {{ $user->no_hp ?? '-' }}</p>
+                <p><strong>Tanggal Bergabung:</strong> 
+                    {{ \Carbon\Carbon::parse($user->tgl_daftar)->translatedFormat('d F Y') ?? '-' }}
+                </p>
             </div>
+
 
             <button class="btn btn-edit mt-3">Edit Profil</button>
         </div>
