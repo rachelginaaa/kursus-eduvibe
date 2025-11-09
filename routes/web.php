@@ -29,12 +29,10 @@ Route::get('/tutorial', function () {
     return view('tutorial');
 });
 
-<<<<<<< HEAD
 // paket
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
 Route::get('/paket/b', fn() => view('paketB'))->name('paket.b');
 Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
-=======
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
@@ -53,4 +51,3 @@ Route::middleware('auth:mentor')->group(function () {
 
 
 
->>>>>>> andrean-dev
