@@ -40,6 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'mentor' => [
+            'driver' => 'session',
+            'provider' => 'mentor',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
     ],
 
     /*
@@ -60,9 +69,19 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Siswa::class,
+        ],
+
+    'mentor' => [
+        'driver' => 'database',
+        'table' => 'mentor',
+        ],
+
+    'admin' => [
+        'driver' => 'database',
+        'table' => 'admin',
         ],
 
         // 'users' => [

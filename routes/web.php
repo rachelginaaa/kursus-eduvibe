@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MentorAuthController;
+use App\Http\Controllers\AdminAuthCOntroller;
 
 
 // landing page untuk halaman pertama tanpa login
@@ -26,7 +29,28 @@ Route::get('/tutorial', function () {
     return view('tutorial');
 });
 
+<<<<<<< HEAD
 // paket
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
 Route::get('/paket/b', fn() => view('paketB'))->name('paket.b');
 Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
+=======
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+
+Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
+
+// Login Mentor
+Route::get('/mentor/login', [MentorAuthController::class, 'showLoginForm'])->name('mentor.login');
+Route::post('/mentor/login', [MentorAuthController::class, 'login']);
+Route::post('/mentor/logout', [MentorAuthController::class, 'logout'])->name('mentor.logout');
+
+// Dashboard Mentor
+Route::middleware('auth:mentor')->group(function () {
+    Route::get('/mentor/dashboard', function () {
+        return view('mentor.dashboard');
+    })->name('mentor.dashboard');
+});
+
+
+
+>>>>>>> andrean-dev
