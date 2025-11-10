@@ -33,6 +33,8 @@ Route::get('/tutorial', function () {
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
 Route::get('/paket/b', fn() => view('paketB'))->name('paket.b');
 Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
+
+// profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');

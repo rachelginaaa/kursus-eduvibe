@@ -13,7 +13,7 @@ class MataPelajaranSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('mata_pelajarans')->insert([
+        DB::table('mata_pelajaran')->insert([
             [
                 'mentor_id' => 1,
                 'siswa_id' => 1,

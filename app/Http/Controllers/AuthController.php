@@ -63,6 +63,16 @@ class AuthController extends Controller
             'no_hp' => $request->no_hp,
         ]);
 
+        DB::table('mentor')->insert([
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'tgl_daftar' => now(),
+            'keahlian' => $request->keahlian,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'no_hp' => $request->no_hp,
+        ]);
+
         return redirect('/login')->with('success', 'Pendaftaran berhasil! Silakan login.');
     }
 
