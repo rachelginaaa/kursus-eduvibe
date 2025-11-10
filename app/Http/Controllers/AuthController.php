@@ -16,24 +16,24 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('web')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('/home')->with('success', 'Selamat datang kembali!');
-        }
+    if (Auth::guard('siswa')->attempt($credentials)) {
+        $request->session()->regenerate();
+        return redirect('/home')->with('success', 'Selamat datang kembali, ' . Auth::guard('siswa')->user()->nama . '!');
+    }
 
-        return back()->withErrors(['loginError' => 'Email atau password salah']);
+    return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
 
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    Auth::guard('siswa')->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
 
-        return redirect('/')->with('success', 'Anda telah logout');
+    return redirect('/')->with('success', 'Anda telah logout');
     }
 
         public function showRegisterForm()

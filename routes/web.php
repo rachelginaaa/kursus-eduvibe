@@ -13,8 +13,11 @@ use App\Http\Controllers\AdminAuthCOntroller;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 // setelah login
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth:siswa')->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+});
 // login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
@@ -33,8 +36,6 @@ Route::get('/tutorial', function () {
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
 Route::get('/paket/b', fn() => view('paketB'))->name('paket.b');
 Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
-
-// profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
@@ -52,4 +53,10 @@ Route::middleware('auth:mentor')->group(function () {
 });
 
 
+//edit profile siswa
+Route::middleware('auth:siswa')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
 
