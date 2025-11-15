@@ -68,30 +68,37 @@
     <!-- Kartu Kursus -->
     <div class="container mt-5">
         <div class="row g-4">
+
+            <!-- Matematika -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/2920/2920237.png" width="80" class="mx-auto mb-3" alt="Matematika">
                     <h5 class="fw-bold">Matematika</h5>
                     <p class="text-muted">Kuasai konsep dasar hingga lanjutan dengan cara yang mudah dipahami.</p>
-                    <button class="btn btn-primary">Mulai Belajar</button>
+                    <a href="/mata-pelajaran/matematika" class="btn btn-primary">Mulai Belajar</a>
                 </div>
             </div>
+
+            <!-- Bahasa Indonesia -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" width="80" class="mx-auto mb-3" alt="Bahasa Indonesia">
                     <h5 class="fw-bold">Bahasa Indonesia</h5>
                     <p class="text-muted">Pelajari tata bahasa, menulis, dan memahami bacaan dengan lebih baik.</p>
-                    <button class="btn btn-primary">Mulai Belajar</button>
+                    <a href="/mata-pelajaran/bahasa-indonesia" class="btn btn-primary">Mulai Belajar</a>
                 </div>
             </div>
+
+            <!-- IPA -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" width="80" class="mx-auto mb-3" alt="IPA">
                     <h5 class="fw-bold">IPA</h5>
                     <p class="text-muted">Eksperimen dan temukan keajaiban sains dalam kehidupan sehari-hari.</p>
-                    <button class="btn btn-primary">Mulai Belajar</button>
+                    <a href="/mata-pelajaran/ipa" class="btn btn-primary">Mulai Belajar</a>
                 </div>
             </div>
+
         </div>
     </div>
 

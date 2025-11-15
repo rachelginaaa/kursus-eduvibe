@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorAuthController;
 use App\Http\Controllers\AdminAuthCOntroller;
+use App\Http\Controllers\MataPelajaranController;
+
 
 
 // landing page untuk halaman pertama tanpa login
@@ -61,3 +63,10 @@ Route::middleware('auth:siswa')->group(function () {
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
 Route::get('/paket/b', fn() => view('paketB'))->name('paket.b');
 Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
+
+Route::get('/mata-pelajaran/matematika', [MataPelajaranController::class, 'matematika']);
+Route::get('/mata-pelajaran/bahasa-indonesia', [MataPelajaranController::class, 'bahasa']);
+Route::get('/mata-pelajaran/ipa', [MataPelajaranController::class, 'ipa']);
+
+
+
