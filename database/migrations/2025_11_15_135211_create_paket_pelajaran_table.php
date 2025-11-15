@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jawaban', function (Blueprint $table) {
-            $table->id('id_jawaban');
+        Schema::create('paket_pelajaran', function (Blueprint $table) {
+            $table->id('paket_pelajaran_id');
+            // FK ke tabel siswa (harus pakai references karena PK-nya siswa_id)
             $table->unsignedBigInteger('siswa_id');
             $table->foreign('siswa_id')
                 ->references('siswa_id')
                 ->on('siswa')
                 ->onDelete('cascade');
-
-            $table->string('opsi_1')->nullable();
-            $table->string('opsi_2')->nullable();
-            $table->string('opsi_3')->nullable();
-            $table->string('opsi_4')->nullable();
+            $table->string('nama_paket_pelajaran');
             $table->text('deskripsi')->nullable();
+            $table->string('jenjang');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jawaban');
+        Schema::dropIfExists('paket_pelajaran');
     }
 };

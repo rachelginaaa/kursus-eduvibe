@@ -19,10 +19,10 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             // FK ke tabel siswa (harus pakai references karena PK-nya siswa_id)
-            $table->unsignedBigInteger('siswa_id');
-            $table->foreign('siswa_id')
-                ->references('siswa_id')
-                ->on('siswa')
+            $table->unsignedBigInteger('paket_pelajaran_id');
+            $table->foreign('paket_pelajaran_id')
+                ->references('paket_pelajaran_id')
+                ->on('paket_pelajaran')
                 ->onDelete('cascade');
 
             $table->string('nama_matapelajaran');
