@@ -46,7 +46,7 @@
         <div class="col-md-5">
             <div class="text-center mb-4">
                 <div class="logo">EduVibe</div>
-                <p class="text-secondary">Masuk ke akun siswa Anda</p>
+                <p class="text-secondary">Masuk ke akun mentor Anda</p>
             </div>
 
             @if ($errors->has('loginError'))
@@ -62,7 +62,7 @@
             @endif
 
             <div class="card">
-                <form action="{{ route('login.process') }}" method="POST">
+                <form action="{{ route('mentor.login.process') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Alamat Email</label>

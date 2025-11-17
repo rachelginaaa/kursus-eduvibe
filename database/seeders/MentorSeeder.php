@@ -20,6 +20,7 @@ class MentorSeeder extends Seeder
                 'email' => 'budi@example.com',
                 'keahlian' => 'Matematika',
                 'no_hp' => '08123456789',
+                'role' => 'mentor',
             ],
             [
                 'nama' => 'Siti Lestari',
@@ -27,6 +28,7 @@ class MentorSeeder extends Seeder
                 'email' => 'siti@example.com',
                 'keahlian' => 'Fisika',
                 'no_hp' => '08987654321',
+                'role' => 'mentor',
             ],
         ]);
     }

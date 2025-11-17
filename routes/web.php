@@ -41,13 +41,13 @@ Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
 
 // Login Mentor
 Route::get('/mentor/login', [MentorAuthController::class, 'showLoginForm'])->name('mentor.login');
-Route::post('/mentor/login', [MentorAuthController::class, 'login']);
+Route::post('/mentor/login', [MentorAuthController::class, 'login'])->name('mentor.login.process');
 Route::post('/mentor/logout', [MentorAuthController::class, 'logout'])->name('mentor.logout');
 
 // Dashboard Mentor
 Route::middleware('auth:mentor')->group(function () {
     Route::get('/mentor/dashboard', function () {
-        return view('mentor.dashboard');
+        return view('mentor.mentor');
     })->name('mentor.dashboard');
 });
 

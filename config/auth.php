@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
+        'guard' => env('AUTH_GUARD', 'siswa'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
@@ -74,29 +74,29 @@ return [
     */
 
     'providers' => [
-    'users' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\Siswa::class,
-        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+            ],
 
-    'mentor' => [
-        'driver' => 'database',
-        'table' => 'mentor',
-        ],
+        'mentor' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Mentor::class,
+            ],
 
-    'admin' => [
-        'driver' => 'database',
-        'table' => 'admin',
-        ],
-    'siswa' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\Siswa::class,
-        ],
+        'admin' => [
+            'driver' => 'database',
+            'table' => 'admin',
+            ],
+        'siswa' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Siswa::class,
+            ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+            // 'users' => [
+            //     'driver' => 'database',
+            //     'table' => 'users',
+            // ],
     ],
 
     /*
