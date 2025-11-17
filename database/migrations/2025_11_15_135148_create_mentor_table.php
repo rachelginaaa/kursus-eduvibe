@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('keahlian');
             $table->string('no_hp')->nullable();
+            $table->string('role', 20);
             $table->timestamps();
         });
     }

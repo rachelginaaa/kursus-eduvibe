@@ -11,7 +11,18 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('login');
+        return view('siswa.login');
+
+    }
+
+    public function showMentorLoginForm()
+    {
+        return view('mentor.LoginMentor');
+    }
+
+    public function showAdminLoginForm()
+    {
+        return view('auth.admin.login');
     }
 
     public function login(Request $request)

@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        return view('profile', compact('user'));
+        return view('profile.profile', compact('user'));
     }
 
     public function index2()
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     public function edit()
     {
         $user = Auth::guard('siswa')->user();
-        return view('edit_profile', compact('user'));
+        return view('profile.edit_profile', compact('user'));
     }
 
 
