@@ -16,6 +16,7 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 //setelah login(masih coba coba untuk login)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [MataPelajaranController::class, 'home']);
 
 //login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -64,9 +65,7 @@ Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
 Route::get('/paket/b', fn() => view('paketB'))->name('paket.b');
 Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
 
-Route::get('/mata-pelajaran/matematika', [MataPelajaranController::class, 'matematika']);
-Route::get('/mata-pelajaran/bahasa-indonesia', [MataPelajaranController::class, 'bahasa']);
-Route::get('/mata-pelajaran/ipa', [MataPelajaranController::class, 'ipa']);
+Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])->name('mata-pelajaran.show');
 
 
 

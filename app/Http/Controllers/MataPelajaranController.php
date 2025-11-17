@@ -6,17 +6,18 @@ use App\Models\MataPelajaran;
 
 class MataPelajaranController extends Controller
 {
-    public function matematika()
-    {
-        $mapel = MataPelajaran::where('nama_matapelajaran', 'Matematika')->get();
-        return view('matematika', compact('mapel'));
-    }
+    public function home()
+{
+    $mataPelajarans = MataPelajaran::all();
+    return view('home', compact('mataPelajarans'));
+}
 
-    public function ipa()
-    {
-        $mapel = MataPelajaran::where('nama_matapelajaran', 'IPA')->get();
-        return view('ipa', compact('mapel'));
-    }
+public function show($id)
+{
+    $mapel = MataPelajaran::findOrFail($id);
+    return view('mata_pelajaran_detail', compact('mapel'));
+}
+
 
     public function bahasa()
     {
