@@ -20,4 +20,9 @@ class Siswa extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function paketPelajaran()
+    {
+        return $this->hasMany(PaketPelajaran::class, 'siswa_id', 'siswa_id');
+    }
+
 }

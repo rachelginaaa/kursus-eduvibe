@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\MataPelajaran;
+use App\Models\PaketPelajaran;
 
 class AuthController extends Controller
 {
@@ -29,13 +31,15 @@ class AuthController extends Controller
     {
     $credentials = $request->only('email', 'password');
 
-    if (Auth::guard('siswa')->attempt($credentials)) {
-        $request->session()->regenerate();
-        return redirect('/home')->with('success', 'Selamat datang kembali, ' . Auth::guard('siswa')->user()->nama . '!');
-    }
+        if (Auth::guard('siswa')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect('/home')->with('success', 'Selamat datang kembali, ' . Auth::guard('siswa')->user()->nama . '!');
+        }
 
     return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
+    
+
 
 
     public function logout(Request $request)

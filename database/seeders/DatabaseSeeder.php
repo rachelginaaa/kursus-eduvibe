@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
         $this->call(SiswaSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(MentorSeeder::class);
+        $this->call(PaketPelajaranSeeder::class);
+        $this->call(MataPelajaranSeeder::class);
+
+
     }
 
 }

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('nama_paket_pelajaran');
             $table->text('deskripsi')->nullable();
             $table->string('jenjang');
+            $table->string('harga');
             $table->timestamps();
         });
     }
