@@ -46,7 +46,7 @@
         <div class="col-md-5">
             <div class="text-center mb-4">
                 <div class="logo">EduVibe</div>
-                <p class="text-secondary">Masuk ke akun siswa Anda</p>
+                <p class="text-secondary">Masuk ke akun Anda</p>
             </div>
 
             @if ($errors->has('loginError'))

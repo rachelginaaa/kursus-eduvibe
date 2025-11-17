@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorAuthController;
 use App\Http\Controllers\AdminAuthCOntroller;
 use App\Http\Controllers\MataPelajaranController;
+use App\Http\Controllers\PaketController;
+use App\Http\Controllers\SiswaHomeController;
 
 
 
@@ -15,7 +17,7 @@ use App\Http\Controllers\MataPelajaranController;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 //setelah login(masih coba coba untuk login)
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/home', [MataPelajaranController::class, 'home']);
 
 //login
@@ -67,5 +69,10 @@ Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
 
 Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])->name('mata-pelajaran.show');
 
+//cekpaket siswa
+Route::post('/pilih-paket', [PaketController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 
-
+Route::middleware('auth:siswa')->group(function() {
+    Route::get('/home', [SiswaHomeController::class, 'index'])->name('siswa.home');
+    Route::post('/pilih-paket', [SiswaHomeController::class, 'pilihPaket'])->name('siswa.pilihPaket');
+});

@@ -14,7 +14,6 @@
         .card:hover { transform: translateY(-5px); }
         .btn-primary { background-color: #62b6cb; border: none; }
         .btn-primary:hover { background-color: #439a86; }
-        footer { background-color: #e7f6f2; padding: 20px; margin-top: 50px; }
     </style>
 </head>
 <body>
@@ -36,30 +35,69 @@
     <!-- Welcome Section -->
     <div class="container text-center welcome">
         <h1 class="fw-bold text-primary">Selamat Datang di EduVibe 🎓</h1>
-        <p class="text-muted">Belajar lebih mudah dan menyenangkan untuk semua jenjang pendidikan.</p>
+        <p class="text-muted">
+            Belajar lebih mudah dan menyenangkan untuk semua jenjang pendidikan.
+        </p>
     </div>
 
-    <!-- Kartu Kursus -->
     <div class="container mt-5">
-        <div class="row g-4">
-            @foreach($mataPelajarans as $mapel)
-            <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <img src="{{ $mapel->gambar ?? 'https://cdn-icons-png.flaticon.com/512/2920/2920237.png' }}" 
-                         width="80" class="mx-auto mb-3" alt="{{ $mapel->nama_matapelajaran }}">
-                    <h5 class="fw-bold">{{ $mapel->nama_matapelajaran }}</h5>
-                    <p class="text-muted">{{ Str::limit($mapel->deskripsi, 100) }}</p>
-                    <a href="{{ route('mata-pelajaran.show', $mapel->mata_pelajaran_id) }}" class="btn btn-primary">Mulai Belajar</a>
+
+        {{-- ============================
+             1. JIKA BELUM PUNYA PAKET
+           ============================ --}}
+        @if(!$punyaPaket)
+            <h3 class="fw-bold text-primary mt-5 mb-4">Pilih Paket Pembelajaran</h3>
+
+            <div class="row g-4">
+                @foreach($pakets as $paket)
+                <div class="col-md-4 d-flex">
+                    <div class="card p-4 text-center w-100">
+                        <h5 class="fw-bold">{{ $paket->nama_paket_pelajaran }}</h5>
+                        <p class="text-muted">{{ Str::limit($paket->deskripsi, 100) }}</p>
+                        <p class="text-muted">{{ Str::limit($paket->harga, 100) }}</p>
+
+                        <form action="{{ route('siswa.pilihPaket') }}" method="POST">
+                            @csrf
+                            <button name="paket_pelajaran_id" value="{{ $paket->paket_pelajaran_id }}">Pilih</button>
+                        </form>
+                    </div>
+                </div>
+                @endforeach
             </div>
+        @else
+
+
+        {{-- ============================
+             2. JIKA SUDAH PUNYA PAKET
+           ============================ --}}
+            <h3 class="text-center mb-4 fw-bold text-secondary">Mata Pelajaran Kamu</h3>
+
+            <div class="row g-4">
+                @foreach($mataPelajarans as $mapel)
+                <div class="col-md-4">
+                    <div class="card p-4 text-center">
+                        <img src="{{ $mapel->gambar ?? 'https://cdn-icons-png.flaticon.com/512/2920/2920237.png' }}"
+                             width="80" class="mx-auto mb-3">
+
+                        <h5 class="fw-bold">{{ $mapel->nama_matapelajaran }}</h5>
+                        <p class="text-muted">{{ Str::limit($mapel->deskripsi, 100) }}</p>
+
+                        <a href="{{ route('mata-pelajaran.show', $mapel->mata_pelajaran_id) }}"
+                           class="btn btn-primary">
+                           Mulai Belajar
+                        </a>
+                    </div>
+                </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
+
+        @endif
+
     </div>
 
     <footer class="text-center text-secondary mt-5">
         <p>&copy; 2025 EduVibe - Belajar Tanpa Batas</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
