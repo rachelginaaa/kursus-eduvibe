@@ -3,6 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Mentor;
+use App\Models\Siswa;
+use App\Models\Materi;
+
 
 class MataPelajaran extends Model
 {

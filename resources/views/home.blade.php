@@ -50,7 +50,7 @@
                     <h5 class="fw-bold">{{ $mapel->nama_matapelajaran }}</h5>
                     <p class="text-muted">{{ Str::limit($mapel->deskripsi, 100) }}</p>
                     <a href="{{ route('mata-pelajaran.show', $mapel->mata_pelajaran_id) }}" class="btn btn-primary">Mulai Belajar</a>
-                </div>
+            </div>
             </div>
             @endforeach
         </div>

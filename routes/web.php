@@ -16,7 +16,7 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 //setelah login(masih coba coba untuk login)
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/home', [MataPelajaranController::class, 'home']);
+//Route::get('/home', [MataPelajaranController::class, 'home']);
 
 //login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
