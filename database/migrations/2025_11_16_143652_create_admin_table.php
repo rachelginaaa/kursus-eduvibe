@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nama_admin', 100);
             $table->string('username', 100)->unique();
             $table->string('password');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

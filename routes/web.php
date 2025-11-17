@@ -54,6 +54,17 @@ Route::middleware('auth:mentor')->group(function () {
     })->name('mentor.dashboard');
 });
 
+// Login Admin
+Route::get('/admin/login', [AdminAuthCOntroller::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminAuthCOntroller::class, 'login'])->name('admin.login.process');
+Route::post('/admin/logout', [AdminAuthCOntroller::class, 'logout'])->name('admin.logout');
+
+// Dashboard Admin
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('Admin.admin');
+    })->name('admin.dashboard');
+});
 
 //edit profile siswa
 Route::middleware('auth:siswa')->group(function () {
