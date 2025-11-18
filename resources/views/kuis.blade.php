@@ -23,10 +23,10 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{ route('home') }}">EduVibe</a>
+            <a class="navbar-brand" href="{{ route('siswa.home') }}">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="{{ route('home') }}" class="nav-link text-dark fw-semibold">Home</a></li>
+                    <li class="nav-item"><a href="{{ route('siswa.home') }}" class="nav-link text-dark fw-semibold">Home</a></li>
                     <li class="nav-item"><a href="/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>

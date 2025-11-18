@@ -49,7 +49,7 @@
 
     <!-- Detail Mata Pelajaran -->
     <div class="container mt-5">
-        <a href="{{ route('home') }}" class="btn btn-secondary back-btn">← Kembali ke Home</a>
+        <a href="{{ route('siswa.home') }}" class="btn btn-secondary back-btn">← Kembali ke Home</a>
 
         <a href="{{ route('siswa.home') }}" class="btn btn-secondary back-btn">← Kembali ke Home</a>
         <div class="card text-center">
