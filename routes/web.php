@@ -67,5 +67,6 @@ Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
 
 Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])->name('mata-pelajaran.show');
 
+Route::get('/mata-pelajaran/{id}/kuis', [MataPelajaranController::class, 'kuis'])->name('mata_pelajaran.kuis');
 
 
