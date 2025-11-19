@@ -74,7 +74,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="80" class="mx-auto mb-3" alt="Kelas">
                     <h5 class="fw-bold">Kelas yang Diajarkan</h5>
                     <p class="text-muted">Kelola materi, tugas, dan jadwal pembelajaran untuk siswa Anda.</p>
-                    <button class="btn btn-primary">Lihat Kelas</button>
+                    <a href="{{ route('mentor.kelas') }}" class="btn btn-primary">Lihat Kelas</a>
                 </div>
             </div>
             <div class="col-md-4">

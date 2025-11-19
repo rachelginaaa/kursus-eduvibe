@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminAuthCOntroller;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SiswaHomeController;
+use App\Http\Controllers\MentorKelasController;
+
 
 
 
@@ -77,3 +79,7 @@ Route::middleware('auth:siswa')->group(function() {
     Route::get('/home', [SiswaHomeController::class, 'index'])->name('siswa.home');
     Route::post('/pilih-paket', [SiswaHomeController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 });
+
+Route::get('/mentor/kelas', [MentorKelasController::class, 'index'])
+    ->name('mentor.kelas')
+    ->middleware('auth:mentor');

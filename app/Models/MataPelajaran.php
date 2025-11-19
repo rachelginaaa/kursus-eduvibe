@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Mentor;
-use App\Models\Siswa;
 use App\Models\Materi;
-
+use App\Models\PaketPelajaran;
 
 class MataPelajaran extends Model
 {
@@ -16,9 +15,8 @@ class MataPelajaran extends Model
 
     protected $fillable = [
         'mentor_id',
-        'siswa_id',
-        'nama_matapelajaran',
         'paket_pelajaran_id',
+        'nama_matapelajaran',
         'deskripsi',
         'jenjang',
     ];
@@ -29,18 +27,14 @@ class MataPelajaran extends Model
         return $this->belongsTo(Mentor::class, 'mentor_id', 'mentor_id');
     }
 
-    // Relasi ke siswa
-    public function siswa()
-    {
-        return $this->belongsTo(Siswa::class, 'siswa_id', 'siswa_id');
-    }
-
     // Relasi ke materi
     public function materi()
     {
         return $this->hasMany(Materi::class, 'mata_pelajaran_id', 'mata_pelajaran_id');
     }
-        public function paketPelajaran()
+
+    // Relasi ke paket pelajaran
+    public function paketPelajaran()
     {
         return $this->belongsTo(PaketPelajaran::class, 'paket_pelajaran_id', 'paket_pelajaran_id');
     }
