@@ -63,7 +63,6 @@
     <!-- Welcome Section -->
     <div class="container text-center welcome">
         <h1 class="fw-bold text-primary">Selamat Datang, Admin EduVibe ⚙️</h1>
-        <p class="text-muted">Kick siswa yang toxic dan mentor goblok.</p>
     </div>
 
     <!-- Kartu Admin -->
