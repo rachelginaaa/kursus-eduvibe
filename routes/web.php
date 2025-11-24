@@ -12,6 +12,7 @@ use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SiswaHomeController;
 use App\Http\Controllers\MentorKelasController;
 use App\Http\Controllers\MateriController;
+use App\Http\Controllers\AdminSiswaController;
 
 
 
@@ -73,6 +74,12 @@ Route::get('/admin/siswa', [AdminAuthController::class, 'siswa'])->name('admin.s
 Route::get('/admin/mentor', [AdminAuthController::class, 'mentor'])->name('admin.mentor');
 Route::get('/admin/kelas', [AdminAuthController::class, 'kelas'])->name('admin.kelas');
 
+//fitur admin-siswa
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/siswa', [AdminSiswaController::class, 'index'])->name('siswa.index');
+    Route::get('/siswa/create', [AdminSiswaController::class, 'create'])->name('siswa.create');
+    Route::post('/siswa', [AdminSiswaController::class, 'store'])->name('siswa.store');
+});
 
 
 //edit profile siswa
