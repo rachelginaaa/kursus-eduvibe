@@ -10,6 +10,10 @@ use App\Http\Controllers\AdminAuthCOntroller;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SiswaHomeController;
+use App\Http\Controllers\MentorKelasController;
+use App\Http\Controllers\MateriController;
+use App\Http\Controllers\AdminSiswaController;
+
 
 
 
@@ -65,6 +69,28 @@ Route::middleware('auth:admin')->group(function () {
         return view('Admin.admin');
     })->name('admin.dashboard');
 });
+//fitur admin
+Route::get('/admin/siswa', [AdminAuthController::class, 'siswa'])->name('admin.siswa');
+Route::get('/admin/mentor', [AdminAuthController::class, 'mentor'])->name('admin.mentor');
+Route::get('/admin/kelas', [AdminAuthController::class, 'kelas'])->name('admin.kelas');
+
+//fitur admin-siswa
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+
+    //create
+    Route::get('/siswa', [AdminSiswaController::class, 'index'])->name('siswa.index');
+    Route::get('/siswa/create', [AdminSiswaController::class, 'create'])->name('siswa.create');
+    Route::post('/siswa', [AdminSiswaController::class, 'store'])->name('siswa.store');
+    //edit
+    Route::get('/siswa/{id}/edit', [AdminSiswaController::class, 'edit'])->name('siswa.edit');
+    Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])->name('siswa.update');
+    // delte
+    Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('siswa.delete');
+});
+
+
+
+
 
 //edit profile siswa
 Route::middleware('auth:siswa')->group(function () {
@@ -84,7 +110,14 @@ Route::get('/mata-pelajaran/{id}/kuis', [MataPelajaranController::class, 'kuis']
 //cekpaket siswa
 Route::post('/pilih-paket', [PaketController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 
-Route::middleware('auth:siswa')->group(function() {
+Route::middleware('auth:siswa')->group(function () {
     Route::get('/home', [SiswaHomeController::class, 'index'])->name('siswa.home');
     Route::post('/pilih-paket', [SiswaHomeController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 });
+
+Route::get('/mentor/kelas', [MentorKelasController::class, 'index'])
+    ->name('mentor.kelas')
+    ->middleware('auth:mentor');
+
+Route::get('/materi/{id}', [MateriController::class, 'showMateri'])
+    ->name('materi.show');

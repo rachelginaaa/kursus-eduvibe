@@ -69,12 +69,13 @@
     <div class="container mt-5">
         <div class="row g-4">
             <!-- Kelola Siswa -->
+            
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3" alt="Kelola Siswa">
                     <h5 class="fw-bold">Kelola Siswa</h5>
                     <p class="text-muted">Tambah, ubah, atau hapus akun siswa yang terdaftar di platform.</p>
-                    <button class="btn btn-primary">Kelola Siswa</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/admin/siswa'">Kelola Siswa</button>
                 </div>
             </div>
 
@@ -84,7 +85,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/4205/4205358.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
                     <h5 class="fw-bold">Kelola Mentor</h5>
                     <p class="text-muted">Pantau dan kelola akun mentor, termasuk verifikasi dan status aktif.</p>
-                    <button class="btn btn-primary">Kelola Mentor</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/admin/mentor'">Kelola Mentor</button>
                 </div>
             </div>
 
@@ -94,7 +95,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" width="80" class="mx-auto mb-3" alt="Kelola Kelas">
                     <h5 class="fw-bold">Kelola Kelas</h5>
                     <p class="text-muted">Lihat semua kelas aktif, nonaktifkan kelas, atau buat kategori baru.</p>
-                    <button class="btn btn-primary">Kelola Kelas</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/admin/kelas'">Kelola Kelas</button>
                 </div>
             </div>
         </div>

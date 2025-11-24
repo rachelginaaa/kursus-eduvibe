@@ -20,14 +20,24 @@ class Mentor extends Authenticatable
         'password',
         'keahlian',
         'no_hp',
+        'role', // ← DITAMBAHKAN
     ];
 
     protected $hidden = [
         'password',
     ];
 
+    // Jika nanti pakai multi-auth
+    protected $guard = 'mentor'; // ← DITAMBAHKAN (tidak wajib tapi aman)
+
     public function mataPelajarans()
     {
         return $this->hasMany(MataPelajaran::class, 'mentor_id', 'mentor_id');
+    }
+
+    // Relasi tambahan (tidak merusak, hanya membantu)
+    public function paketPelajarans()
+    {
+        return $this->hasMany(PaketPelajaran::class, 'mentor_id', 'mentor_id');
     }
 }
