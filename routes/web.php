@@ -76,10 +76,20 @@ Route::get('/admin/kelas', [AdminAuthController::class, 'kelas'])->name('admin.k
 
 //fitur admin-siswa
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+
+    //create
     Route::get('/siswa', [AdminSiswaController::class, 'index'])->name('siswa.index');
     Route::get('/siswa/create', [AdminSiswaController::class, 'create'])->name('siswa.create');
     Route::post('/siswa', [AdminSiswaController::class, 'store'])->name('siswa.store');
+    //edit
+    Route::get('/siswa/{id}/edit', [AdminSiswaController::class, 'edit'])->name('siswa.edit');
+    Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])->name('siswa.update');
+    // delte
+    Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('siswa.delete');
 });
+
+
+
 
 
 //edit profile siswa
@@ -100,7 +110,7 @@ Route::get('/mata-pelajaran/{id}/kuis', [MataPelajaranController::class, 'kuis']
 //cekpaket siswa
 Route::post('/pilih-paket', [PaketController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 
-Route::middleware('auth:siswa')->group(function() {
+Route::middleware('auth:siswa')->group(function () {
     Route::get('/home', [SiswaHomeController::class, 'index'])->name('siswa.home');
     Route::post('/pilih-paket', [SiswaHomeController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 });
