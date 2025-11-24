@@ -82,7 +82,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/4205/4205358.png" width="80" class="mx-auto mb-3" alt="Tugas">
                     <h5 class="fw-bold">Penilaian & Tugas</h5>
                     <p class="text-muted">Periksa tugas, berikan nilai, dan umpan balik untuk siswa.</p>
-                    <button class="btn btn-primary">Kelola Tugas</button>
+                    <a href="{{ route('mentor.kelola_tugas') }}" class="btn btn-primary">Kelola Tugas</a>
                 </div>
             </div>
             <div class="col-md-4">

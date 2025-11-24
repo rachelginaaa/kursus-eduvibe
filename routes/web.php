@@ -115,3 +115,48 @@ Route::get('/materi/{id}', [MateriController::class, 'showMateri'])
 Route::get('/mentor/siswa', [MentorAuthController::class, 'lihatSiswa'])
     ->name('mentor.siswa')
     ->middleware('auth:mentor');
+
+Route::get('/mentor/kelola-tugas', function() {
+    $submissions = collect([
+        (object)[
+            'siswa_nama' => 'Rian Pratama',
+            'tgl_submit' => '2025-11-24',
+            'file' => 'tugas1.pdf',
+            'nilai' => 90,
+            'feedback' => 'Bagus!'
+        ],
+        (object)[
+            'siswa_nama' => 'Alya Putri',
+            'tgl_submit' => '2025-11-23',
+            'file' => 'tugas1.docx',
+            'nilai' => null,
+            'feedback' => null
+        ]
+    ]);
+
+    return view('mentor.kelola_tugas', compact('submissions'));
+})->name('mentor.kelola_tugas');
+
+Route::get('/mentor/tugas/{id}/submissions', function($id) {
+    // Dummy data submissions
+    $submissions = [
+        (object)[
+            'siswa_nama' => 'Rian Pratama',
+            'tgl_submit' => '2025-11-24',
+            'file' => 'tugas'.$id.'_rian.pdf',
+            'nilai' => 90,
+            'feedback' => 'Bagus!'
+        ],
+        (object)[
+            'siswa_nama' => 'Alya Putri',
+            'tgl_submit' => '2025-11-23',
+            'file' => 'tugas'.$id.'_alya.docx',
+            'nilai' => null,
+            'feedback' => null
+        ]
+    ];
+
+    return view('mentor.lihat_submission', compact('submissions', 'id'));
+})->name('mentor.lihat_submission');
+
+
