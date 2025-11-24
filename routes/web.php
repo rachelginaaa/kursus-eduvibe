@@ -7,8 +7,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorAuthController;
 use App\Http\Controllers\AdminAuthCOntroller;
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SiswaHomeController;
@@ -17,24 +15,16 @@ use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AdminSiswaController;
 
 
->>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
 
 
 // landing page untuk halaman pertama tanpa login
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
-<<<<<<< HEAD
-// setelah login
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-// login
-=======
 //setelah login(masih coba coba untuk login)
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Route::get('/home', [MataPelajaranController::class, 'home']);
 
 //login
->>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -58,24 +48,12 @@ Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
 
 // Login Mentor
 Route::get('/mentor/login', [MentorAuthController::class, 'showLoginForm'])->name('mentor.login');
-<<<<<<< HEAD
-Route::post('/mentor/login', [MentorAuthController::class, 'login']);
-=======
 Route::post('/mentor/login', [MentorAuthController::class, 'login'])->name('mentor.login.process');
->>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
 Route::post('/mentor/logout', [MentorAuthController::class, 'logout'])->name('mentor.logout');
 
 // Dashboard Mentor
 Route::middleware('auth:mentor')->group(function () {
     Route::get('/mentor/dashboard', function () {
-<<<<<<< HEAD
-        return view('mentor.dashboard');
-    })->name('mentor.dashboard');
-});
-
-
-
-=======
         return view('mentor.mentor');
     })->name('mentor.dashboard');
 });
@@ -133,4 +111,7 @@ Route::get('/mentor/kelas', [MentorKelasController::class, 'index'])
 
 Route::get('/materi/{id}', [MateriController::class, 'showMateri'])
     ->name('materi.show');
->>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
+
+Route::get('/mentor/siswa', [MentorAuthController::class, 'lihatSiswa'])
+    ->name('mentor.siswa')
+    ->middleware('auth:mentor');

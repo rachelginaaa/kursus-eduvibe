@@ -90,7 +90,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" width="80" class="mx-auto mb-3" alt="Peserta">
                     <h5 class="fw-bold">Data Siswa</h5>
                     <p class="text-muted">Pantau perkembangan dan keaktifan siswa dalam setiap kelas.</p>
-                    <button class="btn btn-primary">Lihat Siswa</button>
+                    <a href="{{ route('mentor.siswa') }}" class="btn btn-primary">Lihat Siswa</a>
                 </div>
             </div>
         </div>

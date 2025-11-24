@@ -15,20 +15,6 @@ class MentorSeeder extends Seeder
     {
         DB::table('mentor')->insert([
             [
-<<<<<<< HEAD
-                'nama' => 'Budi Santoso',
-                'password' => Hash::make('password123'),
-                'email' => 'budi@example.com',
-                'keahlian' => 'Matematika',
-                'no_hp' => '08123456789',
-            ],
-            [
-                'nama' => 'Siti Lestari',
-                'password' => Hash::make('password123'),
-                'email' => 'siti@example.com',
-                'keahlian' => 'Fisika',
-                'no_hp' => '08987654321',
-=======
                 'nama' => 'Ahmad Wijaya',
                 'password' => Hash::make('password123'),
                 'email' => 'ahmad.matematikawajib1@example.com',
@@ -421,7 +407,6 @@ class MentorSeeder extends Seeder
                 'keahlian' => 'Antropologi',
                 'no_hp' => '081234567933',
                 'role' => 'mentor',
->>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
             ],
         ]);
     }
