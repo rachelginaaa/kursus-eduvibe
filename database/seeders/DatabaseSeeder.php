@@ -20,6 +20,14 @@ class DatabaseSeeder extends Seeder
         $this->call(SiswaSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(MentorSeeder::class);
+<<<<<<< HEAD
+=======
+        $this->call(PaketPelajaranSeeder::class);
+        $this->call(MataPelajaranSeeder::class);
+        $this->call(MateriPelajaranSeeder::class);
+
+
+>>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
     }
 
 }

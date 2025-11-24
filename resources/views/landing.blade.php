@@ -191,7 +191,11 @@
             <div class="row g-4">
                 <div class="col-md-4 d-flex">
                     <div class="card pricing-card p-4 w-100">
+<<<<<<< HEAD
                         <h5 class="fw-bold mb-3">Paket A</h5>
+=======
+                        <h5 class="fw-bold mb-3">Paket A - Dasar</h5>
+>>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
                         <h3 class="text-success fw-bold mb-3">Rp500.000</h3>
                         <p class="text-muted">Akses 1 bulan ke seluruh materi dasar dan latihan.</p>
                         <a href="{{ route('paket.a') }}" class="btn btn-primary">Lihat Detail</a>
@@ -199,7 +203,11 @@
                 </div>
                 <div class="col-md-4 d-flex">
                     <div class="card pricing-card p-4 w-100">
+<<<<<<< HEAD
                         <h5 class="fw-bold mb-3">Paket B</h5>
+=======
+                        <h5 class="fw-bold mb-3">Paket B - Premium</h5>
+>>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
                         <h3 class="text-success fw-bold mb-3">Rp1.000.000</h3>
                         <p class="text-muted">Akses 3 bulan, termasuk kelas interaktif dan evaluasi mingguan.</p>
                         <a href="{{ route('paket.b') }}" class="btn btn-primary">Lihat Detail</a>
@@ -207,7 +215,11 @@
                 </div>
                 <div class="col-md-4 d-flex">
                     <div class="card pricing-card p-4 w-100">
+<<<<<<< HEAD
                         <h5 class="fw-bold mb-3">Paket C</h5>
+=======
+                        <h5 class="fw-bold mb-3">Paket C - Elite</h5>
+>>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
                         <h3 class="text-success fw-bold mb-3">Rp1.500.000</h3>
                         <p class="text-muted">Akses 6 bulan penuh dengan bimbingan mentor pribadi.</p>
                         <a href="{{ route('paket.c') }}" class="btn btn-primary">Lihat Detail</a>
@@ -235,4 +247,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929

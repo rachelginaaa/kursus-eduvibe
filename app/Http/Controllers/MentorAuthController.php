@@ -9,7 +9,11 @@ class MentorAuthController extends Controller
 {
     public function showLoginForm()
     {
+<<<<<<< HEAD
         return view('mentor.login');
+=======
+        return view('mentor.LoginMentor');
+>>>>>>> 59e06d7876bf11aebd24c69e67c75f8c1dd96929
     }
 
     public function login(Request $request)
