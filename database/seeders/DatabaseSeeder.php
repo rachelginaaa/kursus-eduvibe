@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MentorSeeder::class);
         $this->call(PaketPelajaranSeeder::class);
         $this->call(MataPelajaranSeeder::class);
+        $this->call(MateriPelajaranSeeder::class);
 
 
     }

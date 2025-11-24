@@ -11,6 +11,7 @@ use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SiswaHomeController;
 use App\Http\Controllers\MentorKelasController;
+use App\Http\Controllers\MateriController;
 
 
 
@@ -67,6 +68,12 @@ Route::middleware('auth:admin')->group(function () {
         return view('Admin.admin');
     })->name('admin.dashboard');
 });
+//fitur admin
+Route::get('/admin/siswa', [AdminAuthController::class, 'siswa'])->name('admin.siswa');
+Route::get('/admin/mentor', [AdminAuthController::class, 'mentor'])->name('admin.mentor');
+Route::get('/admin/kelas', [AdminAuthController::class, 'kelas'])->name('admin.kelas');
+
+
 
 //edit profile siswa
 Route::middleware('auth:siswa')->group(function () {
@@ -94,3 +101,6 @@ Route::middleware('auth:siswa')->group(function() {
 Route::get('/mentor/kelas', [MentorKelasController::class, 'index'])
     ->name('mentor.kelas')
     ->middleware('auth:mentor');
+
+Route::get('/materi/{id}', [MateriController::class, 'showMateri'])
+    ->name('materi.show');

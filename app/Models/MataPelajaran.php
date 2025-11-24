@@ -30,7 +30,7 @@ class MataPelajaran extends Model
     // Relasi ke materi
     public function materi()
     {
-        return $this->hasMany(Materi::class, 'mata_pelajaran_id', 'mata_pelajaran_id');
+        return $this->hasMany(MateriPelajaran::class, 'mata_pelajaran_id', 'mata_pelajaran_id');
     }
 
     // Relasi ke paket pelajaran

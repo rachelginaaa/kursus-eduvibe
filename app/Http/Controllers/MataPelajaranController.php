@@ -19,4 +19,12 @@ class MataPelajaranController extends Controller
         $mapel = MataPelajaran::findOrFail($id);
         return view('kuis', compact('mapel'));
     }
+        public function materi($id)
+    {
+        $mapel = MataPelajaran::with('materi')->findOrFail($id);
+
+        // Mengirim data mapel + materi-nya
+        return view('mata_pelajaran_detail', compact('mapel'));
+    }
+
 }
