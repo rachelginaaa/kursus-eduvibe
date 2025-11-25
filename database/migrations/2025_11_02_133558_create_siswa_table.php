@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('jenjang', 50);
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('no_hp', 20);
-            $table->string('role', 20);
             $table->timestamps();
         });
     }

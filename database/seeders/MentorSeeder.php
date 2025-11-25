@@ -20,7 +20,7 @@ class MentorSeeder extends Seeder
                 'email' => 'ahmad.matematikawajib1@example.com',
                 'keahlian' => 'Matematika Wajib',
                 'no_hp' => '081234567890',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Siti Rahayu',
@@ -28,7 +28,7 @@ class MentorSeeder extends Seeder
                 'email' => 'siti.matematikawajib2@example.com',
                 'keahlian' => 'Matematika Wajib',
                 'no_hp' => '081234567891',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Fisika
@@ -38,7 +38,7 @@ class MentorSeeder extends Seeder
                 'email' => 'budi.fisika1@example.com',
                 'keahlian' => 'Fisika',
                 'no_hp' => '081234567892',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Dewi Lestari',
@@ -46,7 +46,7 @@ class MentorSeeder extends Seeder
                 'email' => 'dewi.fisika2@example.com',
                 'keahlian' => 'Fisika',
                 'no_hp' => '081234567893',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Biologi
@@ -56,7 +56,7 @@ class MentorSeeder extends Seeder
                 'email' => 'eko.biologi1@example.com',
                 'keahlian' => 'Biologi',
                 'no_hp' => '081234567894',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Fajar Nugroho',
@@ -64,7 +64,7 @@ class MentorSeeder extends Seeder
                 'email' => 'fajar.biologi2@example.com',
                 'keahlian' => 'Biologi',
                 'no_hp' => '081234567895',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Kimia
@@ -74,7 +74,7 @@ class MentorSeeder extends Seeder
                 'email' => 'gita.kimia1@example.com',
                 'keahlian' => 'Kimia',
                 'no_hp' => '081234567896',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Hadi Susanto',
@@ -82,7 +82,7 @@ class MentorSeeder extends Seeder
                 'email' => 'hadi.kimia2@example.com',
                 'keahlian' => 'Kimia',
                 'no_hp' => '081234567897',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Matematika Peminatan
@@ -92,7 +92,7 @@ class MentorSeeder extends Seeder
                 'email' => 'indah.matematikapeminatan1@example.com',
                 'keahlian' => 'Matematika Peminatan',
                 'no_hp' => '081234567898',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Joko Widodo',
@@ -100,7 +100,7 @@ class MentorSeeder extends Seeder
                 'email' => 'joko.matematikapeminatan2@example.com',
                 'keahlian' => 'Matematika Peminatan',
                 'no_hp' => '081234567899',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Geografi
@@ -110,7 +110,7 @@ class MentorSeeder extends Seeder
                 'email' => 'kartika.geografi1@example.com',
                 'keahlian' => 'Geografi',
                 'no_hp' => '081234567900',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Larasati Ayu',
@@ -118,7 +118,7 @@ class MentorSeeder extends Seeder
                 'email' => 'larasati.geografi2@example.com',
                 'keahlian' => 'Geografi',
                 'no_hp' => '081234567901',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Informatika
@@ -128,7 +128,7 @@ class MentorSeeder extends Seeder
                 'email' => 'maman.informatika1@example.com',
                 'keahlian' => 'Informatika',
                 'no_hp' => '081234567902',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Nadia Amelia',
@@ -136,7 +136,7 @@ class MentorSeeder extends Seeder
                 'email' => 'nadia.informatika2@example.com',
                 'keahlian' => 'Informatika',
                 'no_hp' => '081234567903',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Bahasa Inggris
@@ -146,7 +146,7 @@ class MentorSeeder extends Seeder
                 'email' => 'oscar.bahasainggris1@example.com',
                 'keahlian' => 'Bahasa Inggris',
                 'no_hp' => '081234567904',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Putra Mahendra',
@@ -154,7 +154,7 @@ class MentorSeeder extends Seeder
                 'email' => 'putra.bahasainggris2@example.com',
                 'keahlian' => 'Bahasa Inggris',
                 'no_hp' => '081234567905',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Bahasa Indonesia
@@ -164,7 +164,7 @@ class MentorSeeder extends Seeder
                 'email' => 'qori.bahasaindonesia1@example.com',
                 'keahlian' => 'Bahasa Indonesia',
                 'no_hp' => '081234567906',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Rina Susanti',
@@ -172,7 +172,7 @@ class MentorSeeder extends Seeder
                 'email' => 'rina.bahasaindonesia2@example.com',
                 'keahlian' => 'Bahasa Indonesia',
                 'no_hp' => '081234567907',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Sejarah Indonesia
@@ -182,7 +182,7 @@ class MentorSeeder extends Seeder
                 'email' => 'surya.sejarahindonesia1@example.com',
                 'keahlian' => 'Sejarah Indonesia',
                 'no_hp' => '081234567908',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Tina Wijayanti',
@@ -190,7 +190,7 @@ class MentorSeeder extends Seeder
                 'email' => 'tina.sejarahindonesia2@example.com',
                 'keahlian' => 'Sejarah Indonesia',
                 'no_hp' => '081234567909',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Pendidikan Pancasila
@@ -200,7 +200,7 @@ class MentorSeeder extends Seeder
                 'email' => 'umar.pendidikanpancasila1@example.com',
                 'keahlian' => 'Pendidikan Pancasila',
                 'no_hp' => '081234567910',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Vina Kartika',
@@ -208,7 +208,7 @@ class MentorSeeder extends Seeder
                 'email' => 'vina.pendidikanpancasila2@example.com',
                 'keahlian' => 'Pendidikan Pancasila',
                 'no_hp' => '081234567911',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Pendidikan Jasmani
@@ -218,7 +218,7 @@ class MentorSeeder extends Seeder
                 'email' => 'wawan.pendidikanjasmani1@example.com',
                 'keahlian' => 'Pendidikan Jasmani',
                 'no_hp' => '081234567912',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Xena Putri',
@@ -226,7 +226,7 @@ class MentorSeeder extends Seeder
                 'email' => 'xena.pendidikanjasmani2@example.com',
                 'keahlian' => 'Pendidikan Jasmani',
                 'no_hp' => '081234567913',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Ekonomi
@@ -236,7 +236,7 @@ class MentorSeeder extends Seeder
                 'email' => 'yanto.ekonomi1@example.com',
                 'keahlian' => 'Ekonomi',
                 'no_hp' => '081234567914',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Zara Lestari',
@@ -244,7 +244,7 @@ class MentorSeeder extends Seeder
                 'email' => 'zara.ekonomi2@example.com',
                 'keahlian' => 'Ekonomi',
                 'no_hp' => '081234567915',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Sosiologi
@@ -254,7 +254,7 @@ class MentorSeeder extends Seeder
                 'email' => 'agus.sosiologi1@example.com',
                 'keahlian' => 'Sosiologi',
                 'no_hp' => '081234567916',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Bunga Citra',
@@ -262,7 +262,7 @@ class MentorSeeder extends Seeder
                 'email' => 'bunga.sosiologi2@example.com',
                 'keahlian' => 'Sosiologi',
                 'no_hp' => '081234567917',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Sejarah
@@ -272,7 +272,7 @@ class MentorSeeder extends Seeder
                 'email' => 'cahyo.sejarah1@example.com',
                 'keahlian' => 'Sejarah',
                 'no_hp' => '081234567918',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Dina Rahmadani',
@@ -280,7 +280,7 @@ class MentorSeeder extends Seeder
                 'email' => 'dina.sejarah2@example.com',
                 'keahlian' => 'Sejarah',
                 'no_hp' => '081234567919',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Pendidikan Agama
@@ -290,7 +290,7 @@ class MentorSeeder extends Seeder
                 'email' => 'edi.pendidikanagama1@example.com',
                 'keahlian' => 'Pendidikan Agama',
                 'no_hp' => '081234567920',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Fina Amelia',
@@ -298,7 +298,7 @@ class MentorSeeder extends Seeder
                 'email' => 'fina.pendidikanagama2@example.com',
                 'keahlian' => 'Pendidikan Agama',
                 'no_hp' => '081234567921',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: PPKn
@@ -308,7 +308,7 @@ class MentorSeeder extends Seeder
                 'email' => 'guntur.ppkn1@example.com',
                 'keahlian' => 'PPKn',
                 'no_hp' => '081234567922',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Hana Susilo',
@@ -316,7 +316,7 @@ class MentorSeeder extends Seeder
                 'email' => 'hana.ppkn2@example.com',
                 'keahlian' => 'PPKn',
                 'no_hp' => '081234567923',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Kewirausahaan
@@ -326,7 +326,7 @@ class MentorSeeder extends Seeder
                 'email' => 'iwan.kewirausahaan1@example.com',
                 'keahlian' => 'Kewirausahaan',
                 'no_hp' => '081234567924',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Julianti Sari',
@@ -334,7 +334,7 @@ class MentorSeeder extends Seeder
                 'email' => 'julianti.kewirausahaan2@example.com',
                 'keahlian' => 'Kewirausahaan',
                 'no_hp' => '081234567925',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Bahasa Jepang
@@ -344,7 +344,7 @@ class MentorSeeder extends Seeder
                 'email' => 'kamal.bahasajepang1@example.com',
                 'keahlian' => 'Bahasa Jepang',
                 'no_hp' => '081234567926',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Lina Fitri',
@@ -352,7 +352,7 @@ class MentorSeeder extends Seeder
                 'email' => 'lina.bahasajepang2@example.com',
                 'keahlian' => 'Bahasa Jepang',
                 'no_hp' => '081234567927',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Bahasa Arab
@@ -362,7 +362,7 @@ class MentorSeeder extends Seeder
                 'email' => 'miftahul.bahasaarab1@example.com',
                 'keahlian' => 'Bahasa Arab',
                 'no_hp' => '081234567928',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Nugraha Putra',
@@ -370,7 +370,7 @@ class MentorSeeder extends Seeder
                 'email' => 'nugraha.bahasaarab2@example.com',
                 'keahlian' => 'Bahasa Arab',
                 'no_hp' => '081234567929',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Bahasa Jerman
@@ -380,7 +380,7 @@ class MentorSeeder extends Seeder
                 'email' => 'oki.bahasajerman1@example.com',
                 'keahlian' => 'Bahasa Jerman',
                 'no_hp' => '081234567930',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Prita Anggraini',
@@ -388,7 +388,7 @@ class MentorSeeder extends Seeder
                 'email' => 'prita.bahasajerman2@example.com',
                 'keahlian' => 'Bahasa Jerman',
                 'no_hp' => '081234567931',
-                'role' => 'mentor',
+                
             ],
 
             // Untuk keahlian: Antropologi
@@ -398,7 +398,7 @@ class MentorSeeder extends Seeder
                 'email' => 'qasim.antropologi1@example.com',
                 'keahlian' => 'Antropologi',
                 'no_hp' => '081234567932',
-                'role' => 'mentor',
+                
             ],
             [
                 'nama' => 'Rani Sukmawati',
@@ -406,7 +406,7 @@ class MentorSeeder extends Seeder
                 'email' => 'rani.antropologi2@example.com',
                 'keahlian' => 'Antropologi',
                 'no_hp' => '081234567933',
-                'role' => 'mentor',
+                
             ],
         ]);
     }
