@@ -27,6 +27,11 @@ class AdminAuthController extends Controller
         return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
 
+    public function index() {
+    $admin = auth()->guard('admin')->user();
+    return view('Admin.admin_profile', compact('admin'));
+    }
+
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();

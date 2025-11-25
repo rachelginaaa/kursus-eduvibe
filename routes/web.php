@@ -69,6 +69,7 @@ Route::middleware('auth:admin')->group(function () {
         return view('Admin.admin');
     })->name('admin.dashboard');
 });
+
 //fitur admin
 Route::get('/admin/siswa', [AdminAuthController::class, 'siswa'])->name('admin.siswa');
 Route::get('/admin/mentor', [AdminAuthController::class, 'mentor'])->name('admin.mentor');
@@ -107,6 +108,7 @@ Route::get('/paket/c', fn() => view('paketC'))->name('paket.c');
 Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])->name('mata-pelajaran.show');
 
 Route::get('/mata-pelajaran/{id}/kuis', [MataPelajaranController::class, 'kuis'])->name('mata_pelajaran.kuis');
+
 //cekpaket siswa
 Route::post('/pilih-paket', [PaketController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 
@@ -121,3 +123,17 @@ Route::get('/mentor/kelas', [MentorKelasController::class, 'index'])
 
 Route::get('/materi/{id}', [MateriController::class, 'showMateri'])
     ->name('materi.show');
+
+Route::get('/materi/{id}/video', [MateriController::class, 'showVideo'])
+    ->name('materi.video');
+Route::get('/materi/{id}/dokumen', [MateriController::class, 'showDokumen'])
+    ->name('materi.dokumen');
+
+
+Route::middleware('auth:mentor')->group(function () {
+    Route::get('/mentor/profile', [MentorAuthController::class, 'index'])->name('Mentor.profile_mentor');
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin/profile', [AdminAuthCOntroller::class, 'index'])->name('Admin.admin_profile');
+});

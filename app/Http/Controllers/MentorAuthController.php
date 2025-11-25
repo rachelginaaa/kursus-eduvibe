@@ -24,6 +24,12 @@ class MentorAuthController extends Controller
         return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
 
+    public function index() 
+    {
+    $mentor = auth()->guard('mentor')->user();
+    return view('Mentor.profile_mentor', compact('mentor'));
+    }
+
     public function logout(Request $request)
     {
         Auth::guard('mentor')->logout();
