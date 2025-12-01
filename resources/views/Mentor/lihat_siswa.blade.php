@@ -18,26 +18,17 @@
             font-weight: bold;
             color: #1b4965 !important;
         }
-        .card {
-            border: none;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .btn-primary {
-            background-color: #62b6cb;
-            border: none;
-        }
-        .btn-primary:hover {
-            background-color: #439a86;
-        }
         footer {
             background-color: #e7f6f2;
             padding: 20px;
             margin-top: 50px;
+        }
+        .table thead {
+            background-color: #62b6cb;
+            color: white;
+        }
+        .table tbody tr:hover {
+            background-color: #eefbff;
         }
     </style>
 </head>
@@ -64,26 +55,37 @@
         <h2 class="fw-bold text-primary mb-4">Daftar Siswa yang Anda Ajar</h2>
 
         @if($siswa->isEmpty())
-            <div class="alert alert-warning">
-                Belum ada siswa yang diajar.
-            </div>
+            <div class="alert alert-warning">Belum ada siswa yang diajar.</div>
         @else
 
-        <!-- LIST SISWA -->
-        <div class="row g-4">
-            @foreach ($siswa as $s)
-            <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <h5 class="fw-bold">{{ $s->nama }}</h5>
-                    <p class="text-muted">Email: {{ $s->email }}</p>
-                    <p class="text-muted">Jenjang: {{ $s->jenjang }}</p>
-                    <p class="text-muted">Jenis Kelamin: {{ $s->jenis_kelamin }}</p>
-                    <p class="text-muted">No HP: {{ $s->no_hp }}</p>
+        <div class="card p-4 shadow-sm">
+            <table class="table table-striped table-bordered">
+                <thead class="text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Jenjang</th>
+                        <th>Jenis Kelamin</th>
+                        <th>No HP</th>
+                        <th>Tgl Daftar</th>
+                    </tr>
+                </thead>
 
-                    <span class="badge bg-primary">Daftar: {{ $s->tgl_daftar }}</span>
-                </div>
-            </div>
-            @endforeach
+                <tbody>
+                    @foreach ($siswa as $s)
+                    <tr>
+                        <td class="text-center">{{ $s->siswa_id }}</td>
+                        <td>{{ $s->nama }}</td>
+                        <td>{{ $s->email }}</td>
+                        <td>{{ $s->jenjang }}</td>
+                        <td>{{ $s->jenis_kelamin }}</td>
+                        <td>{{ $s->no_hp }}</td>
+                        <td class="text-center">{{ $s->tgl_daftar }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         @endif
