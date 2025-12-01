@@ -78,7 +78,7 @@
                     <p class="text-muted">Kelola materi, tugas, dan jadwal pembelajaran untuk siswa Anda.</p>
                     <a href="{{ route('mentor.kelas') }}" class="btn btn-primary">Lihat Kelas</a>
                 </div>
-            </div>
+            </div>         
 
             <!-- Data Siswa -->
             <div class="col-md-4">

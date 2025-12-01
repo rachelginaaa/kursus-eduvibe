@@ -100,7 +100,7 @@ Route::get('/mata-pelajaran/{id}/kuis', [MataPelajaranController::class, 'kuis']
 //cekpaket siswa
 Route::post('/pilih-paket', [PaketController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 
-Route::middleware('auth:siswa')->group(function() {
+Route::middleware('auth:siswa')->group(function () {
     Route::get('/home', [SiswaHomeController::class, 'index'])->name('siswa.home');
     Route::post('/pilih-paket', [SiswaHomeController::class, 'pilihPaket'])->name('siswa.pilihPaket');
 });
@@ -116,16 +116,16 @@ Route::get('/mentor/siswa', [MentorAuthController::class, 'lihatSiswa'])
     ->name('mentor.siswa')
     ->middleware('auth:mentor');
 
-Route::get('/mentor/kelola-tugas', function() {
+Route::get('/mentor/kelola-tugas', function () {
     $submissions = collect([
-        (object)[
+        (object) [
             'siswa_nama' => 'Rian Pratama',
             'tgl_submit' => '2025-11-24',
             'file' => 'tugas1.pdf',
             'nilai' => 90,
             'feedback' => 'Bagus!'
         ],
-        (object)[
+        (object) [
             'siswa_nama' => 'Alya Putri',
             'tgl_submit' => '2025-11-23',
             'file' => 'tugas1.docx',
@@ -137,20 +137,20 @@ Route::get('/mentor/kelola-tugas', function() {
     return view('mentor.kelola_tugas', compact('submissions'));
 })->name('mentor.kelola_tugas');
 
-Route::get('/mentor/tugas/{id}/submissions', function($id) {
+Route::get('/mentor/tugas/{id}/submissions', function ($id) {
     // Dummy data submissions
     $submissions = [
-        (object)[
+        (object) [
             'siswa_nama' => 'Rian Pratama',
             'tgl_submit' => '2025-11-24',
-            'file' => 'tugas'.$id.'_rian.pdf',
+            'file' => 'tugas' . $id . '_rian.pdf',
             'nilai' => 90,
             'feedback' => 'Bagus!'
         ],
-        (object)[
+        (object) [
             'siswa_nama' => 'Alya Putri',
             'tgl_submit' => '2025-11-23',
-            'file' => 'tugas'.$id.'_alya.docx',
+            'file' => 'tugas' . $id . '_alya.docx',
             'nilai' => null,
             'feedback' => null
         ]
@@ -159,4 +159,11 @@ Route::get('/mentor/tugas/{id}/submissions', function($id) {
     return view('mentor.lihat_submission', compact('submissions', 'id'));
 })->name('mentor.lihat_submission');
 
+Route::get('/mentor/kelas/{id}/materi', [MentorKelasController::class, 'materiIndex'])->name('mentor.materi');
+
+Route::post('/mentor/kelas/{id}/materi', [MentorKelasController::class, 'materiStore'])->name('mentor.materi.store');
+
+Route::delete('/mentor/kelas/{id}/materi/{materi}', [MentorKelasController::class, 'materiDestroy'])
+    ->name('mentor.materi.destroy')
+    ->whereNumber('materi'); // pastikan id numeric
 
