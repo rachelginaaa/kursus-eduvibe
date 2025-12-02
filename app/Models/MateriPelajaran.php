@@ -11,7 +11,7 @@ class MateriPelajaran extends Model
     public $incrementing = true;
 
     protected $fillable = [
-        'matapelajaran_id',
+        'mata_pelajaran_id',
         'pengampu',
         'judul_materi',
         'deskripsi',
@@ -19,9 +19,10 @@ class MateriPelajaran extends Model
         'tgl_upload',
         'jenjang',
     ];
-    public function materi()
-    {
-        return $this->hasMany(MateriPelajaran::class, 'mata_pelajaran_id')->orderBy('urutan');
-    }
 
+    // Relasi ke MataPelajaran
+    public function mataPelajaran()
+    {
+        return $this->belongsTo(MataPelajaran::class, 'mata_pelajaran_id');
+    }
 }
