@@ -36,6 +36,31 @@
         .table tbody tr:hover {
             background-color: #eefbff;
         }
+
+        /* BUTTON STYLES — sama seperti halaman dashboard */
+        .btn-main-blue {
+            background-color: #62b6cb !important;
+            border: none !important;
+            color: white !important;
+        }
+
+        .btn-main-blue:hover {
+            background-color: #439a86 !important;
+            color: white !important;
+        }
+
+        /* Soft Green khusus Kelola Kuis */
+        .btn-soft-green {
+            background-color: #c7f2c5 !important;
+            border: 1px solid #a8d9a6 !important;
+            color: #2f6b2f !important;
+        }
+
+        .btn-soft-green:hover {
+            background-color: #b0e9ad !important;
+            border-color: #96cf94 !important;
+            color: #245a24 !important;
+        }
     </style>
 </head>
 
@@ -48,11 +73,13 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/mentor/home" class="nav-link text-dark fw-semibold">Home</a></li>
-                    <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a>
+                    <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a></li>
+                    <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
+
+                    <!-- Logout sama warna biru (#62b6cb) -->
+                    <li class="nav-item">
+                        <a href="/" class="btn btn-main-blue ms-3">Logout</a>
                     </li>
-                    <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a>
-                    </li>
-                    <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -86,10 +113,18 @@
                                 <td>{{ $k->deskripsi }}</td>
                                 <td class="text-center">{{ $k->jenjang }}</td>
                                 <td class="text-center">
+
+                                    <!-- Kelola Materi: warna biru sama seperti Logout -->
                                     <a href="{{ route('mentor.materi', $k->mata_pelajaran_id) }}"
-                                        class="btn btn-sm btn-primary">
-                                        Lihat Detail
+                                        class="btn btn-sm btn-main-blue">
+                                        Kelola Materi
                                     </a>
+
+                                    <!-- Kelola Kuis: hijau soft -->
+                                    <a href="#" class="btn btn-sm btn-soft-green">
+                                        Kelola Kuis
+                                    </a>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -100,7 +135,6 @@
         @endif
     </div>
 
-    <!-- FOOTER -->
     <footer class="text-center text-secondary">
         <p>&copy; 2025 EduVibe - Bersama Membangun Generasi Cerdas</p>
     </footer>

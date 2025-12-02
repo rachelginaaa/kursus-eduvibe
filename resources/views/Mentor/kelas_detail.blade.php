@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Materi | EduVibe</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
         body { background-color: #f8f9fa; font-family: 'Poppins', sans-serif; }
         .navbar { background: linear-gradient(90deg, #a5c9ca, #e7f6f2); }
@@ -12,6 +13,29 @@
         footer { background-color: #e7f6f2; padding: 20px; margin-top: 50px; }
         .table thead { background-color: #62b6cb; color: white; }
         .table tbody tr:hover { background-color: #eefbff; }
+
+        /* Tombol Logout biru */
+        .btn-main-blue {
+            background-color: #62b6cb !important;
+            border: none !important;
+            color: white !important;
+        }
+        .btn-main-blue:hover {
+            background-color: #439a86 !important;
+            color: white !important;
+        }
+
+        /* Tambah Materi — Soft Green */
+        .btn-soft-green {
+            background-color: #c7f2c5 !important;
+            border: 1px solid #a8d9a6 !important;
+            color: #2f6b2f !important;
+        }
+        .btn-soft-green:hover {
+            background-color: #b0e9ad !important;
+            border-color: #96cf94 !important;
+            color: #245a24 !important;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +49,11 @@
                 <li class="nav-item"><a href="/mentor/home" class="nav-link text-dark fw-semibold">Home</a></li>
                 <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a></li>
                 <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
-                <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
+
+                <!-- Logout warna biru -->
+                <li class="nav-item">
+                    <a href="/" class="btn btn-main-blue ms-3">Logout</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -35,7 +63,6 @@
 <div class="container mt-5">
     <h2 class="fw-bold text-primary mb-4">Kelola Materi: {{ $mata_pelajaran->nama_matapelajaran }}</h2>
 
-    <!-- Pesan sukses -->
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -45,28 +72,35 @@
         <h5>Tambah Materi Baru</h5>
         <form action="{{ route('mentor.materi.store', $mata_pelajaran->mata_pelajaran_id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+
             <div class="mb-3">
                 <label for="judul_materi" class="form-label">Judul Materi</label>
                 <input type="text" name="judul_materi" id="judul_materi" class="form-control" required>
             </div>
+
             <div class="mb-3">
                 <label for="deskripsi" class="form-label">Deskripsi</label>
                 <textarea name="deskripsi" id="deskripsi" class="form-control"></textarea>
             </div>
+
             <div class="mb-3">
                 <label for="file" class="form-label">Upload File (opsional)</label>
                 <input type="file" name="file" id="file" class="form-control" accept=".pdf,.docx,.zip">
             </div>
-            <button type="submit" class="btn btn-success">Tambah Materi</button>
+
+            <!-- Tambah Materi soft green -->
+            <button type="submit" class="btn btn-soft-green">Tambah Materi</button>
         </form>
     </div>
 
     <!-- DAFTAR MATERI -->
     <div class="card p-4 shadow-sm">
         <h5>Daftar Materi</h5>
+
         @if($materi->isEmpty())
             <div class="alert alert-warning">Belum ada materi.</div>
         @else
+
         <table class="table table-striped table-bordered mt-3">
             <thead class="text-center">
                 <tr>
@@ -77,6 +111,7 @@
                     <th>Aksi</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($materi as $m)
                 <tr>
@@ -91,7 +126,9 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <form action="{{ route('mentor.materi.destroy', [$mata_pelajaran->mata_pelajaran_id, $m->materi_id]) }}" method="POST" onsubmit="return confirm('Yakin hapus materi ini?')">
+                        <form action="{{ route('mentor.materi.destroy', [$mata_pelajaran->mata_pelajaran_id, $m->materi_id]) }}" 
+                              method="POST" 
+                              onsubmit="return confirm('Yakin hapus materi ini?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
@@ -100,12 +137,13 @@
                 </tr>
                 @endforeach
             </tbody>
+
         </table>
+
         @endif
     </div>
 </div>
 
-<!-- FOOTER -->
 <footer class="text-center text-secondary">
     <p>&copy; 2025 EduVibe - Bersama Membangun Generasi Cerdas</p>
 </footer>

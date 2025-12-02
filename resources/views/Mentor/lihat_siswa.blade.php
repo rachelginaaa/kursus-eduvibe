@@ -30,6 +30,17 @@
         .table tbody tr:hover {
             background-color: #eefbff;
         }
+
+        /* Tombol logout warna biru soft */
+        .btn-logout {
+            background-color: #62b6cb;
+            color: white !important;
+            border: none;
+        }
+        .btn-logout:hover {
+            background-color: #4fa7bb;
+            color: white !important;
+        }
     </style>
 </head>
 
@@ -44,7 +55,11 @@
                     <li class="nav-item"><a href="/mentor/home" class="nav-link text-dark fw-semibold">Home</a></li>
                     <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a></li>
                     <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
-                    <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
+
+                    <!-- Logout dengan warna biru soft -->
+                    <li class="nav-item">
+                        <a href="/" class="btn btn-logout ms-3">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>
