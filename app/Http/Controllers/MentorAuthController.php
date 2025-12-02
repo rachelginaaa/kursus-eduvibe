@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;           // import model Siswa
+use Illuminate\Validation\Rule;
 use App\Models\MataPelajaran;   // import model MataPelajaran
 use App\Models\PaketPelajaran;  // import model PaketPelajaran
 
@@ -60,5 +61,25 @@ class MentorAuthController extends Controller
             ->get();
 
         return view('mentor.lihat_siswa', compact('siswa'));
+    }
+
+        public function edit()
+    {
+        $mentor = Auth::guard('mentor')->user();
+        return view('mentor.edit_profile_mentor', compact('mentor'));
+    }
+
+    public function update(Request $request)
+    {
+        $mentor = Auth::guard('mentor')->user();
+
+        $request->validate([
+            'email' => ['required', 'email', Rule::unique('mentor', 'email')->ignore($mentor->mentor_id, 'mentor_id')],
+            'no_hp' => 'nullable|string|max:20',
+        ]);
+
+        $mentor->update($request->only('email', 'no_hp'));
+
+        return redirect()->route('mentor.profile')->with('success', 'Profil mentor berhasil diperbarui!');
     }
 }

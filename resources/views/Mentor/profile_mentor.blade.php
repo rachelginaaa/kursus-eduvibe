@@ -55,7 +55,11 @@
             <p><strong>Tanggal Bergabung:</strong>
                 {{ \Carbon\Carbon::parse($mentor->tgl_daftar)->translatedFormat('d F Y') }}
             </p>
+        
+            <a href="{{ route('mentor.profile.edit') }}" class="btn btn-edit mt-3">Edit Profil</a>
         </div>
+    </div>
+</div>
 
 <footer class="text-center text-secondary mt-5">
     <p>&copy; 2025 EduVibe - Mentor EduVibe</p>

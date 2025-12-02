@@ -34,8 +34,6 @@ class SiswaHomeController extends Controller
     ]);
 }
 
-
-
     public function pilihPaket(Request $request)
 {
     $request->validate([

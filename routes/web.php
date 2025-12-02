@@ -49,7 +49,7 @@ Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
 // Login Mentor
 Route::get('/mentor/login', [MentorAuthController::class, 'showLoginForm'])->name('mentor.login');
 Route::post('/mentor/login', [MentorAuthController::class, 'login'])->name('mentor.login.process');
-Route::post('/mentor/logout', [MentorAuthController::class, 'logout'])->name('mentor.logout');
+Route::get('/mentor/logout', [MentorAuthController::class, 'logout'])->name('mentor.logout');
 
 // Dashboard Mentor
 Route::middleware('auth:mentor')->group(function () {
@@ -89,10 +89,6 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('siswa.delete');
 });
 
-
-
-
-
 //edit profile siswa
 Route::middleware('auth:siswa')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
@@ -115,6 +111,13 @@ Route::post('/pilih-paket', [PaketController::class, 'pilihPaket'])->name('siswa
 Route::middleware('auth:siswa')->group(function () {
     Route::get('/home', [SiswaHomeController::class, 'index'])->name('siswa.home');
     Route::post('/pilih-paket', [SiswaHomeController::class, 'pilihPaket'])->name('siswa.pilihPaket');
+});
+
+//edit profile mentor
+Route::middleware('auth:mentor')->group(function () {
+    Route::get('/mentor/profile', [MentorAuthController::class, 'index'])->name('Mentor.profile_mentor');
+    Route::get('/mentor/profile/edit', [MentorAuthController::class, 'edit'])->name('mentor.profile.edit');
+    Route::put('/mentor/profile/update', [MentorAuthController::class, 'update'])->name('mentor.profile.update');
 });
 
 Route::get('/mentor/kelas', [MentorKelasController::class, 'index'])
@@ -191,4 +194,5 @@ Route::post('/mentor/kelas/{id}/materi', [MentorKelasController::class, 'materiS
 Route::delete('/mentor/kelas/{id}/materi/{materi}', [MentorKelasController::class, 'materiDestroy'])
     ->name('mentor.materi.destroy')
     ->whereNumber('materi'); // pastikan id numeric
+
 

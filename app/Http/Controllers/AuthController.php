@@ -38,9 +38,6 @@ class AuthController extends Controller
 
     return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
-    
-
-
 
     public function logout(Request $request)
     {

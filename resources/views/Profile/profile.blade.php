@@ -83,7 +83,6 @@
 
 
             <a href="{{ route('profile.edit') }}" class="btn btn-edit mt-3">Edit Profil</a>
-
         </div>
 
         <!-- Progress Belajar -->
