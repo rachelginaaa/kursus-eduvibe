@@ -73,8 +73,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/mentor/home" class="nav-link text-dark fw-semibold">Home</a></li>
-                    <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a></li>
-                    <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
+                    <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a>
+                    </li>
+                    <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a>
+                    </li>
 
                     <!-- Logout sama warna biru (#62b6cb) -->
                     <li class="nav-item">
@@ -121,7 +123,8 @@
                                     </a>
 
                                     <!-- Kelola Kuis: hijau soft -->
-                                    <a href="#" class="btn btn-sm btn-soft-green">
+                                    <a href="{{ route('mentor.kuis.index', $k->mata_pelajaran_id) }}"
+                                        class="btn btn-sm btn-soft-green">
                                         Kelola Kuis
                                     </a>
 

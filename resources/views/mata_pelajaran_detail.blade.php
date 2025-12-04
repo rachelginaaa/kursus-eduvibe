@@ -53,26 +53,9 @@
             font-weight: bold;
         }
 
-        .kuis-btn {
-            font-size: 1.2rem;
-            padding: 0.75rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .kuis-btn img {
-            margin-right: 0.75rem;
-            filter: invert(1);
-        }
-
-        /* Warna putih */
-
         .materi-card {
             background: #ffffff;
-            /* Putih bersih */
             border: 2px solid #e3f2fd;
-            /* Biru sangat muda */
             border-radius: 18px;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -83,18 +66,14 @@
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
         }
 
-        .materi-icon {
-            font-size: 42px;
-            color: #1b4965;
-            background: #e7f6f2;
-            padding: 18px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
         .materi-title {
             color: #1b4965;
             font-weight: 600;
+        }
+
+        .section-title {
+            color: #1b4965;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -107,10 +86,15 @@
             <a class="navbar-brand" href="{{ route('siswa.home') }}">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="{{ route('siswa.home') }}"
-                            class="nav-link text-dark fw-semibold">Home</a></li>
-                    <li class="nav-item"><a href="/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
-                    <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
+                    <li class="nav-item">
+                        <a href="{{ route('siswa.home') }}" class="nav-link text-dark fw-semibold">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/profile" class="nav-link text-dark fw-semibold">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/" class="btn btn-primary ms-3">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -119,21 +103,22 @@
     <!-- Detail Mata Pelajaran -->
     <div class="container mt-5">
 
-
         <a href="{{ route('siswa.home') }}" class="btn btn-secondary back-btn">← Kembali ke Home</a>
-        <div class="card text-center">
-            <!-- <img src="{{ $mapel->gambar ?? 'https://cdn-icons-png.flaticon.com/512/2920/2920237.png' }}"
-                 width="120" class="mb-3" alt="{{ $mapel->nama_matapelajaran }}"> -->
 
+        <div class="card text-center">
             <h2>{{ $mapel->nama_matapelajaran }}</h2>
             <p class="text-muted mt-3">{{ $mapel->deskripsi }}</p>
+
             <p class="fw-semibold mt-3">
                 Mentor: {{ $mapel->mentor->nama ?? 'Belum ada mentor' }}
             </p>
-            <!-- Daftar Materi (Card Grid) -->
+
+            {{-- ===================== MATERI ===================== --}}
             <div class="mt-5">
+                <h4 class="section-title mb-3">Daftar Materi</h4>
+
                 @if($mapel->materi->count() > 0)
-                    <div class="row">
+                    <div class="row justify-content-center">
                         @foreach($mapel->materi as $materi)
                             <div class="col-md-4 mb-4">
                                 <div class="materi-card p-3 h-100">
@@ -148,10 +133,9 @@
                                         <small class="text-secondary">{{ $materi->tgl_upload }}</small>
                                     </p>
 
-                                    <!-- Button -->
                                     @if($materi->file)
                                         <a href="{{ asset('storage/materi/' . $materi->file) }}" target="_blank"
-                                            class="btn btn-primary w-100">
+                                           class="btn btn-primary w-100">
                                             Lihat File
                                         </a>
                                     @else
@@ -159,8 +143,9 @@
                                             Tidak ada file
                                         </button>
                                     @endif
+
                                     <a href="{{ route('materi.show', $materi->materi_id) }}"
-                                        class="btn btn-outline-primary w-100 mt-2">
+                                       class="btn btn-outline-primary w-100 mt-2">
                                         Lihat Materi
                                     </a>
 
@@ -173,35 +158,55 @@
                 @endif
             </div>
 
+            {{-- ===================== KUIS (FORMAT SAMA KAYA MATERI) ===================== --}}
+            <div class="mt-5">
+                <h4 class="section-title mb-3">Daftar Kuis</h4>
 
-            <!-- Tombol Kuis -->
-            <div class="col-md-4 mb-4">
-                <div class="materi-card p-3 h-100">
+                @if(session('error'))
+                    <div class="alert alert-warning text-start">{{ session('error') }}</div>
+                @endif
 
-                    <h5 class="text-center materi-title">Kuis 1</h5>
+                @if(empty($kuis) || $kuis->isEmpty())
+                    <p class="text-muted">Belum ada kuis untuk mata pelajaran ini.</p>
+                @else
+                    <div class="row justify-content-center">
+                        @foreach($kuis as $k)
+                            <div class="col-md-4 mb-4">
+                                <div class="materi-card p-3 h-100">
 
-                    <p class="text-muted" style="font-size: 14px;">
-                        Kerjakan kuis untuk menguji pemahaman materi.
-                    </p>
+                                    <h5 class="text-center materi-title">{{ $k->nama_kuis }}</h5>
 
-                    <p class="text-end mb-2">
-                        <small class="text-secondary">Tersedia</small>
-                    </p>
+                                    <p class="text-muted" style="font-size: 14px;">
+                                        {{ \Illuminate\Support\Str::limit($k->deskripsi ?? 'Kerjakan kuis untuk menguji pemahaman materi.', 120) }}
+                                    </p>
 
-                    <a href="{{ route('mata_pelajaran.kuis', $mapel->mata_pelajaran_id) }}"
-                        class="btn btn-primary w-100">
-                        Mulai Kuis
-                    </a>
+                                    <p class="text-end mb-2">
+                                        <small class="text-secondary">
+                                            Materi: {{ $k->judul_materi ?? '-' }}
+                                        </small>
+                                    </p>
 
-                </div>
+                                    <a href="{{ route('siswa.kuis.kerjakan', $k->kuis_id) }}"
+                                       class="btn btn-primary w-100">
+                                        Kerjakan Kuis
+                                    </a>
+
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
-            <!-- Footer -->
-            <footer class="text-center text-secondary">
-                <p>&copy; 2025 EduVibe - Belajar Tanpa Batas</p>
-            </footer>
+        </div>
+    </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer -->
+    <footer class="text-center text-secondary">
+        <p>&copy; 2025 EduVibe - Belajar Tanpa Batas</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
