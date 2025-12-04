@@ -13,6 +13,9 @@ use App\Http\Controllers\SiswaHomeController;
 use App\Http\Controllers\MentorKelasController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AdminSiswaController;
+use App\Http\Controllers\MentorKuisController;
+use App\Http\Controllers\SiswaKuisController;
+
 
 
 
@@ -196,3 +199,32 @@ Route::delete('/mentor/kelas/{id}/materi/{materi}', [MentorKelasController::clas
     ->whereNumber('materi'); // pastikan id numeric
 
 
+
+// Kuis Mentor
+Route::prefix('mentor')->group(function () {
+    Route::get('/mapel/{mata_pelajaran_id}/kuis', [MentorKuisController::class, 'index'])
+        ->name('mentor.kuis.index');
+
+    Route::post('/mapel/{mata_pelajaran_id}/kuis', [MentorKuisController::class, 'store'])
+        ->name('mentor.kuis.store');
+
+    Route::get('/kuis/{kuis_id}/soal', [MentorKuisController::class, 'soalIndex'])
+        ->name('mentor.kuis.soal');
+
+    Route::post('/kuis/{kuis_id}/soal', [MentorKuisController::class, 'soalStore'])
+        ->name('mentor.kuis.soal.store');
+});
+
+Route::prefix('siswa')->group(function () {
+    // daftar kuis per mapel
+    Route::get('/mapel/{mata_pelajaran_id}/kuis', [SiswaKuisController::class, 'index'])
+        ->name('siswa.kuis.index');
+
+    // kerjakan kuis (tampil soal)
+    Route::get('/kuis/{kuis_id}/kerjakan', [SiswaKuisController::class, 'show'])
+        ->name('siswa.kuis.kerjakan');
+
+    // submit jawaban & hitung skor (tanpa simpan DB)
+    Route::post('/kuis/{kuis_id}/submit', [SiswaKuisController::class, 'submit'])
+        ->name('siswa.kuis.submit');
+});
