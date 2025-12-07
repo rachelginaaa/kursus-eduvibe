@@ -37,7 +37,6 @@
                     <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
                     <li class="nav-item"><a href="/admin/siswa" class="nav-link text-dark fw-semibold">Siswa</a></li>
                     <li class="nav-item"><a href="/admin/mentor" class="nav-link text-dark fw-semibold">Mentor</a></li>
-                    <li class="nav-item"><a href="/admin/kelas" class="nav-link text-dark fw-semibold">Kelas</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
             </div>
