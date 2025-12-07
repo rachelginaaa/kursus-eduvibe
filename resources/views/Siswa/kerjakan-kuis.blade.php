@@ -22,7 +22,7 @@
 
 <body class="bg-light">
 
-  <!-- NAVBAR / HEADER -->
+  <!-- HEADER -->
   <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="{{ route('siswa.home') }}">EduVibe</a>
@@ -42,12 +42,15 @@
     </div>
   </nav>
 
-  <!-- CONTENT -->
   <div class="container mt-5">
     <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">← Kembali</a>
 
+    @if(session('error'))
+      <div class="alert alert-warning">{{ session('error') }}</div>
+    @endif
+
     <div class="card p-4 mb-4">
-      <h3 class="mb-1">{{ $kuis->nama_kuis }}</h3>
+      <h3 class="mb-1">{{ $kuis->nama_kuis ?? 'Kuis' }}</h3>
       <div class="text-muted">
         Mapel: {{ $kuis->nama_matapelajaran ?? '-' }} • Materi: {{ $kuis->judul_materi ?? '-' }}
       </div>
@@ -55,7 +58,8 @@
       @if(session('hasil'))
         @php($h = session('hasil'))
         <div class="alert alert-success mt-3 mb-0">
-          Benar: <b>{{ $h['benar'] }}</b> / {{ $h['total'] }} • Skor: <b>{{ $h['skor'] }}</b>
+          <div>Benar: <b>{{ $h['benar'] }}</b> / {{ $h['total'] }}</div>
+          <div>Nilai: <b>{{ $h['skor'] }}</b></div>
         </div>
       @endif
     </div>
@@ -64,26 +68,40 @@
       @csrf
 
       @foreach($soal as $idx => $s)
+        @php($oldJawaban = old('jawaban.' . $s->soal_id))
+
         <div class="card p-4 mb-3">
-          <div class="fw-semibold mb-2">{{ $idx+1 }}. {{ $s->soal }}</div>
+          <div class="fw-semibold mb-2">{{ $idx + 1 }}. {{ $s->soal }}</div>
 
           <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="jawaban[{{ $s->soal_id }}]" value="1" id="s{{ $s->soal_id }}_1">
+            <input class="form-check-input" type="radio"
+                   name="jawaban[{{ $s->soal_id }}]" value="1"
+                   id="s{{ $s->soal_id }}_1"
+                   {{ (string)$oldJawaban === '1' ? 'checked' : '' }}>
             <label class="form-check-label" for="s{{ $s->soal_id }}_1">{{ $s->opsi1 }}</label>
           </div>
 
           <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="jawaban[{{ $s->soal_id }}]" value="2" id="s{{ $s->soal_id }}_2">
+            <input class="form-check-input" type="radio"
+                   name="jawaban[{{ $s->soal_id }}]" value="2"
+                   id="s{{ $s->soal_id }}_2"
+                   {{ (string)$oldJawaban === '2' ? 'checked' : '' }}>
             <label class="form-check-label" for="s{{ $s->soal_id }}_2">{{ $s->opsi2 }}</label>
           </div>
 
           <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="jawaban[{{ $s->soal_id }}]" value="3" id="s{{ $s->soal_id }}_3">
+            <input class="form-check-input" type="radio"
+                   name="jawaban[{{ $s->soal_id }}]" value="3"
+                   id="s{{ $s->soal_id }}_3"
+                   {{ (string)$oldJawaban === '3' ? 'checked' : '' }}>
             <label class="form-check-label" for="s{{ $s->soal_id }}_3">{{ $s->opsi3 }}</label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="jawaban[{{ $s->soal_id }}]" value="4" id="s{{ $s->soal_id }}_4">
+            <input class="form-check-input" type="radio"
+                   name="jawaban[{{ $s->soal_id }}]" value="4"
+                   id="s{{ $s->soal_id }}_4"
+                   {{ (string)$oldJawaban === '4' ? 'checked' : '' }}>
             <label class="form-check-label" for="s{{ $s->soal_id }}_4">{{ $s->opsi4 }}</label>
           </div>
         </div>

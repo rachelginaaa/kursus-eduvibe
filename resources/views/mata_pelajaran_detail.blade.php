@@ -135,7 +135,7 @@
 
                                     @if($materi->file)
                                         <a href="{{ asset('storage/materi/' . $materi->file) }}" target="_blank"
-                                           class="btn btn-primary w-100">
+                                            class="btn btn-primary w-100">
                                             Lihat File
                                         </a>
                                     @else
@@ -145,7 +145,7 @@
                                     @endif
 
                                     <a href="{{ route('materi.show', $materi->materi_id) }}"
-                                       class="btn btn-outline-primary w-100 mt-2">
+                                        class="btn btn-outline-primary w-100 mt-2">
                                         Lihat Materi
                                     </a>
 
@@ -186,8 +186,7 @@
                                         </small>
                                     </p>
 
-                                    <a href="{{ route('siswa.kuis.kerjakan', $k->kuis_id) }}"
-                                       class="btn btn-primary w-100">
+                                    <a href="{{ route('siswa.kuis.step', [$k->kuis_id, 1]) }}" class="btn btn-primary w-100">
                                         Kerjakan Kuis
                                     </a>
 

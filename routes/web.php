@@ -224,7 +224,15 @@ Route::prefix('siswa')->group(function () {
     Route::get('/kuis/{kuis_id}/kerjakan', [SiswaKuisController::class, 'show'])
         ->name('siswa.kuis.kerjakan');
 
-    // submit jawaban & hitung skor (tanpa simpan DB)
+    // submit jawaban & hitung skor
     Route::post('/kuis/{kuis_id}/submit', [SiswaKuisController::class, 'submit'])
         ->name('siswa.kuis.submit');
 });
+
+// halaman 1 soal per step
+Route::get('/kuis/{kuis_id}/kerjakan/{no}', [SiswaKuisController::class, 'step'])
+    ->name('siswa.kuis.step');
+
+// simpan jawaban step (Next/Prev/Submit)
+Route::post('/kuis/{kuis_id}/jawab/{no}', [SiswaKuisController::class, 'saveStep'])
+    ->name('siswa.kuis.step.save');
