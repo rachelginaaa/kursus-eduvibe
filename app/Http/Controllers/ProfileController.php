@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use App\Models\Siswa;
+use App\Models\Mentor;
 
 class ProfileController extends Controller
 {
@@ -22,31 +23,61 @@ class ProfileController extends Controller
         return view('siswa.index', compact('siswas'));
     }
 
+    public function index3()
+    {
+        $mentor = Mentor::all();
+        return view('mentor.index', compact('mentor'));
+    }
+
     public function update(Request $request)
     {
-        // ambil user yang sedang login (pastikan ini adalah model Siswa)
-        $siswa = auth()->user(); // atau auth('siswa')->user() kalau pakai guard custom
+        if (Auth::guard('siswa')->check()) {
+            $user = Auth::guard('siswa')->user();
 
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'email',
-                // ignore berdasarkan primary key model saat ini (mis. siswaid)
-                Rule::unique('siswa', 'email')->ignore($siswa->getKey(), $siswa->getKeyName()),
-            ],
-            'no_hp' => 'nullable|string|max:20',
-        ]);
+            $request->validate([
+                'nama' => 'required|string|max:255',
+                'email' => [
+                    'required', 
+                    'email', 
+                    Rule::unique('siswa', 'email')->ignore($user->getKey(), $user->getKeyName())
+                ],
+                'no_hp' => 'nullable|string|max:20',
+            ]);
 
-        $siswa->update($request->only('nama', 'email', 'no_hp'));
+            $user->update($request->only('nama', 'email', 'no_hp'));
 
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+            return back()->with('success', 'Profil siswa berhasil diperbarui!');
+        }
+
+        if (Auth::guard('mentor')->check()) {
+            $user = Auth::guard('mentor')->user();
+
+            $request->validate([
+                'email' => [
+                    'required', 
+                    'email', 
+                    Rule::unique('mentor', 'email')->ignore($user->getKey(), $user->getKeyName())
+                ],
+                'no_hp' => 'nullable|string|max:20',
+            ]);
+
+            $user->update($request->only('email', 'no_hp'));
+
+            return back()->with('success', 'Profil mentor berhasil diperbarui!');
+        }
+
+        return abort(403, 'Unauthorized');
     }
+
     public function edit()
     {
         $user = Auth::guard('siswa')->user();
         return view('profile.edit_profile', compact('user'));
     }
 
-
+    public function edit2()
+    {
+        $mentor = Auth::guard('mentor')->user();
+        return view('mentor.edit_profile_mentor', compact('mentor'));
+    }
 }

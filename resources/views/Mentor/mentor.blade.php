@@ -67,7 +67,9 @@
 
     <!-- Kartu Mentor -->
     <div class="container mt-5">
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
+
+            <!-- Kelas -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="80" class="mx-auto mb-3" alt="Kelas">
@@ -75,23 +77,18 @@
                     <p class="text-muted">Kelola materi, tugas, dan jadwal pembelajaran untuk siswa Anda.</p>
                     <a href="{{ route('mentor.kelas') }}" class="btn btn-primary">Lihat Kelas</a>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4205/4205358.png" width="80" class="mx-auto mb-3" alt="Tugas">
-                    <h5 class="fw-bold">Penilaian & Tugas</h5>
-                    <p class="text-muted">Periksa tugas, berikan nilai, dan umpan balik untuk siswa.</p>
-                    <button class="btn btn-primary">Kelola Tugas</button>
-                </div>
-            </div>
+            </div>         
+
+            <!-- Data Siswa -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" width="80" class="mx-auto mb-3" alt="Peserta">
                     <h5 class="fw-bold">Data Siswa</h5>
                     <p class="text-muted">Pantau perkembangan dan keaktifan siswa dalam setiap kelas.</p>
-                    <button class="btn btn-primary">Lihat Siswa</button>
+                    <a href="{{ route('mentor.siswa') }}" class="btn btn-primary">Lihat Siswa</a>
                 </div>
             </div>
+
         </div>
     </div>
 

@@ -22,7 +22,6 @@ class SiswaSeeder extends Seeder
                 'jenjang' => 'SMA',
                 'jenis_kelamin' => 'Laki-laki',
                 'no_hp' => '081234567890',
-                'role' => 'siswa',
             ],
             [
                 'nama' => 'Hans Sebastian',
@@ -32,7 +31,6 @@ class SiswaSeeder extends Seeder
                 'jenjang' => 'SMP',
                 'jenis_kelamin' => 'Laki-laki',
                 'no_hp' => '082112223333',
-                'role' => 'siswa',
             ]
         ];
 

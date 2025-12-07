@@ -15,7 +15,6 @@ class AdminSeeder extends Seeder
                 'nama_admin' => 'Admin Utama',
                 'username' => 'admin1',
                 'password' => Hash::make('123456'),
-                'email' => 'admin1@gmail.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

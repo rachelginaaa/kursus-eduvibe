@@ -52,7 +52,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/admin/home" class="nav-link text-dark fw-semibold">Dashboard</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Pengguna</a></li>
+                    <li class="nav-item"><a href="/admin/profile" class="nav-link text-dark fw-semibold">Pengguna</a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Laporan</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>

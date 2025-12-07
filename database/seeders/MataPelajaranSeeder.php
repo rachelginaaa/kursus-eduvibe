@@ -55,7 +55,6 @@ class MataPelajaranSeeder extends Seeder
 
                 $data[] = [
                     'mentor_id' => $mentorId,
-                    'paket_pelajaran_id' => $paketId,
                     'nama_matapelajaran' => $nama,
                     'deskripsi' => "Pembelajaran tentang $nama untuk jenjang SMA.",
                     'jenjang' => 'SMA',

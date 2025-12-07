@@ -34,7 +34,7 @@
             <a class="navbar-brand" href="#">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="/admin/home" class="nav-link text-dark fw-semibold">Dashboard</a></li>
+                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
                     <li class="nav-item"><a href="/admin/siswa" class="nav-link text-dark fw-semibold">Siswa</a></li>
                     <li class="nav-item"><a href="/admin/mentor" class="nav-link text-dark fw-semibold">Mentor</a></li>
                     <li class="nav-item"><a href="/admin/kelas" class="nav-link text-dark fw-semibold">Kelas</a></li>

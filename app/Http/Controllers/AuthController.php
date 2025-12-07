@@ -38,9 +38,6 @@ class AuthController extends Controller
 
     return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
-    
-
-
 
     public function logout(Request $request)
     {
@@ -66,7 +63,7 @@ class AuthController extends Controller
             'jenjang' => 'required',
             'jenis_kelamin' => 'required',
             'no_hp' => 'required',
-            
+
         ]);
 
         DB::table('siswa')->insert([
@@ -77,7 +74,7 @@ class AuthController extends Controller
             'jenjang' => $request->jenjang,
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_hp' => $request->no_hp,
-            'role' => 'siswa',
+            // 'role' => 'siswa',
         ]);
 
         // DB::table('mentor')->insert([
