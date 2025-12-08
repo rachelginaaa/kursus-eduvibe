@@ -113,8 +113,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="#home" class="nav-link fw-semibold text-dark">Beranda</a></li>
-                    <li class="nav-item"><a href="#tentang" class="nav-link fw-semibold text-dark">Tentang</a></li>
                     <li class="nav-item"><a href="#fitur" class="nav-link fw-semibold text-dark">Fitur</a></li>
+                    <li class="nav-item"><a href="#tentang" class="nav-link fw-semibold text-dark">Tentang</a></li>
                     <li class="nav-item"><a href="#paket" class="nav-link fw-semibold text-dark">Paket</a></li>
                     <li class="nav-item"><a href="#kontak" class="nav-link fw-semibold text-dark">Kontak</a></li>
                     <li class="nav-item"><a href="/tutorial" class="nav-link fw-semibold text-dark">Tutorial</a></li>

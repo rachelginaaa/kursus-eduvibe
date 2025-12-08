@@ -43,4 +43,104 @@ class PaketController extends Controller
         ]);
     }
 
+        public function index($id)
+    {
+        $paket = PaketPelajaran::findOrFail($id);
+        $mataPelajaran = MataPelajaran::where('paket_pelajaran_id', $id)->get();
+
+        return view('admin.mapel_index', compact('paket', 'mataPelajaran'));
+    }
+
+    // Tambah mapel
+    public function store(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'deskripsi' => 'nullable'
+        ]);
+
+        MataPelajaran::create([
+            'paket_pelajaran_id' => $id,
+            'nama_mata_pelajaran' => $request->nama,
+            'deskripsi' => $request->deskripsi,
+        ]);
+
+        return back()->with('success', 'Mata pelajaran berhasil ditambahkan');
+    }
+
+    // Update
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama' => 'required',
+        ]);
+
+        $mapel = MataPelajaran::findOrFail($id);
+        $mapel->nama_mata_pelajaran = $request->nama;
+        $mapel->deskripsi = $request->deskripsi;
+        $mapel->save();
+
+        return back()->with('success', 'Mata pelajaran berhasil diperbarui');
+    }
+
+    // Hapus
+    public function destroy($id)
+    {
+        MataPelajaran::destroy($id);
+        return back()->with('success', 'Mata pelajaran berhasil dihapus');
+    }
+
+    public function create()
+    {
+        return view('admin.add_paket');
+    }
+
+    public function storepaket(Request $request)
+{
+    $request->validate([
+        'nama_paket_pelajaran' => 'required',
+        'deskripsi' => 'nullable',
+        'jenjang' => 'required',
+        'harga' => 'required',
+    ]);
+
+    PaketPelajaran::create([
+        'nama_paket_pelajaran' => $request->nama_paket_pelajaran,
+        'deskripsi' => $request->deskripsi,
+        'jenjang' => $request->jenjang,
+        'harga' => $request->harga,
+    ]);
+
+    return redirect()->route('admin.paket.index')->with('success', 'Paket berhasil ditambahkan!');
+}
+
+
+        public function edit($id)
+    {
+        $paket = PaketPelajaran::findOrFail($id);
+        return view('admin.edit_paket', compact('paket'));
+    }
+
+    public function updatePaket(Request $request, $id)
+    {
+        $request->validate([
+            'nama_paket_pelajaran' => 'required',
+            'deskripsi' => 'required',
+            'jenjang' => 'required',
+            'harga' => 'required',
+        ]);
+
+        $paket = PaketPelajaran::findOrFail($id);
+        $paket->update($request->all());
+
+        return redirect()->route('admin.paket.index')->with('success', 'Paket berhasil diperbarui!');
+    }
+
+    public function destroyPaket($id)
+    {
+        PaketPelajaran::destroy($id);
+        return back()->with('success', 'Paket berhasil dihapus!');
+    }
+
+
 }

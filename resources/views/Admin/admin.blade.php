@@ -81,10 +81,20 @@
             <!-- Kelola Mentor -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4205/4205358.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
                     <h5 class="fw-bold">Kelola Mentor</h5>
                     <p class="text-muted">Pantau dan kelola akun mentor, termasuk verifikasi dan status aktif.</p>
                     <button class="btn btn-primary" onclick="window.location.href='/admin/mentor'">Kelola Mentor</button>
+                </div>
+            </div>
+
+            <!-- Kelola Paket -->
+            <div class="col-md-4">
+                <div class="card p-4 text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
+                    <h5 class="fw-bold">Kelola Paket</h5>
+                    <p class="text-muted">Manajemen mata pelajaran setiap paket pembelajaran. </p>
+                    <button class="btn btn-primary" onclick="window.location.href='/admin/paket'">Kelola Paket</button>
                 </div>
             </div>
         </div>

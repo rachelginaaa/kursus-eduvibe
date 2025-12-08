@@ -37,9 +37,11 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.process');
 
 // tutorial
-Route::get('/tutorial', function () {
-    return view('tutorial');
-});
+Route::get('/tutorial', function () {return view('tutorial');});
+
+
+
+
 
 // paket
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
@@ -76,7 +78,7 @@ Route::middleware('auth:admin')->group(function () {
 //fitur admin
 Route::get('/admin/siswa', [AdminAuthController::class, 'siswa'])->name('admin.siswa');
 Route::get('/admin/mentor', [AdminAuthController::class, 'mentor'])->name('admin.mentor');
-Route::get('/admin/kelas', [AdminAuthController::class, 'kelas'])->name('admin.kelas');
+Route::get('/admin/paket', [AdminAuthController::class, 'paket'])->name('admin.paket');
 
 //fitur admin-siswa
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -90,6 +92,28 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])->name('siswa.update');
     // delte
     Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('siswa.delete');
+
+    Route::get('/paket', [AdminAuthCOntroller::class, 'paket'])->name('paket.index');
+    // CRUD MAPEL
+    Route::get('/paket/create', [PaketController::class, 'create'])->name('paket.create');
+    Route::post('/paket/store', [PaketController::class, 'storepaket'])->name('paket.store');
+
+    Route::get('/paket/{id}/edit', [PaketController::class, 'edit'])->name('paket.edit');
+    Route::put('/paket/update/{id}', [PaketController::class, 'updatePaket'])->name('paket.update');
+    Route::delete('/paket/delete/{id}', [PaketController::class, 'destroyPaket'])->name('paket.delete');
+    Route::get('/paket/index/{id}', [PaketController::class, 'index'])->name('paket.index');
+
+      // Form tambah mata pelajaran untuk paket tertentu
+    Route::get('/mataPelajaran/create/{paket_id}', [MataPelajaranController::class, 'create'])->name('mataPelajaran.create');
+    Route::post('/mataPelajaran/store', [MataPelajaranController::class, 'store'])->name('mataPelajaran.store');
+
+    // Form edit mata pelajaran
+    Route::get('/mataPelajaran/{id}/edit', [MataPelajaranController::class, 'edit'])->name('mataPelajaran.edit');
+    Route::put('/mataPelajaran/update/{id}', [MataPelajaranController::class, 'update'])->name('mataPelajaran.update');
+
+    // Delete mata pelajaran
+    Route::delete('/mataPelajaran/delete/{id}', [MataPelajaranController::class, 'destroy'])->name('mataPelajaran.delete');
+
 });
 
 //edit profile siswa
