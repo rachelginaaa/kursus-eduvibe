@@ -5,37 +5,68 @@ namespace App\Http\Controllers;
 use App\Models\MataPelajaran;
 use App\Models\PaketPelajaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Mentor;
 
 class MataPelajaranController extends Controller
 {
-    // Detail 1 mata pelajaran + materi + kuis
+    // Detail 1 mata pelajaran + materi + kuis (+ nilai siswa)
     public function show($id)
     {
-        // sekalian ambil mentor + materi (biar yang di blade kamu aman)
         $mapel = MataPelajaran::with(['mentor', 'materi'])->findOrFail($id);
 
-        // ambil daftar kuis untuk mapel ini (join ke materi)
+        $siswa = Auth::guard('siswa')->user();
+        $siswa_id = $siswa->siswa_id ?? null;
+
         $kuis = DB::table('kuis')
             ->join('materi', 'kuis.materi_id', '=', 'materi.materi_id')
+            ->leftJoin('hasil_kuis', function ($join) use ($siswa_id) {
+                $join->on('hasil_kuis.kuis_id', '=', 'kuis.kuis_id');
+                if ($siswa_id) {
+                    $join->where('hasil_kuis.siswa_id', '=', $siswa_id);
+                } else {
+                    // kalau belum login siswa, paksa join tidak match
+                    $join->whereRaw('1=0');
+                }
+            })
             ->where('materi.mata_pelajaran_id', $id)
-            ->select('kuis.*', 'materi.judul_materi')
+            ->select(
+                'kuis.*',
+                'materi.judul_materi',
+                'hasil_kuis.skor as nilai_saya',
+                'hasil_kuis.tgl_mengerjakan as tgl_mengerjakan'
+            )
             ->orderByDesc('kuis.kuis_id')
             ->get();
 
         return view('mata_pelajaran_detail', compact('mapel', 'kuis'));
     }
 
-    // Halaman daftar kuis (kalau kamu masih butuh halaman terpisah)
     public function kuis($id)
     {
         $mapel = MataPelajaran::findOrFail($id);
 
+        $siswa = Auth::guard('siswa')->user();
+        $siswa_id = $siswa->siswa_id ?? null;
+
         $kuis = DB::table('kuis')
             ->join('materi', 'kuis.materi_id', '=', 'materi.materi_id')
+            ->leftJoin('hasil_kuis', function ($join) use ($siswa_id) {
+                $join->on('hasil_kuis.kuis_id', '=', 'kuis.kuis_id');
+                if ($siswa_id) {
+                    $join->where('hasil_kuis.siswa_id', '=', $siswa_id);
+                } else {
+                    $join->whereRaw('1=0');
+                }
+            })
             ->where('materi.mata_pelajaran_id', $id)
-            ->select('kuis.*', 'materi.judul_materi')
+            ->select(
+                'kuis.*',
+                'materi.judul_materi',
+                'hasil_kuis.skor as nilai_saya',
+                'hasil_kuis.tgl_mengerjakan as tgl_mengerjakan'
+            )
             ->orderByDesc('kuis.kuis_id')
             ->get();
 

@@ -158,7 +158,6 @@
                 @endif
             </div>
 
-            {{-- ===================== KUIS (FORMAT SAMA KAYA MATERI) ===================== --}}
             <div class="mt-5">
                 <h4 class="section-title mb-3">Daftar Kuis</h4>
 
@@ -185,6 +184,16 @@
                                             Materi: {{ $k->judul_materi ?? '-' }}
                                         </small>
                                     </p>
+
+                                    @if(!is_null($k->nilai_saya))
+                                        <div class="alert alert-success py-2 mb-2 text-start" style="font-size:14px;">
+                                            Nilai saya: <b>{{ $k->nilai_saya }}</b>
+                                        </div>
+                                    @else
+                                        <div class="text-muted mb-2" style="font-size:14px;">
+                                            Belum dikerjakan
+                                        </div>
+                                    @endif
 
                                     <a href="{{ route('siswa.kuis.step', [$k->kuis_id, 1]) }}" class="btn btn-primary w-100">
                                         Kerjakan Kuis

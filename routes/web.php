@@ -260,3 +260,15 @@ Route::get('/kuis/{kuis_id}/kerjakan/{no}', [SiswaKuisController::class, 'step']
 // simpan jawaban step (Next/Prev/Submit)
 Route::post('/kuis/{kuis_id}/jawab/{no}', [SiswaKuisController::class, 'saveStep'])
     ->name('siswa.kuis.step.save');
+
+
+// halaman hasil kuis
+Route::get('/kuis/{kuis_id}/hasil', [SiswaKuisController::class, 'hasil'])
+    ->name('siswa.kuis.hasil');
+
+// reset (ulang kuis)
+Route::post('/kuis/{kuis_id}/ulang', [SiswaKuisController::class, 'ulang'])
+    ->name('siswa.kuis.ulang');
+
+Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])
+    ->name('mata_pelajaran_detail');

@@ -8,21 +8,18 @@
 
   <style>
     body { background-color:#f8f9fa; font-family:'Poppins',sans-serif; }
-
     .navbar { background: linear-gradient(90deg, #a5c9ca, #e7f6f2); }
     .navbar-brand { font-weight: bold; color: #1b4965 !important; }
-
     .card { border:none; border-radius:16px; box-shadow:0 4px 12px rgba(0,0,0,.08); }
     .btn-primary { background-color:#62b6cb; border:none; }
     .btn-primary:hover { background-color:#439a86; }
-
     footer { background-color:#e7f6f2; padding:20px; margin-top:50px; }
   </style>
 </head>
 
 <body class="bg-light">
 
-  <!-- Navbar (SAMAIN kayak mata_pelajaran_detail) -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="{{ route('siswa.home') }}">EduVibe</a>
@@ -43,24 +40,21 @@
   </nav>
 
   <div class="container mt-5">
-    <a href="{{ url()->previous() }}" class="btn btn-secondary mb-3">← Kembali</a>
-<div class="container mt-5">
-  <a href="javascript:history.back()" class="btn btn-secondary mb-3">← Kembali</a>
 
     @php
       $err = session('error');
       $hasil = session('hasil');
     @endphp
 
-    @php if($err): @endphp
+    @if($err)
       <div class="alert alert-warning">{{ $err }}</div>
-    @php endif; @endphp
+    @endif
 
-    @php if($hasil): @endphp
+    @if($hasil)
       <div class="alert alert-success">
         Benar: <b>{{ $hasil['benar'] }}</b> / {{ $hasil['total'] }} • Nilai: <b>{{ $hasil['skor'] }}</b>
       </div>
-    @php endif; @endphp
+    @endif
 
     <div class="card p-4 mb-3">
       <h4 class="mb-1">{{ $kuis->nama_kuis }}</h4>
@@ -70,7 +64,7 @@
 
       <div class="fw-semibold mb-3">Soal {{ $no }} dari {{ $total }}</div>
 
-      {{-- NAVIGASI NOMOR --}}
+      {{-- Navigasi nomor --}}
       <div class="mb-3">
         <div class="fw-semibold mb-2">Navigasi Soal</div>
         <div class="d-flex flex-wrap gap-2">
@@ -109,18 +103,18 @@
         </div>
 
         @php
-          $disablePrev = $no <= 1 ? 'disabled' : '';
+          $disablePrev = $no <= 1;
           $isLast = $no >= $total;
         @endphp
 
         <div class="d-flex justify-content-between">
-          <button type="submit" name="prev" class="btn btn-secondary" {{ $disablePrev }}>Prev</button>
+          <button type="submit" name="prev" class="btn btn-secondary" {{ $disablePrev ? 'disabled' : '' }}>Prev</button>
 
-          @php if(!$isLast): @endphp
+          @if(!$isLast)
             <button type="submit" name="next" class="btn btn-primary">Next</button>
-          @php else: @endphp
+          @else
             <button type="submit" name="submit" class="btn btn-success">Submit</button>
-          @php endif; @endphp
+          @endif
         </div>
       </form>
     </div>
