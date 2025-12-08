@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class SiswaKuisController extends Controller
 {
+    // (Opsional) mode lama: tampil semua soal sekaligus
     public function show($kuis_id)
     {
         $kuis = DB::table('kuis')
@@ -16,8 +17,7 @@ class SiswaKuisController extends Controller
             ->select('kuis.*', 'materi.judul_materi', 'mata_pelajaran.nama_matapelajaran')
             ->first();
 
-        if (!$kuis)
-            abort(404, 'Kuis tidak ditemukan.');
+        if (!$kuis) abort(404, 'Kuis tidak ditemukan.');
 
         $soal = DB::table('soal')
             ->where('kuis_id', $kuis_id)
@@ -31,6 +31,7 @@ class SiswaKuisController extends Controller
         return view('Siswa.kerjakan-kuis', compact('kuis', 'soal'));
     }
 
+    // (Opsional) submit untuk mode lama (tampil semua soal sekaligus)
     public function submit(Request $request, $kuis_id)
     {
         $soal = DB::table('soal')
@@ -38,10 +39,8 @@ class SiswaKuisController extends Controller
             ->orderBy('soal_id')
             ->get();
 
-        if ($soal->isEmpty())
-            abort(404, 'Soal tidak ditemukan.');
+        if ($soal->isEmpty()) abort(404, 'Soal tidak ditemukan.');
 
-        // validasi: semua soal harus dijawab
         $jawaban = $request->input('jawaban', []);
         foreach ($soal as $s) {
             if (!isset($jawaban[$s->soal_id])) {
@@ -53,21 +52,21 @@ class SiswaKuisController extends Controller
         $total = $soal->count();
 
         foreach ($soal as $s) {
-            $pilih = (string) ($jawaban[$s->soal_id] ?? '');
-            if ($pilih === (string) $s->jawaban_benar)
-                $benar++;
+            $pilih = (string)($jawaban[$s->soal_id] ?? '');
+            if ($pilih === (string)$s->jawaban_benar) $benar++;
         }
 
         $skor = $total > 0 ? round(($benar / $total) * 100) : 0;
 
-        // balik ke halaman yang sama, tampilkan hasil
         return redirect()->route('siswa.kuis.kerjakan', $kuis_id)
             ->with('hasil', [
                 'benar' => $benar,
                 'total' => $total,
-                'skor' => $skor,
+                'skor'  => $skor,
             ]);
     }
+
+    // MODE STEPPER: 1 soal per halaman
     public function step($kuis_id, $no)
     {
         $kuis = DB::table('kuis')
@@ -77,8 +76,7 @@ class SiswaKuisController extends Controller
             ->select('kuis.*', 'materi.judul_materi', 'mata_pelajaran.nama_matapelajaran')
             ->first();
 
-        if (!$kuis)
-            abort(404);
+        if (!$kuis) abort(404);
 
         $soalList = DB::table('soal')
             ->where('kuis_id', $kuis_id)
@@ -86,14 +84,13 @@ class SiswaKuisController extends Controller
             ->get();
 
         $total = $soalList->count();
-        if ($total === 0)
+        if ($total === 0) {
             return back()->with('error', 'Soal belum ada.');
+        }
 
-        $no = (int) $no;
-        if ($no < 1)
-            return redirect()->route('siswa.kuis.step', [$kuis_id, 1]);
-        if ($no > $total)
-            return redirect()->route('siswa.kuis.step', [$kuis_id, $total]);
+        $no = (int)$no;
+        if ($no < 1) return redirect()->route('siswa.kuis.step', [$kuis_id, 1]);
+        if ($no > $total) return redirect()->route('siswa.kuis.step', [$kuis_id, $total]);
 
         $soal = $soalList[$no - 1];
 
@@ -101,7 +98,10 @@ class SiswaKuisController extends Controller
         $jawabanSession = session("quiz_$kuis_id", []);
         $selected = $jawabanSession[$soal->soal_id] ?? null;
 
-        return view('Siswa.kerjakan-kuis-step', compact('kuis', 'soal', 'no', 'total', 'selected'));
+        // ✅ penting: kirim juga $soalList untuk navigasi nomor di view
+        return view('Siswa.kerjakan-kuis-step', compact(
+            'kuis', 'soal', 'no', 'total', 'selected', 'soalList'
+        ));
     }
 
     public function saveStep(Request $request, $kuis_id, $no)
@@ -112,14 +112,11 @@ class SiswaKuisController extends Controller
             ->get();
 
         $total = $soalList->count();
-        if ($total === 0)
-            abort(404);
+        if ($total === 0) abort(404);
 
-        $no = (int) $no;
-        if ($no < 1)
-            $no = 1;
-        if ($no > $total)
-            $no = $total;
+        $no = (int)$no;
+        if ($no < 1) $no = 1;
+        if ($no > $total) $no = $total;
 
         $soal = $soalList[$no - 1];
 
@@ -127,7 +124,7 @@ class SiswaKuisController extends Controller
         $pilih = $request->input('jawaban'); // 1-4
         if ($pilih) {
             $data = session("quiz_$kuis_id", []);
-            $data[$soal->soal_id] = (string) $pilih;
+            $data[$soal->soal_id] = (string)$pilih;
             session(["quiz_$kuis_id" => $data]);
         }
 
@@ -154,20 +151,20 @@ class SiswaKuisController extends Controller
 
             $benar = 0;
             foreach ($soalList as $s) {
-                if ((string) $jawabanSession[$s->soal_id] === (string) $s->jawaban_benar)
+                if ((string)$jawabanSession[$s->soal_id] === (string)$s->jawaban_benar) {
                     $benar++;
+                }
             }
 
             $skor = round(($benar / $total) * 100);
 
-            // optional: bersihin session quiz biar bisa ulang
+            // bersihin session quiz biar bisa ulang
             session()->forget("quiz_$kuis_id");
 
             return redirect()->route('siswa.kuis.step', [$kuis_id, 1])
                 ->with('hasil', ['benar' => $benar, 'total' => $total, 'skor' => $skor]);
         }
 
-        // default kalau ga ada tombol
         return redirect()->route('siswa.kuis.step', [$kuis_id, $no]);
     }
 }
