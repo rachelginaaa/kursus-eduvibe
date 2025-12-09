@@ -49,6 +49,7 @@
 
     <!-- Header -->
     <div class="container mt-5">
+        
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-primary">Daftar Siswa 👩‍🎓</h2>
             <button class="btn btn-primary">+ Tambah Siswa</button>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Materi | EduVibe</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <style>
         body { background-color: #f8f9fa; font-family: 'Poppins', sans-serif; }
         .navbar { background: linear-gradient(90deg, #a5c9ca, #e7f6f2); }
@@ -46,8 +46,7 @@
         <a class="navbar-brand" href="#">EduVibe</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a href="/mentor/home" class="nav-link text-dark fw-semibold">Home</a></li>
-                <li class="nav-item"><a href="/mentor/kelas" class="nav-link text-dark fw-semibold">Kelas Saya</a></li>
+                <li class="nav-item"><a href="/mentor/dashboard" class="nav-link text-dark fw-semibold">Home</a></li>
                 <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
 
                 <!-- Logout warna biru -->
@@ -126,8 +125,8 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <form action="{{ route('mentor.materi.destroy', [$mata_pelajaran->mata_pelajaran_id, $m->materi_id]) }}" 
-                              method="POST" 
+                        <form action="{{ route('mentor.materi.destroy', [$mata_pelajaran->mata_pelajaran_id, $m->materi_id]) }}"
+                              method="POST"
                               onsubmit="return confirm('Yakin hapus materi ini?')">
                             @csrf
                             @method('DELETE')

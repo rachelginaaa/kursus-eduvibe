@@ -51,9 +51,7 @@
             <a class="navbar-brand" href="#">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="/admin/home" class="nav-link text-dark fw-semibold">Dashboard</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Pengguna</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Laporan</a></li>
+                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
             </div>
@@ -86,16 +84,6 @@
                     <h5 class="fw-bold">Kelola Mentor</h5>
                     <p class="text-muted">Pantau dan kelola akun mentor, termasuk verifikasi dan status aktif.</p>
                     <button class="btn btn-primary">Kelola Mentor</button>
-                </div>
-            </div>
-
-            <!-- Kelola Kelas -->
-            <div class="col-md-4">
-                <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" width="80" class="mx-auto mb-3" alt="Kelola Kelas">
-                    <h5 class="fw-bold">Kelola Kelas</h5>
-                    <p class="text-muted">Lihat semua kelas aktif, nonaktifkan kelas, atau buat kategori baru.</p>
-                    <button class="btn btn-primary">Kelola Kelas</button>
                 </div>
             </div>
         </div>

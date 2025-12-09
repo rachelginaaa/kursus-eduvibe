@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <h1 class="fw-bold text-primary mb-4" style="color:#1b4965;">Kelola Siswa</h1>
 
-    <a href="{{ route('admin.siswa.create') }}" class="btn mb-3" 
+    <a href="{{ route('admin.siswa.create') }}" class="btn mb-3"
        style="background-color:#62b6cb; color:white; border:none;">+ Tambah Siswa</a>
 
     @if(session('success'))
@@ -36,10 +36,10 @@
                     <td>{{ $s->jenis_kelamin }}</td>
                     <td>{{ $s->no_hp }}</td>
                     <td>
-                        <a href="{{ route('admin.siswa.edit', $s->siswa_id) }}" 
+                        <a href="{{ route('admin.siswa.edit', $s->siswa_id) }}"
                            class="btn btn-sm" style="background-color:#62b6cb; color:white; border:none;">Edit</a>
 
-                        <form action="{{ route('admin.siswa.delete', $s->siswa_id) }}" method="POST" class="d-inline" 
+                        <form action="{{ route('admin.siswa.delete', $s->siswa_id) }}" method="POST" class="d-inline"
                               onsubmit="return confirm('Apakah kamu yakin ingin menghapus siswa ini?');">
                             @csrf
                             @method('DELETE')

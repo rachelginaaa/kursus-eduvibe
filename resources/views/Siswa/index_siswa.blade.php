@@ -52,6 +52,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-primary">Daftar Siswa 👩‍🎓</h2>
             <button class="btn btn-primary">+ Tambah Siswa</button>
+            <a href="javascript:history.back()" class="btn btn-secondary mb-3">← Kembali</a>
         </div>
 
         <!-- Tabel Siswa -->

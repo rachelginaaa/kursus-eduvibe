@@ -1,8 +1,10 @@
 @extends('admin.layout')
 
 @section('content')
-<h2 class="fw-bold mb-4">Kelola Mentor</h2>
-<a href="javascript:history.back()" class="btn btn-secondary mb-3">← Kembali</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-primary">Daftar Mentor</h2>
+            <a href="/admin/dashboard" class="btn btn-secondary mb-3">← Kembali</a>
+        </div>
 <div class="card p-4 shadow-sm">
     <table class="table table-striped">
         <thead>

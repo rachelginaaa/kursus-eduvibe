@@ -21,6 +21,7 @@ class PaketPelajaran extends Model
         'nama_paket_pelajaran',
         'deskripsi',
         'jenjang',
+        'harga',
     ];
 
     /**
