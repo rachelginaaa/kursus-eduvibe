@@ -80,6 +80,6 @@ class MentorAuthController extends Controller
 
         $mentor->update($request->only('email', 'no_hp'));
 
-        return redirect()->route('mentor.profile')->with('success', 'Profil mentor berhasil diperbarui!');
+        return redirect()->route('Mentor.profile_mentor')->with('success', 'Profil mentor berhasil diperbarui!');
     }
 }
