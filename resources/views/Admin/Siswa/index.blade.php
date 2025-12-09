@@ -4,7 +4,10 @@
 
 @section('content')
 <div class="container mt-5">
-    <h2 class="mb-4">Daftar Siswa</h2>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-primary">Daftar Siswa</h2>
+            <a href="/admin/dashboard" class="btn btn-secondary mb-3">← Kembali</a>
+        </div>
 
     <!-- Tombol Tambah Siswa -->
     <a href="{{ route('admin.siswa.create') }}" class="btn btn-primary mb-3">Tambah Siswa</a>
@@ -37,8 +40,8 @@
                     <a href="{{ route('admin.siswa.edit', $s->siswa_id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                     <!-- Tombol Delete -->
-                    <form action="{{ route('admin.siswa.delete', $s->siswa_id) }}" 
-                          method="POST" 
+                    <form action="{{ route('admin.siswa.delete', $s->siswa_id) }}"
+                          method="POST"
                           style="display:inline-block;"
                           onsubmit="return confirm('Yakin ingin menghapus siswa ini?');">
                         @csrf

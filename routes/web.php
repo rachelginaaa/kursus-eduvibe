@@ -13,6 +13,9 @@ use App\Http\Controllers\SiswaHomeController;
 use App\Http\Controllers\MentorKelasController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AdminSiswaController;
+use App\Http\Controllers\MentorKuisController;
+use App\Http\Controllers\SiswaKuisController;
+
 
 
 
@@ -34,9 +37,11 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.process');
 
 // tutorial
-Route::get('/tutorial', function () {
-    return view('tutorial');
-});
+Route::get('/tutorial', function () {return view('tutorial');});
+
+
+
+
 
 // paket
 Route::get('/paket/a', fn() => view('paketA'))->name('paket.a');
@@ -73,7 +78,7 @@ Route::middleware('auth:admin')->group(function () {
 //fitur admin
 Route::get('/admin/siswa', [AdminAuthController::class, 'siswa'])->name('admin.siswa');
 Route::get('/admin/mentor', [AdminAuthController::class, 'mentor'])->name('admin.mentor');
-Route::get('/admin/kelas', [AdminAuthController::class, 'kelas'])->name('admin.kelas');
+Route::get('/admin/paket', [AdminAuthController::class, 'paket'])->name('admin.paket');
 
 //fitur admin-siswa
 Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -87,6 +92,28 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::put('/siswa/{id}', [AdminSiswaController::class, 'update'])->name('siswa.update');
     // delte
     Route::delete('/siswa/{id}', [AdminSiswaController::class, 'destroy'])->name('siswa.delete');
+
+    Route::get('/paket', [AdminAuthCOntroller::class, 'paket'])->name('paket.index');
+    // CRUD MAPEL
+    Route::get('/paket/create', [PaketController::class, 'create'])->name('paket.create');
+    Route::post('/paket/store', [PaketController::class, 'storepaket'])->name('paket.store');
+
+    Route::get('/paket/{id}/edit', [PaketController::class, 'edit'])->name('paket.edit');
+    Route::put('/paket/update/{id}', [PaketController::class, 'updatePaket'])->name('paket.update');
+    Route::delete('/paket/delete/{id}', [PaketController::class, 'destroyPaket'])->name('paket.delete');
+    Route::get('/paket/index/{id}', [PaketController::class, 'index'])->name('paket.index');
+
+      // Form tambah mata pelajaran untuk paket tertentu
+    Route::get('/mataPelajaran/create/{paket_id}', [MataPelajaranController::class, 'create'])->name('mataPelajaran.create');
+    Route::post('/mataPelajaran/store', [MataPelajaranController::class, 'store'])->name('mataPelajaran.store');
+
+    // Form edit mata pelajaran
+    Route::get('/mataPelajaran/{id}/edit', [MataPelajaranController::class, 'edit'])->name('mataPelajaran.edit');
+    Route::put('/mataPelajaran/update/{id}', [MataPelajaranController::class, 'update'])->name('mataPelajaran.update');
+
+    // Delete mata pelajaran
+    Route::delete('/mataPelajaran/delete/{id}', [MataPelajaranController::class, 'destroy'])->name('mataPelajaran.delete');
+
 });
 
 //edit profile siswa
@@ -196,3 +223,52 @@ Route::delete('/mentor/kelas/{id}/materi/{materi}', [MentorKelasController::clas
     ->whereNumber('materi'); // pastikan id numeric
 
 
+
+// Kuis Mentor
+Route::prefix('mentor')->group(function () {
+    Route::get('/mapel/{mata_pelajaran_id}/kuis', [MentorKuisController::class, 'index'])
+        ->name('mentor.kuis.index');
+
+    Route::post('/mapel/{mata_pelajaran_id}/kuis', [MentorKuisController::class, 'store'])
+        ->name('mentor.kuis.store');
+
+    Route::get('/kuis/{kuis_id}/soal', [MentorKuisController::class, 'soalIndex'])
+        ->name('mentor.kuis.soal');
+
+    Route::post('/kuis/{kuis_id}/soal', [MentorKuisController::class, 'soalStore'])
+        ->name('mentor.kuis.soal.store');
+});
+
+Route::prefix('siswa')->group(function () {
+    // daftar kuis per mapel
+    Route::get('/mapel/{mata_pelajaran_id}/kuis', [SiswaKuisController::class, 'index'])
+        ->name('siswa.kuis.index');
+
+    // kerjakan kuis (tampil soal)
+    Route::get('/kuis/{kuis_id}/kerjakan', [SiswaKuisController::class, 'show'])
+        ->name('siswa.kuis.kerjakan');
+
+    // submit jawaban & hitung skor
+    Route::post('/kuis/{kuis_id}/submit', [SiswaKuisController::class, 'submit'])
+        ->name('siswa.kuis.submit');
+});
+
+// halaman 1 soal per step
+Route::get('/kuis/{kuis_id}/kerjakan/{no}', [SiswaKuisController::class, 'step'])
+    ->name('siswa.kuis.step');
+
+// simpan jawaban step (Next/Prev/Submit)
+Route::post('/kuis/{kuis_id}/jawab/{no}', [SiswaKuisController::class, 'saveStep'])
+    ->name('siswa.kuis.step.save');
+
+
+// halaman hasil kuis
+Route::get('/kuis/{kuis_id}/hasil', [SiswaKuisController::class, 'hasil'])
+    ->name('siswa.kuis.hasil');
+
+// reset (ulang kuis)
+Route::post('/kuis/{kuis_id}/ulang', [SiswaKuisController::class, 'ulang'])
+    ->name('siswa.kuis.ulang');
+
+Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])
+    ->name('mata_pelajaran_detail');

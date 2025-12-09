@@ -38,4 +38,5 @@ class MataPelajaran extends Model
     {
         return $this->belongsTo(PaketPelajaran::class, 'paket_pelajaran_id', 'paket_pelajaran_id');
     }
+    
 }

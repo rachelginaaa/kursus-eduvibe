@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Siswa;
 use App\Models\Mentor;
+use App\Models\PaketPelajaran;
 
 
 class AdminAuthController extends Controller
@@ -51,10 +52,10 @@ class AdminAuthController extends Controller
         return view('admin.mentor', compact('mentor'));
     }
 
-    public function kelas()
+    public function paket()
     {
-        $mentor = Mentor::all();
-        return view('admin.mentor', compact('mentor'));
+        $paket = PaketPelajaran::all();
+        return view('admin.paket', compact('paket'));
     }
 
 }

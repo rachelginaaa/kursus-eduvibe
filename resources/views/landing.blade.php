@@ -113,14 +113,20 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="#home" class="nav-link fw-semibold text-dark">Beranda</a></li>
-                    <li class="nav-item"><a href="#tentang" class="nav-link fw-semibold text-dark">Tentang</a></li>
                     <li class="nav-item"><a href="#fitur" class="nav-link fw-semibold text-dark">Fitur</a></li>
+                    <li class="nav-item"><a href="#tentang" class="nav-link fw-semibold text-dark">Tentang</a></li>
                     <li class="nav-item"><a href="#paket" class="nav-link fw-semibold text-dark">Paket</a></li>
                     <li class="nav-item"><a href="#kontak" class="nav-link fw-semibold text-dark">Kontak</a></li>
                     <li class="nav-item"><a href="/tutorial" class="nav-link fw-semibold text-dark">Tutorial</a></li>
-                    <li class="nav-item">
-                        <a href="/login" class="btn btn-primary ms-3">Login</a>
-                    </li>
+                                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle btn btn-primary text-white ms-3 px-3" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Login
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                        <li><a class="dropdown-item" href="/login">Login Siswa</a></li>
+                        <li><a class="dropdown-item" href="/mentor/login">Login Mentor</a></li>
+                    </ul>
+                </li>
                 </ul>
             </div>
         </div>

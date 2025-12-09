@@ -51,9 +51,8 @@
             <a class="navbar-brand" href="#">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="/admin/home" class="nav-link text-dark fw-semibold">Dashboard</a></li>
-                    <li class="nav-item"><a href="/admin/profile" class="nav-link text-dark fw-semibold">Pengguna</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Laporan</a></li>
+                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
+                    <li class="nav-item"><a href="/admin/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
             </div>
@@ -69,7 +68,7 @@
     <div class="container mt-5">
         <div class="row g-4">
             <!-- Kelola Siswa -->
-            
+
             <div class="col-md-4">
                 <div class="card p-4 text-center">
                     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3" alt="Kelola Siswa">
@@ -82,20 +81,20 @@
             <!-- Kelola Mentor -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/4205/4205358.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
                     <h5 class="fw-bold">Kelola Mentor</h5>
                     <p class="text-muted">Pantau dan kelola akun mentor, termasuk verifikasi dan status aktif.</p>
                     <button class="btn btn-primary" onclick="window.location.href='/admin/mentor'">Kelola Mentor</button>
                 </div>
             </div>
 
-            <!-- Kelola Kelas -->
+            <!-- Kelola Paket -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921226.png" width="80" class="mx-auto mb-3" alt="Kelola Kelas">
-                    <h5 class="fw-bold">Kelola Kelas</h5>
-                    <p class="text-muted">Lihat semua kelas aktif, nonaktifkan kelas, atau buat kategori baru.</p>
-                    <button class="btn btn-primary" onclick="window.location.href='/admin/kelas'">Kelola Kelas</button>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3" alt="Kelola Mentor">
+                    <h5 class="fw-bold">Kelola Paket</h5>
+                    <p class="text-muted">Manajemen mata pelajaran setiap paket pembelajaran. </p>
+                    <button class="btn btn-primary" onclick="window.location.href='/admin/paket'">Kelola Paket</button>
                 </div>
             </div>
         </div>
