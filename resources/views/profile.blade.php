@@ -68,7 +68,13 @@
     <!-- Profil Section -->
     <div class="container profile-header text-center">
         <div class="profile-card mx-auto col-md-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User" class="profile-img mb-3">
+            <img 
+                src="{{ $user->foto ? asset('storage/'.$user->foto) : asset('img/profile_11386227.png') }}" 
+                alt="Foto Siswa" 
+                class="rounded-circle" 
+                style="width: 120px; height:120px; object-fit:cover;"
+            >
+
            <h4 class="fw-bold">{{ $user->name }}</h4>
                 <p class="text-muted">{{ $user->email }}</p>
             <hr>

@@ -79,9 +79,14 @@
                     </div>
                 @endif
 
-                <form action="{{ route('mentor.profile.update') }}" method="POST">
+                <form action="{{ route('mentor.profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto Profil</label>
+                        <input type="file" name="foto" id="foto" class="form-control">
+                    </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Alamat Email</label>

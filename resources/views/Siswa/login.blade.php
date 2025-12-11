@@ -42,6 +42,21 @@
 </head>
 <body>
 
+    <a href="/" 
+    class="position-absolute top-0 start-0 m-4 d-flex align-items-center justify-content-center text-decoration-none"
+    style="
+            width: 40px;
+            height: 40px;
+            background: #ffffffcc;
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            color:#1b4965;
+            font-size: 1.4rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    ">
+        ←
+    </a>
+
     <div class="container d-flex align-items-center justify-content-center h-100">
         <div class="col-md-5">
             <div class="text-center mb-4">
