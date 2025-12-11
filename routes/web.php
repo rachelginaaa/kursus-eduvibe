@@ -37,7 +37,8 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register'])->name('register.process');
 
 // tutorial
-Route::get('/tutorial', function () {return view('tutorial');});
+Route::get('/tutorial', function () {
+    return view('tutorial'); });
 
 
 
@@ -103,7 +104,7 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::delete('/paket/delete/{id}', [PaketController::class, 'destroyPaket'])->name('paket.delete');
     Route::get('/paket/index/{id}', [PaketController::class, 'index'])->name('paket.index');
 
-      // Form tambah mata pelajaran untuk paket tertentu
+    // Form tambah mata pelajaran untuk paket tertentu
     Route::get('/mataPelajaran/create/{paket_id}', [MataPelajaranController::class, 'create'])->name('mataPelajaran.create');
     Route::post('/mataPelajaran/store', [MataPelajaranController::class, 'store'])->name('mataPelajaran.store');
 
@@ -272,3 +273,19 @@ Route::post('/kuis/{kuis_id}/ulang', [SiswaKuisController::class, 'ulang'])
 
 Route::get('/mata-pelajaran/{id}', [MataPelajaranController::class, 'show'])
     ->name('mata_pelajaran_detail');
+
+Route::prefix('mentor')->name('mentor.')->group(function () {
+    // Halaman kelola kuis per mapel (view kuis.blade.php yang kamu kirim)
+    Route::get('/mapel/{mapel}/kuis', [MentorKuisController::class, 'index'])->name('kuis.index');
+    Route::post('/mapel/{mapel}/kuis', [MentorKuisController::class, 'store'])->name('kuis.store');
+
+    // EDIT & UPDATE
+    Route::get('/kuis/{kuis}/edit', [MentorKuisController::class, 'edit'])->name('kuis.edit');
+    Route::put('/kuis/{kuis}', [MentorKuisController::class, 'update'])->name('kuis.update');
+
+    // DELETE
+    Route::delete('/kuis/{kuis}', [MentorKuisController::class, 'destroy'])->name('kuis.destroy');
+
+    // Kelola Soal (kamu sudah pakai di view)
+    Route::get('/kuis/{kuis}/soal', [MentorKuisController::class, 'soal'])->name('kuis.soal');
+});
