@@ -289,3 +289,6 @@ Route::prefix('mentor')->name('mentor.')->group(function () {
     // Kelola Soal (kamu sudah pakai di view)
     Route::get('/kuis/{kuis}/soal', [MentorKuisController::class, 'soal'])->name('kuis.soal');
 });
+
+Route::put('/mentor/kuis/{kuis}/soal/{soal}', [MentorKuisController::class, 'soalUpdate'])->name('mentor.kuis.soal.update');
+Route::delete('/mentor/kuis/{kuis}/soal/{soal}', [MentorKuisController::class, 'soalDestroy'])->name('mentor.kuis.soal.destroy');

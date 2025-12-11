@@ -92,10 +92,10 @@ class MentorKuisController extends Controller
         $mentorIdToSave = $mentorId ?? $mapel->mentor_id;
 
         $kuisId = DB::table('kuis')->insertGetId([
-            'materi_id'  => $validated['materi_id'],
-            'mentor_id'  => $mentorIdToSave,
-            'nama_kuis'  => $validated['nama_kuis'],
-            'deskripsi'  => $validated['deskripsi'] ?? null,
+            'materi_id' => $validated['materi_id'],
+            'mentor_id' => $mentorIdToSave,
+            'nama_kuis' => $validated['nama_kuis'],
+            'deskripsi' => $validated['deskripsi'] ?? null,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -149,25 +149,25 @@ class MentorKuisController extends Controller
         }
 
         $validated = $request->validate([
-            'pertanyaan'      => 'required|string',
-            'opsi_jawaban_1'  => 'required|string|max:255',
-            'opsi_jawaban_2'  => 'required|string|max:255',
-            'opsi_jawaban_3'  => 'required|string|max:255',
-            'opsi_jawaban_4'  => 'required|string|max:255',
-            'jawaban_benar'   => 'required|in:1,2,3,4',
+            'pertanyaan' => 'required|string',
+            'opsi_jawaban_1' => 'required|string|max:255',
+            'opsi_jawaban_2' => 'required|string|max:255',
+            'opsi_jawaban_3' => 'required|string|max:255',
+            'opsi_jawaban_4' => 'required|string|max:255',
+            'jawaban_benar' => 'required|in:1,2,3,4',
         ]);
 
         DB::table('soal')->insert([
-            'kuis_id'        => $kuis_id,
-            'soal'           => $validated['pertanyaan'],
-            'opsi1'          => $validated['opsi_jawaban_1'],
-            'opsi2'          => $validated['opsi_jawaban_2'],
-            'opsi3'          => $validated['opsi_jawaban_3'],
-            'opsi4'          => $validated['opsi_jawaban_4'],
+            'kuis_id' => $kuis_id,
+            'soal' => $validated['pertanyaan'],
+            'opsi1' => $validated['opsi_jawaban_1'],
+            'opsi2' => $validated['opsi_jawaban_2'],
+            'opsi3' => $validated['opsi_jawaban_3'],
+            'opsi4' => $validated['opsi_jawaban_4'],
             // Simpan kunci sebagai angka 1-4 (sesuai pilihan)
-            'jawaban_benar'  => $validated['jawaban_benar'],
-            'created_at'     => now(),
-            'updated_at'     => now(),
+            'jawaban_benar' => $validated['jawaban_benar'],
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         return back()->with('success', 'Soal berhasil ditambahkan!');
@@ -248,9 +248,9 @@ class MentorKuisController extends Controller
         DB::table('kuis')
             ->where('kuis_id', $kuis_id)
             ->update([
-                'materi_id'  => $validated['materi_id'],
-                'nama_kuis'  => $validated['nama_kuis'],
-                'deskripsi'  => $validated['deskripsi'] ?? null,
+                'materi_id' => $validated['materi_id'],
+                'nama_kuis' => $validated['nama_kuis'],
+                'deskripsi' => $validated['deskripsi'] ?? null,
                 'updated_at' => now(),
             ]);
 
@@ -280,4 +280,36 @@ class MentorKuisController extends Controller
 
         return back()->with('success', 'Kuis berhasil dihapus.');
     }
+    public function soalUpdate(Request $request, $kuis_id, $soal_id)
+    {
+        $validated = $request->validate([
+            'pertanyaan' => 'required|string',
+            'opsi_jawaban_1' => 'required|string|max:255',
+            'opsi_jawaban_2' => 'required|string|max:255',
+            'opsi_jawaban_3' => 'required|string|max:255',
+            'opsi_jawaban_4' => 'required|string|max:255',
+            'jawaban_benar' => 'required|in:1,2,3,4',
+        ]);
+
+        DB::table('soal')
+            ->where('soal_id', $soal_id)
+            ->update([
+                'soal' => $validated['pertanyaan'],
+                'opsi1' => $validated['opsi_jawaban_1'],
+                'opsi2' => $validated['opsi_jawaban_2'],
+                'opsi3' => $validated['opsi_jawaban_3'],
+                'opsi4' => $validated['opsi_jawaban_4'],
+                'jawaban_benar' => $validated['jawaban_benar'],
+                'updated_at' => now(),
+            ]);
+
+        return back()->with('success', 'Soal berhasil diperbarui.');
+    }
+
+    public function soalDestroy($kuis_id, $soal_id)
+    {
+        DB::table('soal')->where('soal_id', $soal_id)->delete();
+        return back()->with('success', 'Soal berhasil dihapus.');
+    }
+
 }
