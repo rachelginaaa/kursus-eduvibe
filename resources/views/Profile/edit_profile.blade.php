@@ -79,23 +79,23 @@
                     </div>
                 @endif
 
-                <form action="{{ route('profile.update') }}" method="POST">
+                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
+                    
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama Lengkap</label>
-                        <input type="text" name="nama" id="nama" class="form-control" value="{{ old('nama', $user->nama) }}" required>
+                        <label for="foto" class="form-label">Foto Profil</label>
+                        <input type="file" name="foto" id="foto" class="form-control">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Alamat Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $user->email) }}" required>
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama', auth()->user()->nama) }}">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="no_hp" class="form-label">Nomor HP</label>
-                        <input type="text" name="no_hp" id="no_hp" class="form-control" value="{{ old('no_hp', $user->no_hp) }}">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->user()->email) }}">
                     </div>
 
                     <div class="text-center mt-4 d-flex justify-content-between">

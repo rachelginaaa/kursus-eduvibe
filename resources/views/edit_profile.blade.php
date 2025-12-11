@@ -50,15 +50,22 @@
 </head>
 <body>
 
-<div class="form-group">
-    <label for="nama">Nama</label>
-    <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama', auth()->user()->nama) }}">
-</div>
+<form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="foto" class="form-label">Foto Profil</label>
+        <input type="file" name="foto" id="foto" class="form-control">
+    </div>
 
-<div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->user()->email) }}">
-</div>
+    <div class="form-group">
+        <label for="nama">Nama</label>
+        <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama', auth()->user()->nama) }}">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->user()->email) }}">
+    </div>
+</form>
 
  <!-- Footer -->
     <footer class="text-center text-secondary">

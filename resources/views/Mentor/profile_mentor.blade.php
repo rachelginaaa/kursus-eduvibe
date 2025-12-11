@@ -40,8 +40,13 @@
 <div class="container profile-header text-center">
     <div class="profile-card mx-auto col-md-6">
 
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-             class="profile-img mb-3">
+        <img 
+            src="{{ $mentor->foto ? asset('storage/'.$mentor->foto) : asset('img/profile_11386227.png') }}" 
+            alt="Foto Mentor" 
+            class="rounded-circle" 
+            style="width: 120px; height:120px; object-fit:cover;"
+        >
+
 
         <h4 class="fw-bold">{{ $mentor->nama }}</h4>
         <p class="text-muted">{{ $mentor->email }}</p>
