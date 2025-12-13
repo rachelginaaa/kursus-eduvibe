@@ -1,19 +1,43 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduVibe | Paket Pelajaran</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f8f9fa; font-family: 'Poppins', sans-serif; }
-        .navbar { background: linear-gradient(90deg, #a5c9ca, #e7f6f2); }
-        .navbar-brand { font-weight: bold; color: #1b4965 !important; }
-        .btn-primary { background-color: #62b6cb; border: none; }
-        .btn-primary:hover { background-color: #439a86; }
-        .table { border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #1b4965 !important;
+        }
+
+        .btn-primary {
+            background-color: #62b6cb;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #439a86;
+        }
+
+        .table {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg shadow-sm">
@@ -21,7 +45,8 @@
             <a class="navbar-brand" href="#">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
+                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a>
+                    </li>
                     <li class="nav-item"><a href="/admin/siswa" class="nav-link text-dark fw-semibold">Siswa</a></li>
                     <li class="nav-item"><a href="/admin/mentor" class="nav-link text-dark fw-semibold">Mentor</a></li>
                     <li class="nav-item"><a href="/admin/paket" class="nav-link text-dark fw-semibold">Paket</a></li>
@@ -60,17 +85,21 @@
                             <td>{{ $row->nama_paket_pelajaran }}</td>
                             <td>{{ $row->deskripsi }}</td>
                             <td>{{ $row->jenjang }}</td>
-                            <td>{{ $row->harga }} </td>
+                            <td>Rp {{ number_format((float) $row->harga, 0, ',', '.') }}</td>
                             <td>
-                                <a href="/admin/paket/{{ $row->paket_pelajaran_id }}/edit" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="/admin/paket/{{ $row->paket_pelajaran_id }}/edit"
+                                    class="btn btn-sm btn-outline-primary">Edit</a>
 
-                                <form action="/admin/paket/delete/{{ $row->paket_pelajaran_id }}" method="POST" class="d-inline">
+                                <form action="/admin/paket/delete/{{ $row->paket_pelajaran_id }}" method="POST"
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin hapus?')">Hapus</button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                        onclick="return confirm('Yakin hapus?')">Hapus</button>
                                 </form>
 
-                                <a href="/admin/paket/index/{{ $row->paket_pelajaran_id }}" class="btn btn-sm btn-outline-primary">Lihat Mapel</a>
+                                <a href="/admin/paket/index/{{ $row->paket_pelajaran_id }}"
+                                    class="btn btn-sm btn-outline-primary">Lihat Mapel</a>
                             </td>
                         </tr>
                     @empty
@@ -84,4 +113,5 @@
     </div>
 
 </body>
+
 </html>

@@ -1,21 +1,56 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket C - EduVibe</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background-color: #f8f9fa; font-family: 'Poppins', sans-serif; color: #333; }
-        .navbar { background: linear-gradient(90deg, #a5c9ca, #e7f6f2); }
-        .navbar-brand { color: #1b4965 !important; font-weight: 700; }
-        .btn-eduvibe { background-color: #62b6cb; color: white; border: none; transition: background-color 0.2s ease; }
-        .btn-eduvibe:hover { background-color: #4da7bd; color: white; }
-        .footer { background-color: #e7f6f2; padding: 40px 0; }
-        .footer a { text-decoration: none; color: #1b4965; margin: 0 10px; }
-        .footer a:hover { color: #439a86; }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
+        }
+
+        .navbar-brand {
+            color: #1b4965 !important;
+            font-weight: 700;
+        }
+
+        .btn-eduvibe {
+            background-color: #62b6cb;
+            color: white;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-eduvibe:hover {
+            background-color: #4da7bd;
+            color: white;
+        }
+
+        .footer {
+            background-color: #e7f6f2;
+            padding: 40px 0;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #1b4965;
+            margin: 0 10px;
+        }
+
+        .footer a:hover {
+            color: #439a86;
+        }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg shadow-sm">
@@ -56,4 +91,5 @@
     </footer>
 
 </body>
+
 </html>

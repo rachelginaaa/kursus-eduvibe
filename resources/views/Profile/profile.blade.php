@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +11,28 @@
             background-color: #f8f9fa;
             font-family: 'Poppins', sans-serif;
         }
+
         .navbar {
             background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
         }
+
         .navbar-brand {
             font-weight: bold;
             color: #1b4965 !important;
         }
+
         .profile-header {
             margin-top: 80px;
         }
+
         .profile-card {
             border: none;
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             background: white;
             padding: 30px;
         }
+
         .profile-img {
             width: 120px;
             height: 120px;
@@ -34,13 +40,16 @@
             object-fit: cover;
             border: 4px solid #62b6cb;
         }
+
         .btn-edit {
             background-color: #62b6cb;
             border: none;
         }
+
         .btn-edit:hover {
             background-color: #439a86;
         }
+
         footer {
             background-color: #e7f6f2;
             padding: 20px;
@@ -48,6 +57,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -68,27 +78,23 @@
     <!-- Profil Section -->
     <div class="container profile-header text-center">
         <div class="profile-card mx-auto col-md-6">
-            <img 
-                src="{{ $user->foto ? asset('storage/'.$user->foto) : asset('img/profile_11386227.png') }}" 
-                alt="Foto Siswa" 
-                class="rounded-circle" 
-                style="width: 120px; height:120px; object-fit:cover;"
-            >
+            <img src="{{ $user->foto ? asset('storage/' . $user->foto) : asset('img/profile_11386227.png') }}"
+                alt="Foto Siswa" class="rounded-circle" style="width: 120px; height:120px; object-fit:cover;">
 
-           <h4 class="fw-bold">{{ $user->name }}</h4>
-                <p class="text-muted">{{ $user->email }}</p>
+            <h4 class="fw-bold">{{ $user->name }}</h4>
+            <p class="text-muted">{{ $user->email }}</p>
             <hr>
 
             <div class="text-start">
                 <p><strong>Email:</strong> {{ $user->email ?? '-' }}</p>
                 <p><strong>No. HP:</strong> {{ $user->no_hp ?? '-' }}</p>
-                <p><strong>Tanggal Bergabung:</strong> 
+                <p><strong>Tanggal Bergabung:</strong>
                     {{ \Carbon\Carbon::parse($user->tgl_daftar)->translatedFormat('d F Y') ?? '-' }}
                 </p>
             </div>
 
 
-             <a href="{{ route('profile.edit') }}" class="btn btn-edit mt-3">Edit Profil</a>
+            <a href="{{ route('profile.edit') }}" class="btn btn-edit mt-3">Edit Profil</a>
         </div>
 
         <!-- Progress Belajar -->
@@ -120,4 +126,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

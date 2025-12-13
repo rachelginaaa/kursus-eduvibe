@@ -15,6 +15,7 @@ use App\Http\Controllers\MateriController;
 use App\Http\Controllers\AdminSiswaController;
 use App\Http\Controllers\MentorKuisController;
 use App\Http\Controllers\SiswaKuisController;
+use App\Http\Controllers\AdminProfileController;
 
 
 
@@ -114,6 +115,9 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
 
     // Delete mata pelajaran
     Route::delete('/mataPelajaran/delete/{id}', [MataPelajaranController::class, 'destroy'])->name('mataPelajaran.delete');
+
+    Route::get('/profile/edit', [AdminProfileController::class, 'edit']);
+    Route::put('/profile/update', [AdminProfileController::class, 'update']);
 
 });
 

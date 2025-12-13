@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,32 +11,39 @@
             background: linear-gradient(135deg, #e7f6f2, #a5c9ca);
             font-family: 'Poppins', sans-serif;
         }
+
         .navbar {
             background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
         }
+
         .navbar-brand {
             font-weight: bold;
             color: #1b4965 !important;
         }
+
         .card {
             border: none;
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             background: white;
             padding: 30px;
         }
+
         .btn-save {
             background-color: #62b6cb;
             border: none;
             border-radius: 10px;
             font-weight: 600;
         }
+
         .btn-save:hover {
             background-color: #439a86;
         }
+
         .form-control {
             border-radius: 10px;
         }
+
         footer {
             background-color: #e7f6f2;
             padding: 20px;
@@ -43,6 +51,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -82,7 +91,7 @@
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="mb-3">
                         <label for="foto" class="form-label">Foto Profil</label>
                         <input type="file" name="foto" id="foto" class="form-control">
@@ -90,12 +99,14 @@
 
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama', auth()->user()->nama) }}">
+                        <input type="text" class="form-control" id="nama" name="nama"
+                            value="{{ old('nama', auth()->user()->nama) }}">
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email', auth()->user()->email) }}">
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="{{ old('email', auth()->user()->email) }}">
                     </div>
 
                     <div class="text-center mt-4 d-flex justify-content-between">
@@ -114,4 +125,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

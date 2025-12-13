@@ -20,7 +20,14 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label">Nama</label>
-                <input type="text" name="nama" class="form-control" value="{{ old('nama') }}" required>
+                <input
+                    type="text"
+                    name="nama"
+                    class="form-control"
+                    value="{{ old('nama') }}"
+                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
+                    required
+                >
             </div>
 
             <div class="mb-3">
