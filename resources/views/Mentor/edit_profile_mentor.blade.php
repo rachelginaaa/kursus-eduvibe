@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,32 +11,39 @@
             background: linear-gradient(135deg, #e7f6f2, #a5c9ca);
             font-family: 'Poppins', sans-serif;
         }
+
         .navbar {
             background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
         }
+
         .navbar-brand {
             font-weight: bold;
             color: #1b4965 !important;
         }
+
         .card {
             border: none;
             border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             background: white;
             padding: 30px;
         }
+
         .btn-save {
             background-color: #62b6cb;
             border: none;
             border-radius: 10px;
             font-weight: 600;
         }
+
         .btn-save:hover {
             background-color: #439a86;
         }
+
         .form-control {
             border-radius: 10px;
         }
+
         footer {
             background-color: #e7f6f2;
             padding: 20px;
@@ -43,21 +51,24 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="/">EduVibe</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a href="/mentor/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
-                <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
-                <li class="nav-item"><a href="/mentor/logout" class="btn btn-primary ms-3">Logout</a></li>
-            </ul>
+        <div class="container">
+            <a class="navbar-brand" href="/">EduVibe</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="/mentor/dashboard"
+                            class="nav-link text-dark fw-semibold">Dashboard</a></li>
+                    <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a>
+                    </li>
+                    <li class="nav-item"><a href="/mentor/logout" class="btn btn-primary ms-3">Logout</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Edit Profile Section -->
     <div class="container my-5">
@@ -79,18 +90,25 @@
                     </div>
                 @endif
 
-                <form action="{{ route('mentor.profile.update') }}" method="POST">
+                <form action="{{ route('mentor.profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="mb-3">
+                        <label for="foto" class="form-label">Foto Profil</label>
+                        <input type="file" name="foto" id="foto" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="email" class="form-label">Alamat Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ old('email', $mentor->email) }}" required>
+                        <input type="email" name="email" id="email" class="form-control"
+                            value="{{ old('email', $mentor->email) }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="no_hp" class="form-label">Nomor HP</label>
-                        <input type="text" name="no_hp" id="no_hp" class="form-control" value="{{ old('no_hp', $mentor->no_hp) }}">
+                        <input type="text" name="no_hp" id="no_hp" class="form-control"
+                            value="{{ old('no_hp', $mentor->no_hp) }}">
                     </div>
 
                     <div class="text-center mt-4 d-flex justify-content-between">
@@ -109,4 +127,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

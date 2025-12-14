@@ -11,23 +11,23 @@ class PaketPelajaranSeeder extends Seeder
     {
         PaketPelajaran::create([
             'siswa_id' => 1,
-            'nama_paket_pelajaran' => 'Paket A - Dasar',
+            'nama_paket_pelajaran' => 'Paket A - SD',
             'deskripsi' => 'Akses 1 bulan untuk materi dasar semua pelajaran inti.',
-            'jenjang' => 'SMA',
+            'jenjang' => 'SD',
             'harga' => 'Rp500.000',
         ]);
 
         PaketPelajaran::create([
             'siswa_id' => 2,
-            'nama_paket_pelajaran' => 'Paket B - Premium',
+            'nama_paket_pelajaran' => 'Paket B - SMP',
             'deskripsi' => 'Akses 3 bulan dengan kelas interaktif dan evaluasi mingguan.',
-            'jenjang' => 'SMA',
+            'jenjang' => 'SMP',
             'harga' => 'Rp1.000.000',
         ]);
 
         PaketPelajaran::create([
             'siswa_id' => 2,
-            'nama_paket_pelajaran' => 'Paket C - Elite',
+            'nama_paket_pelajaran' => 'Paket C - SMA',
             'deskripsi' => 'Akses 6 bulan + mentor pribadi + konsultasi setiap minggu.',
             'jenjang' => 'SMA',
             'harga' => 'Rp1.500.000',

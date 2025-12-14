@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id('admin_id');
             $table->string('nama_admin');
             $table->string('username')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('email')->unique();
             $table->string('role')->default('admin');

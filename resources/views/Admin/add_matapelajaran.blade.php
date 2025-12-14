@@ -41,7 +41,13 @@
 
             <div class="mb-3">
                 <label class="fw-semibold">Nama Mata Pelajaran</label>
-                <input type="text" name="nama_mata_pelajaran" class="form-control" required>
+                <input
+                    type="text"
+                    name="nama_mata_pelajaran"
+                    class="form-control"
+                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
+                    required
+                >
             </div>
 
             <div class="mb-3">
@@ -51,7 +57,12 @@
 
             <div class="mb-3">
                 <label class="fw-semibold">Jenjang</label>
-                <input type="text" name="jenjang" class="form-control" value="{{ $paket->jenjang }}" required>
+                <select name="jenjang" class="form-control" required>
+                    <option value="">-- Pilih Jenjang --</option>
+                    <option value="SD"  {{ ($paket->jenjang ?? '') == 'SD'  ? 'selected' : '' }}>SD</option>
+                    <option value="SMP" {{ ($paket->jenjang ?? '') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                    <option value="SMA" {{ ($paket->jenjang ?? '') == 'SMA' ? 'selected' : '' }}>SMA</option>
+                </select>
             </div>
 
             <div class="mb-3">

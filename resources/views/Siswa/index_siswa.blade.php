@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,27 +11,33 @@
             background-color: #f8f9fa;
             font-family: 'Poppins', sans-serif;
         }
+
         .navbar {
             background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
         }
+
         .navbar-brand {
             font-weight: bold;
             color: #1b4965 !important;
         }
+
         .btn-primary {
             background-color: #62b6cb;
             border: none;
         }
+
         .btn-primary:hover {
             background-color: #439a86;
         }
+
         .table {
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -56,44 +63,45 @@
         </div>
 
         <!-- Tabel Siswa -->
-            <div class="table-responsive">
-        <table class="table table-striped align-middle">
-            <thead class="table-light">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Tanggal Daftar</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($siswas as $index => $siswa)
+        <div class="table-responsive">
+            <table class="table table-striped align-middle">
+                <thead class="table-light">
                     <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $siswa->nama }}</td>
-                        <td>{{ $siswa->email }}</td>
-                        <td>{{ \Carbon\Carbon::parse($siswa->tgl_daftar)->format('Y-m-d') }}</td>
-                        <td>
-                            <span class="badge {{ $siswa->status == 'Aktif' ? 'bg-success' : 'bg-secondary' }}">
-                                {{ $siswa->status }}
-                            </span>
-                        </td>
-                        <td>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
-                            <button class="btn btn-sm btn-outline-danger">Hapus</button>
-                        </td>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Email</th>
+                        <th>Tanggal Daftar</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center text-muted">Belum ada data siswa</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @forelse ($siswas as $index => $siswa)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $siswa->nama }}</td>
+                            <td>{{ $siswa->email }}</td>
+                            <td>{{ \Carbon\Carbon::parse($siswa->tgl_daftar)->format('Y-m-d') }}</td>
+                            <td>
+                                <span class="badge {{ $siswa->status == 'Aktif' ? 'bg-success' : 'bg-secondary' }}">
+                                    {{ $siswa->status }}
+                                </span>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                                <button class="btn btn-sm btn-outline-danger">Hapus</button>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center text-muted">Belum ada data siswa</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
 
 
 </body>
+
 </html>

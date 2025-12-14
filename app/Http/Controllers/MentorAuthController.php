@@ -30,10 +30,10 @@ class MentorAuthController extends Controller
         return back()->withErrors(['loginError' => 'Email atau password salah']);
     }
 
-    public function index() 
+    public function index()
     {
-    $mentor = auth()->guard('mentor')->user();
-    return view('Mentor.profile_mentor', compact('mentor'));
+        $mentor = auth()->guard('mentor')->user();
+        return view('Mentor.profile_mentor', compact('mentor'));
     }
 
     public function logout(Request $request)
@@ -63,7 +63,7 @@ class MentorAuthController extends Controller
         return view('mentor.lihat_siswa', compact('siswa'));
     }
 
-        public function edit()
+    public function edit()
     {
         $mentor = Auth::guard('mentor')->user();
         return view('mentor.edit_profile_mentor', compact('mentor'));
@@ -73,13 +73,38 @@ class MentorAuthController extends Controller
     {
         $mentor = Auth::guard('mentor')->user();
 
+        if ($request->hasFile('foto')) {
+            $request->validate([
+                'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+
+            // Hapus foto lama jika ada
+            if ($mentor->foto && file_exists(storage_path('app/public/' . $mentor->foto))) {
+                unlink(storage_path('app/public/' . $mentor->foto));
+            }
+
+            // Simpan foto baru
+            $path = $request->file('foto')->store('mentor_foto', 'public');
+            $mentor->foto = $path;
+        }
+
         $request->validate([
-            'email' => ['required', 'email', Rule::unique('mentor', 'email')->ignore($mentor->mentor_id, 'mentor_id')],
-            'no_hp' => 'nullable|string|max:20',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('mentor', 'email')->ignore($mentor->mentor_id, 'mentor_id'),
+            ],
+            'no_hp' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^(\+62|0)[0-9]{9,15}$/',
+            ],
         ]);
 
-        $mentor->update($request->only('email', 'no_hp'));
+        $mentor->update($request->only('email', 'no_hp', 'foto'));
 
-        return redirect()->route('mentor.profile')->with('success', 'Profil mentor berhasil diperbarui!');
+
+        return redirect()->route('Mentor.profile_mentor')->with('success', 'Profil mentor berhasil diperbarui!');
     }
 }

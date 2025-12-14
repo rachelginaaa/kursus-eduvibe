@@ -52,7 +52,7 @@
         <hr>
 
         @if($materi->file)
-            <a href="{{ asset('storage/materi/' . $materi->file) }}"
+            <a href="{{ \Illuminate\Support\Facades\Storage::url($materi->file) }}"
                class="btn btn-primary"
                target="_blank">
                 Lihat File Materi
@@ -61,7 +61,7 @@
             <p class="text-danger">Tidak ada file materi.</p>
         @endif
     </div>
-    
+
 </div>
 
 <footer class="text-center text-secondary">

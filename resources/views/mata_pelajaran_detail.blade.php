@@ -7,19 +7,9 @@
     <title>{{ $mapel->nama_matapelajaran }} | EduVibe</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .navbar {
-            background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            color: #1b4965 !important;
-        }
+        body { background-color: #f8f9fa; font-family: 'Poppins', sans-serif; }
+        .navbar { background: linear-gradient(90deg, #a5c9ca, #e7f6f2); }
+        .navbar-brand { font-weight: bold; color: #1b4965 !important; }
 
         .card {
             border: none;
@@ -29,29 +19,14 @@
             padding: 30px;
         }
 
-        .btn-primary {
-            background-color: #62b6cb;
-            border: none;
-        }
+        .btn-primary { background-color: #62b6cb; border: none; }
+        .btn-primary:hover { background-color: #439a86; }
 
-        .btn-primary:hover {
-            background-color: #439a86;
-        }
+        footer { background-color: #e7f6f2; padding: 20px; margin-top: 50px; }
 
-        footer {
-            background-color: #e7f6f2;
-            padding: 20px;
-            margin-top: 50px;
-        }
+        .back-btn { margin-bottom: 20px; }
 
-        .back-btn {
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            color: #1b4965;
-            font-weight: bold;
-        }
+        h2 { color: #1b4965; font-weight: bold; }
 
         .materi-card {
             background: #ffffff;
@@ -60,21 +35,13 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-
         .materi-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
         }
 
-        .materi-title {
-            color: #1b4965;
-            font-weight: 600;
-        }
-
-        .section-title {
-            color: #1b4965;
-            font-weight: 700;
-        }
+        .materi-title { color: #1b4965; font-weight: 600; }
+        .section-title { color: #1b4965; font-weight: 700; }
     </style>
 </head>
 
@@ -126,7 +93,7 @@
                                     <h5 class="text-center materi-title">{{ $materi->judul_materi }}</h5>
 
                                     <p class="text-muted" style="font-size: 14px;">
-                                        {{ Str::limit($materi->deskripsi, 120) }}
+                                        {{ \Illuminate\Support\Str::limit($materi->deskripsi, 120) }}
                                     </p>
 
                                     <p class="text-end mb-2">
@@ -134,9 +101,18 @@
                                     </p>
 
                                     @if($materi->file)
-                                        <a href="{{ asset('storage/materi/' . $materi->file) }}" target="_blank"
-                                            class="btn btn-primary w-100">
+                                        {{-- FIX: pakai Storage::url() --}}
+                                        <a href="{{ \Illuminate\Support\Facades\Storage::url($materi->file) }}"
+                                           target="_blank"
+                                           class="btn btn-primary w-100">
                                             Lihat File
+                                        </a>
+
+                                        {{-- Optional: tombol download --}}
+                                        <a href="{{ \Illuminate\Support\Facades\Storage::url($materi->file) }}"
+                                           download
+                                           class="btn btn-outline-primary w-100 mt-2">
+                                            Download File
                                         </a>
                                     @else
                                         <button class="btn btn-secondary w-100" disabled>
@@ -145,7 +121,7 @@
                                     @endif
 
                                     <a href="{{ route('materi.show', $materi->materi_id) }}"
-                                        class="btn btn-outline-primary w-100 mt-2">
+                                       class="btn btn-outline-primary w-100 mt-2">
                                         Lihat Materi
                                     </a>
 
@@ -158,7 +134,7 @@
                 @endif
             </div>
 
-            {{-- ===================== KUIS (FORMAT SAMA KAYA MATERI) ===================== --}}
+            {{-- ===================== KUIS ===================== --}}
             <div class="mt-5">
                 <h4 class="section-title mb-3">Daftar Kuis</h4>
 
@@ -185,6 +161,16 @@
                                             Materi: {{ $k->judul_materi ?? '-' }}
                                         </small>
                                     </p>
+
+                                    @if(!is_null($k->nilai_saya))
+                                        <div class="alert alert-success py-2 mb-2 text-start" style="font-size:14px;">
+                                            Nilai saya: <b>{{ $k->nilai_saya }}</b>
+                                        </div>
+                                    @else
+                                        <div class="text-muted mb-2" style="font-size:14px;">
+                                            Belum dikerjakan
+                                        </div>
+                                    @endif
 
                                     <a href="{{ route('siswa.kuis.step', [$k->kuis_id, 1]) }}" class="btn btn-primary w-100">
                                         Kerjakan Kuis

@@ -9,7 +9,14 @@
 
             <div class="mb-3">
                 <label>Nama</label>
-                <input type="text" name="nama" class="form-control" value="{{ $siswa->nama }}" required>
+                <input
+                    type="text"
+                    name="nama"
+                    class="form-control"
+                    value="{{ $siswa->nama }}"
+                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
+                    required
+                >
             </div>
 
             <div class="mb-3">
