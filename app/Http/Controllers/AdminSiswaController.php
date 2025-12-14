@@ -25,7 +25,7 @@ class AdminSiswaController extends Controller
 
         $siswa = $query->get();
 
-        return view('admin.siswa', compact('siswa'));
+        return view('admin.siswa.index', compact('siswa'));
     }
 
 

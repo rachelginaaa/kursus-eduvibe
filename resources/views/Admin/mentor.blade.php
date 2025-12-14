@@ -29,7 +29,7 @@
 
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">
-                Cari
+                Filter
             </button>
         </div>
 
@@ -46,7 +46,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Nama Mentor</th>
                     <th>Email</th>
                     <th>Keahlian</th>
@@ -58,7 +58,7 @@
             <tbody>
                 @foreach($mentor as $m)
                     <tr>
-                        <td>{{ $m->mentor_id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $m->nama }}</td>
                         <td>{{ $m->email }}</td>
                         <td>{{ $m->keahlian ?? '-' }}</td>

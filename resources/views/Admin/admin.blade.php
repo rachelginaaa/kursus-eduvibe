@@ -72,7 +72,7 @@
 
     <!-- Welcome Section -->
     <div class="container text-center welcome">
-        <h1 class="fw-bold text-primary">Selamat Datang, Admin EduVibe ⚙️</h1>
+        <h1 class="fw-bold text-primary">Selamat Datang, Admin EduVibe 💻</h1>
     </div>
 
     <!-- Kartu Admin -->
@@ -82,7 +82,7 @@
 
             <div class="col-md-4">
                 <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3"
+                    <img src="https://cdn-icons-png.flaticon.com/512/201/201818.png" width="80" class="mx-auto mb-3"
                         alt="Kelola Siswa">
                     <h5 class="fw-bold">Kelola Siswa</h5>
                     <p class="text-muted">Tambah, ubah, atau hapus akun siswa yang terdaftar di platform.</p>
@@ -93,7 +93,7 @@
             <!-- Kelola Mentor -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3"
+                    <img src="https://cdn-icons-png.flaticon.com/512/201/201634.png" width="80" class="mx-auto mb-3"
                         alt="Kelola Mentor">
                     <h5 class="fw-bold">Kelola Mentor</h5>
                     <p class="text-muted">Pantau dan kelola akun mentor, termasuk verifikasi dan status aktif.</p>
@@ -105,8 +105,8 @@
             <!-- Kelola Paket -->
             <div class="col-md-4">
                 <div class="card p-4 text-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135789.png" width="80" class="mx-auto mb-3"
-                        alt="Kelola Mentor">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2436/2436874.png" width="80" class="mx-auto mb-3"
+                        alt="Kelola Paket">
                     <h5 class="fw-bold">Kelola Paket</h5>
                     <p class="text-muted">Manajemen mata pelajaran setiap paket pembelajaran. </p>
                     <button class="btn btn-primary" onclick="window.location.href='/admin/paket'">Kelola Paket</button>
