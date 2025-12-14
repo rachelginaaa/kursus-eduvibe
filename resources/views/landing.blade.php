@@ -64,6 +64,15 @@
             transform: translateY(-5px);
         }
 
+        /* ✅ PERBAIKAN UKURAN IKON (INI SAJA YANG DITAMBAHKAN) */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 12px;
+        }
+
         .pricing {
             background-color: #ffffff;
             padding: 80px 0;
@@ -118,26 +127,26 @@
                     <li class="nav-item"><a href="#paket" class="nav-link fw-semibold text-dark">Paket</a></li>
                     <li class="nav-item"><a href="#kontak" class="nav-link fw-semibold text-dark">Kontak</a></li>
                     <li class="nav-item"><a href="/tutorial" class="nav-link fw-semibold text-dark">Tutorial</a></li>
-                                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle btn btn-primary text-white ms-3 px-3" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Login
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
-                        <li><a class="dropdown-item" href="/login">Login Siswa</a></li>
-                        <li><a class="dropdown-item" href="/mentor/login">Login Mentor</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-primary text-white ms-3 px-3" href="#"
+                           id="loginDropdown" role="button" data-bs-toggle="dropdown">
+                            Login
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="/login">Login Siswa</a></li>
+                            <li><a class="dropdown-item" href="/mentor/login">Login Mentor</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero text-center" id="home">
         <div class="container">
             <h1>Belajar Seru dan Interaktif Bersama <span style="color:#62b6cb;">EduVibe</span></h1>
-            <p class="mt-3">Platform pembelajaran online untuk siswa SD, SMP, dan SMA dengan berbagai mata pelajaran
-                menarik.</p>
+            <p class="mt-3">Platform pembelajaran online untuk siswa SD, SMP, dan SMA dengan berbagai mata pelajaran menarik.</p>
             <a href="/login" class="btn btn-primary btn-lg mt-4">Mulai Belajar Sekarang</a>
         </div>
     </section>
@@ -147,33 +156,34 @@
         <div class="container text-center">
             <h2 class="mb-5 text-primary fw-bold">Kenapa Pilih EduVibe?</h2>
             <div class="row g-4">
+
                 <div class="col-md-4">
                     <div class="card feature-card p-4">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3652/3652269.png" width="80"
-                            class="mx-auto mb-3" alt="Guru Berkualitas">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2354/2354280.png"
+                             class="feature-icon" alt="Guru Berkualitas">
                         <h5 class="fw-bold">Guru Berkualitas</h5>
-                        <p class="text-muted">Dipandu oleh pengajar berpengalaman dari berbagai bidang studi untuk
-                            setiap jenjang pendidikan.</p>
+                        <p class="text-muted">Dipandu oleh pengajar berpengalaman dari berbagai bidang studi.</p>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="card feature-card p-4">
-                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" width="80"
-                            class="mx-auto mb-3" alt="Materi Lengkap">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                             class="feature-icon" alt="Materi Lengkap">
                         <h5 class="fw-bold">Materi Lengkap</h5>
-                        <p class="text-muted">Kursus mencakup semua mata pelajaran utama — Matematika, Bahasa, Sains,
-                            dan lainnya.</p>
+                        <p class="text-muted">Mencakup semua mata pelajaran utama.</p>
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="card feature-card p-4">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4313/4313247.png" width="80"
-                            class="mx-auto mb-3" alt="Interaktif & Menyenangkan">
+                        <img src="https://cdn-icons-png.flaticon.com/512/4313/4313247.png"
+                             class="feature-icon" alt="Interaktif">
                         <h5 class="fw-bold">Interaktif & Menyenangkan</h5>
-                        <p class="text-muted">Belajar sambil bermain! Dilengkapi dengan video, kuis, dan latihan menarik
-                            untuk setiap pelajaran.</p>
+                        <p class="text-muted">Video, kuis, dan latihan menarik.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -183,39 +193,37 @@
         <div class="container text-center">
             <h2 class="text-primary fw-bold mb-4">Tentang EduVibe</h2>
             <p class="lead mx-auto" style="max-width: 700px;">
-                EduVibe adalah platform pembelajaran yang dirancang untuk membantu siswa SD hingga SMA
-                belajar dengan cara yang menyenangkan dan fleksibel. Kami percaya setiap anak bisa berkembang
-                dengan dukungan teknologi dan metode pengajaran yang tepat.
+                EduVibe adalah platform pembelajaran yang dirancang untuk membantu siswa belajar dengan cara yang menyenangkan dan fleksibel.
             </p>
         </div>
     </section>
 
-    <!-- Paket Pembayaran -->
+    <!-- Paket -->
     <section class="pricing text-center" id="paket">
         <div class="container">
             <h2 class="text-primary fw-bold mb-5">Paket Pembelajaran</h2>
             <div class="row g-4">
                 <div class="col-md-4 d-flex">
                     <div class="card pricing-card p-4 w-100">
-                        <h5 class="fw-bold mb-3">Paket A - Dasar</h5>
-                        <h3 class="text-success fw-bold mb-3">Rp500.000</h3>
-                        <p class="text-muted">Akses 1 bulan ke seluruh materi dasar dan latihan.</p>
+                        <h5 class="fw-bold">Paket A - Dasar</h5>
+                        <h3 class="text-success fw-bold">Rp500.000</h3>
+                        <p class="text-muted">Akses 1 bulan.</p>
                         <a href="{{ route('paket.a') }}" class="btn btn-primary">Lihat Detail</a>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex">
                     <div class="card pricing-card p-4 w-100">
-                        <h5 class="fw-bold mb-3">Paket B - Premium</h5>
-                        <h3 class="text-success fw-bold mb-3">Rp1.000.000</h3>
-                        <p class="text-muted">Akses 3 bulan, termasuk kelas interaktif dan evaluasi mingguan.</p>
+                        <h5 class="fw-bold">Paket B - Premium</h5>
+                        <h3 class="text-success fw-bold">Rp1.000.000</h3>
+                        <p class="text-muted">Akses 3 bulan.</p>
                         <a href="{{ route('paket.b') }}" class="btn btn-primary">Lihat Detail</a>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex">
                     <div class="card pricing-card p-4 w-100">
-                        <h5 class="fw-bold mb-3">Paket C - Elite</h5>
-                        <h3 class="text-success fw-bold mb-3">Rp1.500.000</h3>
-                        <p class="text-muted">Akses 6 bulan penuh dengan bimbingan mentor pribadi.</p>
+                        <h5 class="fw-bold">Paket C - Elite</h5>
+                        <h3 class="text-success fw-bold">Rp1.500.000</h3>
+                        <p class="text-muted">Akses 6 bulan.</p>
                         <a href="{{ route('paket.c') }}" class="btn btn-primary">Lihat Detail</a>
                     </div>
                 </div>
@@ -226,15 +234,7 @@
     <!-- Footer -->
     <footer class="footer text-center" id="kontak">
         <div class="container">
-            <h5 class="fw-bold text-primary mb-3">Hubungi Kami</h5>
-            <p>Email: <a href="mailto:info@eduvibe.com">info@eduvibe.com</a></p>
-            <div class="mt-3">
-                <a href="https://facebook.com" target="_blank">Facebook</a> |
-                <a href="https://instagram.com" target="_blank">Instagram</a> |
-                <a href="https://twitter.com" target="_blank">Twitter</a> |
-                <a href="https://youtube.com" target="_blank">YouTube</a>
-            </div>
-            <p class="mt-4 mb-0 text-secondary">&copy; 2025 EduVibe. Semua hak cipta dilindungi.</p>
+            <p class="mb-0 text-secondary">&copy; 2025 EduVibe. Semua hak cipta dilindungi.</p>
         </div>
     </footer>
 
