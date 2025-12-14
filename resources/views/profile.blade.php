@@ -57,7 +57,6 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/home" class="nav-link text-dark fw-semibold">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Kursus Saya</a></li>
                     <li class="nav-item"><a href="/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
@@ -68,7 +67,13 @@
     <!-- Profil Section -->
     <div class="container profile-header text-center">
         <div class="profile-card mx-auto col-md-6">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User" class="profile-img mb-3">
+            <img
+                src="{{ $user->foto ? asset('storage/'.$user->foto) : asset('img/profile_11386227.png') }}"
+                alt="Foto Siswa"
+                class="rounded-circle"
+                style="width: 120px; height:120px; object-fit:cover;"
+            >
+
            <h4 class="fw-bold">{{ $user->name }}</h4>
                 <p class="text-muted">{{ $user->email }}</p>
             <hr>
@@ -76,7 +81,7 @@
             <div class="text-start">
                 <p><strong>Email:</strong> {{ $user->email ?? '-' }}</p>
                 <p><strong>No. HP:</strong> {{ $user->no_hp ?? '-' }}</p>
-                <p><strong>Tanggal Bergabung:</strong> 
+                <p><strong>Tanggal Bergabung:</strong>
                     {{ \Carbon\Carbon::parse($user->tgl_daftar)->translatedFormat('d F Y') ?? '-' }}
                 </p>
             </div>

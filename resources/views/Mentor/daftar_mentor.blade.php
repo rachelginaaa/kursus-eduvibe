@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,27 +11,33 @@
             background-color: #f8f9fa;
             font-family: 'Poppins', sans-serif;
         }
+
         .navbar {
             background: linear-gradient(90deg, #a5c9ca, #e7f6f2);
         }
+
         .navbar-brand {
             font-weight: bold;
             color: #1b4965 !important;
         }
+
         .btn-primary {
             background-color: #62b6cb;
             border: none;
         }
+
         .btn-primary:hover {
             background-color: #439a86;
         }
+
         .table {
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -39,7 +46,8 @@
             <a class="navbar-brand" href="#">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a></li>
+                    <li class="nav-item"><a href="/admin/dashboard" class="nav-link text-dark fw-semibold">Dashboard</a>
+                    </li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
             </div>
@@ -95,4 +103,5 @@
     </div>
 
 </body>
+
 </html>

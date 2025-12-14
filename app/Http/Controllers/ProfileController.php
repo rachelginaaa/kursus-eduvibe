@@ -25,7 +25,7 @@ class ProfileController extends Controller
 
     public function index3()
     {
-        $mentor = Mentor::all();
+        $user = Mentor::all();
         return view('mentor.index', compact('mentor'));
     }
 
@@ -33,6 +33,21 @@ class ProfileController extends Controller
     {
         if (Auth::guard('siswa')->check()) {
             $user = Auth::guard('siswa')->user();
+            
+            if ($request->hasFile('foto')) {
+            $request->validate([
+                'foto' => 'image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+
+            // Hapus foto lama jika ada
+            if ($user->foto && file_exists(storage_path('app/public/'.$user->foto))) {
+                unlink(storage_path('app/public/'.$user->foto));
+            }
+
+            // Simpan foto baru
+            $path = $request->file('foto')->store('mentor_foto', 'public');
+            $user->foto = $path;
+        }
 
             $request->validate([
                 'nama' => 'required|string|max:255',
@@ -77,7 +92,7 @@ class ProfileController extends Controller
 
     public function edit2()
     {
-        $mentor = Auth::guard('mentor')->user();
+        $user = Auth::guard('mentor')->user();
         return view('mentor.edit_profile_mentor', compact('mentor'));
     }
 }
