@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminSiswaController;
 use App\Http\Controllers\MentorKuisController;
 use App\Http\Controllers\SiswaKuisController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\LeaderboardController;
 
 
 
@@ -57,6 +58,9 @@ Route::get('/siswa', [ProfileController::class, 'index'])->name('siswa.index');
 Route::get('/mentor/login', [MentorAuthController::class, 'showLoginForm'])->name('mentor.login');
 Route::post('/mentor/login', [MentorAuthController::class, 'login'])->name('mentor.login.process');
 Route::get('/mentor/logout', [MentorAuthController::class, 'logout'])->name('mentor.logout');
+
+//leaderboard
+Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
 
 // Dashboard Mentor
 Route::middleware('auth:mentor')->group(function () {

@@ -57,6 +57,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/home" class="nav-link text-dark fw-semibold">Home</a></li>
                     <li class="nav-item"><a href="/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
+                    <li class="nav-item"><a href="/leaderboard" class="nav-link text-dark fw-semibold">Leaderboard</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
             </div>

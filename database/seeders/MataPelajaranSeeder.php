@@ -20,33 +20,49 @@ class MataPelajaranSeeder extends Seeder
             $mentorByKeahlian[$mentor->keahlian][] = $mentor->mentor_id;
         }
 
-        // Daftar semua paket (kosong dulu)
-        $paket_mata_pelajaran = [
-            1 => [], // Paket 1
-            2 => [], // Paket 2
-            3 => [], // Paket 3
+        // Data manual paket + mata pelajaran
+        $pakets = [
+            1 => [ // SD
+                'jenjang' => 'SD',
+                'mata_pelajaran' => [
+                    'Matematika',
+                    'Bahasa Indonesia',
+                    'IPA',
+                    'IPS',
+                    'Pendidikan Pancasila',
+                    'Pendidikan Agama',
+                ]
+            ],
+            2 => [ // SMP
+                'jenjang' => 'SMP',
+                'mata_pelajaran' => [
+                    'Matematika',
+                    'Bahasa Indonesia',
+                    'Bahasa Inggris',
+                    'IPA',
+                    'IPS',
+                    'Informatika',
+                ]
+            ],
+            3 => [ // SMA
+                'jenjang' => 'SMA',
+                'mata_pelajaran' => [
+                    'Matematika Wajib',
+                    'Fisika',
+                    'Kimia',
+                    'Biologi',
+                    'Bahasa Inggris',
+                    'Ekonomi',
+                ]
+            ],
         ];
-
-        // Daftar mata pelajaran gabungan dari semua paket
-        $all_mata_pelajaran = [
-            'Matematika Wajib', 'Fisika', 'Biologi', 'Kimia', 'Matematika Peminatan',
-            'Geografi', 'Informatika', 'Bahasa Inggris', 'Bahasa Indonesia', 'Sejarah Indonesia',
-            'Sejarah', 'Pendidikan Pancasila', 'Pendidikan Jasmani', 'Ekonomi', 'Sosiologi',
-            'Pendidikan Agama', 'PPKn', 'Kewirausahaan', 'Bahasa Jepang', 'Bahasa Arab', 'Bahasa Jerman',
-            'Antropologi'
-        ];
-
-        // Assign semua mata pelajaran ke setiap paket
-        foreach ($paket_mata_pelajaran as $paket_id => &$mata_pelajaran) {
-            $mata_pelajaran = $all_mata_pelajaran;
-        }
 
         $data = [];
 
-        // Masukkan semua mata pelajaran ke tiap paket dengan mentor sesuai keahlian
-        foreach ($paket_mata_pelajaran as $paketId => $mataPelajaranList) {
-            foreach ($mataPelajaranList as $nama) {
-                // Pilih mentor sesuai keahlian, kalau tidak ada random
+        foreach ($pakets as $paketId => $paket) {
+            foreach ($paket['mata_pelajaran'] as $nama) {
+
+                // Ambil mentor sesuai keahlian
                 if (isset($mentorByKeahlian[$nama])) {
                     $mentorId = $mentorByKeahlian[$nama][array_rand($mentorByKeahlian[$nama])];
                 } else {
@@ -54,10 +70,11 @@ class MataPelajaranSeeder extends Seeder
                 }
 
                 $data[] = [
+                    'paket_pelajaran_id' => $paketId, // pastikan kolom ini ada
                     'mentor_id' => $mentorId,
                     'nama_matapelajaran' => $nama,
-                    'deskripsi' => "Pembelajaran tentang $nama untuk jenjang SMA.",
-                    'jenjang' => 'SMA',
+                    'deskripsi' => "Pembelajaran $nama untuk jenjang {$paket['jenjang']}.",
+                    'jenjang' => $paket['jenjang'],
                     'created_at' => $now,
                     'updated_at' => $now,
                 ];

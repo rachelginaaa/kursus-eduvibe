@@ -67,7 +67,6 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a href="/home" class="nav-link text-dark fw-semibold">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-dark fw-semibold">Kursus Saya</a></li>
                     <li class="nav-item"><a href="/profile" class="nav-link text-dark fw-semibold">Profil</a></li>
                     <li class="nav-item"><a href="/" class="btn btn-primary ms-3">Logout</a></li>
                 </ul>
@@ -97,27 +96,6 @@
             <a href="{{ route('profile.edit') }}" class="btn btn-edit mt-3">Edit Profil</a>
         </div>
 
-        <!-- Progress Belajar -->
-        <div class="mt-5 col-md-8 mx-auto">
-            <h5 class="fw-bold text-primary mb-3">Progress Belajar 📈</h5>
-            <div class="card p-4">
-                <p><strong>Matematika:</strong></p>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-info" style="width: 75%">75%</div>
-                </div>
-
-                <p><strong>Bahasa Indonesia:</strong></p>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-success" style="width: 50%">50%</div>
-                </div>
-
-                <p><strong>IPA:</strong></p>
-                <div class="progress mb-3">
-                    <div class="progress-bar bg-warning" style="width: 30%">30%</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="text-center text-secondary">
