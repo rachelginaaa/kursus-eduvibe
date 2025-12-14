@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('mentor', function (Blueprint $table) {
             $table->id('mentor_id');
             $table->string('nama');
-            $table->string('password');
             $table->string('email')->unique();
+            $table->string('password'); // biasanya disimpan hashed (255 default cukup)
             $table->string('keahlian');
-            $table->string('no_hp')->nullable();
+            $table->string('no_hp', 20)->nullable(); // batasi length biar rapih
             $table->timestamps();
         });
     }

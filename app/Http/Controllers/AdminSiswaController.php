@@ -9,11 +9,25 @@ use App\Models\Siswa;
 class AdminSiswaController extends Controller
 {
     // Tampilkan daftar siswa
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = Siswa::all();
-        return view('admin.siswa.index', compact('siswa'));
+        $query = Siswa::query();
+
+        // 🔍 CARI BERDASARKAN NAMA
+        if ($request->filled('nama')) {
+            $query->where('nama', 'like', '%' . $request->nama . '%');
+        }
+
+        // 🎓 FILTER BERDASARKAN JENJANG (SD - SMA)
+        if ($request->filled('jenjang')) {
+            $query->where('jenjang', $request->jenjang);
+        }
+
+        $siswa = $query->get();
+
+        return view('admin.siswa', compact('siswa'));
     }
+
 
 
     // Form tambah siswa

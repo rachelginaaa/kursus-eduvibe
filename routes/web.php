@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MentorAuthController;
 use App\Http\Controllers\AdminAuthCOntroller;
+use App\Http\Controllers\AdminMentorController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\SiswaHomeController;
@@ -41,6 +42,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 // tutorial
 Route::get('/tutorial', function () {
     return view('tutorial'); });
+
 
 
 
@@ -123,6 +125,22 @@ Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function
     Route::get('/profile/edit', [AdminProfileController::class, 'edit']);
     Route::put('/profile/update', [AdminProfileController::class, 'update']);
 
+});
+
+//Fitur admin-mentor
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/mentor', [AdminMentorController::class, 'index'])->name('mentor.index');
+    // Create Mentor
+    Route::get('/mentor/create', [AdminMentorController::class, 'create'])->name('mentor.create');
+    Route::post('/mentor', [AdminMentorController::class, 'store'])->name('mentor.store');
+
+    //Edit Mentor    
+    Route::get('mentor/{id}/edit', [AdminMentorController::class, 'edit'])->name('mentor.edit');
+    Route::put('mentor/{id}', [AdminMentorController::class, 'update'])->name('mentor.update');
+
+    //hapus mentor
+    Route::delete('/mentor/delete/{id}', [AdminMentorController::class, 'destroy'])->name('mentor.destroy');
 });
 
 //edit profile siswa
