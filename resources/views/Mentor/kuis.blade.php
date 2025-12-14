@@ -89,6 +89,20 @@
             <textarea class="form-control" name="deskripsi" rows="3" placeholder="Contoh: Kerjakan kuis setelah membaca materi...">{{ old('deskripsi') }}</textarea>
           </div>
 
+          {{-- DURASI TIMER --}}
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Durasi Kuis (menit)</label>
+            <input
+              type="number"
+              class="form-control"
+              name="durasi_menit"
+              min="1"
+              value="{{ old('durasi_menit', 10) }}"
+              required
+            >
+            <div class="form-text">Contoh: 10 = 10 menit untuk menyelesaikan kuis.</div>
+          </div>
+
           <button class="btn btn-primary">Buat Kuis</button>
         </form>
       @endif
@@ -108,6 +122,7 @@
                 <th>Nama Kuis</th>
                 <th>Materi</th>
                 <th>Deskripsi</th>
+                <th style="width:110px">Durasi</th>
                 <th style="width:240px">Aksi</th>
               </tr>
             </thead>
@@ -121,6 +136,9 @@
                   <td>{{ $k->nama_kuis }}</td>
                   <td>{{ $judulMateriKuis }}</td>
                   <td>{{ $k->deskripsi ?? '-' }}</td>
+                  <td class="text-center">
+                    {{ $k->durasi_menit ?? 10 }} menit
+                  </td>
                   <td class="text-center">
                     <div class="d-flex justify-content-center flex-wrap gap-1">
                       {{-- Kelola Soal --}}
@@ -174,6 +192,19 @@
                               <div class="mb-3">
                                 <label class="form-label fw-semibold">Deskripsi (opsional)</label>
                                 <textarea class="form-control" name="deskripsi" rows="3">{{ $k->deskripsi }}</textarea>
+                              </div>
+
+                              {{-- DURASI TIMER (EDIT) --}}
+                              <div class="mb-3">
+                                <label class="form-label fw-semibold">Durasi Kuis (menit)</label>
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  name="durasi_menit"
+                                  min="1"
+                                  value="{{ $k->durasi_menit ?? 10 }}"
+                                  required
+                                >
                               </div>
                             </div>
 

@@ -8,8 +8,30 @@ use Illuminate\Support\Facades\Auth;
 
 class SiswaKuisController extends Controller
 {
+    // ===== TIMER KEY =====
+    private function timerKey($kuis_id): string
+    {
+        return "quiz_timer_end_$kuis_id";
+    }
+
+    private function ensureTimer($kuis_id, int $durasiMenit): int
+    {
+        $key = $this->timerKey($kuis_id);
+
+        if (!session()->has($key)) {
+            session([$key => now()->addMinutes($durasiMenit)->timestamp]);
+        }
+
+        return (int) session($key);
+    }
+
+    private function clearTimer($kuis_id): void
+    {
+        session()->forget($this->timerKey($kuis_id));
+    }
+
     // =============================
-    // MODE LAMA: tampil semua soal sekaligus (optional)
+    // MODE LAMA (optional)
     // =============================
     public function show($kuis_id)
     {
@@ -43,7 +65,6 @@ class SiswaKuisController extends Controller
 
         if ($soal->isEmpty()) abort(404, 'Soal tidak ditemukan.');
 
-        // Validasi: semua soal wajib dijawab
         $jawaban = $request->input('jawaban', []);
         foreach ($soal as $s) {
             if (!isset($jawaban[$s->soal_id])) {
@@ -60,16 +81,16 @@ class SiswaKuisController extends Controller
         }
 
         $skor = $total > 0 ? round(($benar / $total) * 100) : 0;
-
         $this->saveHasilKuis($kuis_id, $skor);
 
-        // (Mode lama) tetap balik ke halaman kerjakan-kuis
+        $this->clearTimer($kuis_id);
+
         return redirect()->route('siswa.kuis.kerjakan', $kuis_id)
             ->with('hasil', ['benar' => $benar, 'total' => $total, 'skor' => $skor]);
     }
 
     // =============================
-    // MODE STEPPER: 1 soal per halaman
+    // MODE STEPPER: 1 soal per halaman + TIMER
     // =============================
     public function step($kuis_id, $no)
     {
@@ -93,16 +114,31 @@ class SiswaKuisController extends Controller
         }
 
         $no = (int) $no;
-        if ($no < 1) return redirect()->route('siswa.kuis.step', [$kuis_id, 1]);
-        if ($no > $total) return redirect()->route('siswa.kuis.step', [$kuis_id, $total]);
+        if ($no < 1) $no = 1;
+        if ($no > $total) $no = $total;
 
         $soal = $soalList[$no - 1];
+
+        // ===== TIMER =====
+        $durasiMenit = (int) ($kuis->durasi_menit ?? 10);
+        $endAtEpoch = $this->ensureTimer($kuis_id, $durasiMenit);
+
+        $isTimeUp = time() >= $endAtEpoch;
 
         // Jawaban sementara dari session
         $jawabanSession = session("quiz_$kuis_id", []);
         $selected = $jawabanSession[$soal->soal_id] ?? null;
 
-        return view('Siswa.kerjakan-kuis-step', compact('kuis', 'soal', 'no', 'total', 'selected', 'soalList'));
+        return view('Siswa.kerjakan-kuis-step', compact(
+            'kuis',
+            'soal',
+            'no',
+            'total',
+            'selected',
+            'soalList',
+            'endAtEpoch',
+            'isTimeUp'
+        ));
     }
 
     public function saveStep(Request $request, $kuis_id, $no)
@@ -121,54 +157,64 @@ class SiswaKuisController extends Controller
 
         $soal = $soalList[$no - 1];
 
-        // Simpan jawaban pilihan untuk soal ini ke session
-        $pilih = $request->input('jawaban'); // 1-4
-        if (!is_null($pilih) && $pilih !== '') {
-            $data = session("quiz_$kuis_id", []);
-            $data[$soal->soal_id] = (string) $pilih;
-            session(["quiz_$kuis_id" => $data]);
+        // ===== TIMER =====
+        $kuis = DB::table('kuis')->where('kuis_id', $kuis_id)->first();
+        if (!$kuis) abort(404, 'Kuis tidak ditemukan.');
+
+        $durasiMenit = (int) ($kuis->durasi_menit ?? 10);
+        $endAtEpoch = $this->ensureTimer($kuis_id, $durasiMenit);
+        $isTimeUp = time() >= $endAtEpoch;
+
+    
+        if ($isTimeUp && !$request->has('submit')) {
+            return redirect()->route('siswa.kuis.step', [$kuis_id, $no])
+                ->with('error', 'Waktu kuis sudah habis. Silakan klik Submit.');
         }
 
-        // Prev / Next
-        if ($request->has('prev')) {
-            return redirect()->route('siswa.kuis.step', [$kuis_id, max(1, $no - 1)]);
+        // Simpan jawaban (hanya kalau belum time up)
+        if (!$isTimeUp) {
+            $pilih = $request->input('jawaban'); // 1-4
+            if (!is_null($pilih) && $pilih !== '') {
+                $data = session("quiz_$kuis_id", []);
+                $data[$soal->soal_id] = (string) $pilih;
+                session(["quiz_$kuis_id" => $data]);
+            }
         }
 
-        if ($request->has('next')) {
-            return redirect()->route('siswa.kuis.step', [$kuis_id, min($total, $no + 1)]);
+        // Prev / Next (hanya kalau belum time up)
+        if (!$isTimeUp) {
+            if ($request->has('prev')) {
+                return redirect()->route('siswa.kuis.step', [$kuis_id, max(1, $no - 1)]);
+            }
+
+            if ($request->has('next')) {
+                return redirect()->route('siswa.kuis.step', [$kuis_id, min($total, $no + 1)]);
+            }
         }
 
-        // SUBMIT (stepper)
+        // SUBMIT (manual)
         if ($request->has('submit')) {
             $jawabanSession = session("quiz_$kuis_id", []);
 
-            // Validasi: semua soal harus dijawab
-            foreach ($soalList as $s) {
-                if (!isset($jawabanSession[$s->soal_id])) {
-                    return redirect()->route('siswa.kuis.step', [$kuis_id, $no])
-                        ->with('error', 'Masih ada soal yang belum dijawab!');
-                }
-            }
-
             $benar = 0;
             foreach ($soalList as $s) {
-                if ((string) $jawabanSession[$s->soal_id] === (string) $s->jawaban_benar) {
+                $ans = (string) ($jawabanSession[$s->soal_id] ?? '');
+                if ($ans !== '' && $ans === (string) $s->jawaban_benar) {
                     $benar++;
                 }
             }
 
             $skor = $total > 0 ? round(($benar / $total) * 100) : 0;
-
             $this->saveHasilKuis($kuis_id, $skor);
 
-            // bersihin session quiz biar bisa ulang
+            // bersihin session quiz + timer
             session()->forget("quiz_$kuis_id");
+            $this->clearTimer($kuis_id);
 
             return redirect()->route('siswa.kuis.hasil', $kuis_id)
                 ->with('hasil', ['benar' => $benar, 'total' => $total, 'skor' => $skor]);
         }
 
-        // default
         return redirect()->route('siswa.kuis.step', [$kuis_id, $no]);
     }
 
@@ -178,7 +224,6 @@ class SiswaKuisController extends Controller
     private function saveHasilKuis($kuis_id, $skor)
     {
         $siswa = Auth::guard('siswa')->user();
-
         if (!$siswa) abort(403, 'Anda belum login sebagai siswa.');
 
         $siswa_id = $siswa->siswa_id ?? null;
@@ -190,7 +235,6 @@ class SiswaKuisController extends Controller
                 'skor' => (int) $skor,
                 'tgl_mengerjakan' => now(),
                 'updated_at' => now(),
-                // biar created_at ga selalu ketimpa setiap update:
                 'created_at' => DB::raw('COALESCE(created_at, NOW())'),
             ]
         );
@@ -222,6 +266,8 @@ class SiswaKuisController extends Controller
     public function ulang($kuis_id)
     {
         session()->forget("quiz_$kuis_id");
+        session()->forget('hasil');
+        $this->clearTimer($kuis_id);
 
         return redirect()->route('siswa.kuis.step', [$kuis_id, 1])
             ->with('success', 'Silakan kerjakan ulang kuis.');
