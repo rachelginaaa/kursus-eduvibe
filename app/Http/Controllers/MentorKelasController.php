@@ -6,16 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\MataPelajaran;
 use Illuminate\Support\Facades\Auth;
 use App\Models\MateriPelajaran;
+use Illuminate\Support\Facades\Storage;
 
 class MentorKelasController extends Controller
 {
     // Halaman "Kelas Saya"
     public function index()
     {
-        // Ambil data mentor yang sedang login
         $mentorId = Auth::guard('mentor')->id();
-
-        // Ambil semua mata pelajaran yang dia ajar
         $kelas = MataPelajaran::where('mentor_id', $mentorId)->get();
 
         return view('mentor.kelas', compact('kelas'));
@@ -35,24 +33,24 @@ class MentorKelasController extends Controller
     {
         $request->validate([
             'judul_materi' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'file' => 'nullable|file|mimes:pdf,docx,zip'
+            'deskripsi'    => 'nullable|string',
+            'file'         => 'nullable|file|mimes:pdf,docx,zip'
         ]);
 
-        // Ambil mata pelajaran supaya bisa ambil jenjang
         $mata_pelajaran = MataPelajaran::findOrFail($id);
 
-        // Simpan file jika ada
-        $filePath = $request->file('file') ? $request->file('file')->store('materi_files') : null;
+        // SIMPAN FILE KE DISK PUBLIC
+        $filePath = $request->hasFile('file')
+            ? $request->file('file')->store('materi_files', 'public')
+            : null;
 
-        // Simpan materi baru dengan semua field wajib
         MateriPelajaran::create([
             'mata_pelajaran_id' => $id,
-            'pengampu' => Auth::guard('mentor')->user()->nama,
-            'judul_materi' => $request->judul_materi,
-            'deskripsi' => $request->deskripsi,
-            'file' => $filePath,
-            'jenjang' => $mata_pelajaran->jenjang,
+            'pengampu'          => Auth::guard('mentor')->user()->nama,
+            'judul_materi'      => $request->judul_materi,
+            'deskripsi'         => $request->deskripsi,
+            'file'              => $filePath, // contoh: materi_files/namafile.pdf
+            'jenjang'           => $mata_pelajaran->jenjang,
         ]);
 
         return back()->with('success', 'Materi berhasil ditambahkan!');
@@ -64,7 +62,8 @@ class MentorKelasController extends Controller
         $materi = MateriPelajaran::findOrFail($materi_id);
 
         if ($materi->file) {
-            \Storage::delete($materi->file);
+            // HAPUS FILE DARI DISK PUBLIC
+            Storage::disk('public')->delete($materi->file);
         }
 
         $materi->delete();
