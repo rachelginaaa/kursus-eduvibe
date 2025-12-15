@@ -70,7 +70,7 @@
     <!-- Detail Mata Pelajaran -->
     <div class="container mt-5">
 
-        <a href="{{ route('siswa.home') }}" class="btn btn-secondary back-btn">← Kembali ke Home</a>
+        <a href="{{ route('siswa.home') }}" class="btn btn-secondary back-btn">← Kembali</a>
 
         <div class="card text-center">
             <h2>{{ $mapel->nama_matapelajaran }}</h2>
