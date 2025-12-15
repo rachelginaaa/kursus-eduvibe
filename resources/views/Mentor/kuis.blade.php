@@ -22,7 +22,7 @@
     <!-- NAVBAR / HEADER (MENTOR) -->
     <nav class="navbar navbar-expand-lg shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="/mentor/home">EduVibe</a>
+            <a class="navbar-brand" href="/mentor/dashboard">EduVibe</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
                 <span class="navbar-toggler-icon"></span>
             </button>
