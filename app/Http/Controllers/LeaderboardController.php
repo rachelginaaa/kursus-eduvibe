@@ -9,10 +9,20 @@ class LeaderboardController extends Controller
 {
     public function index(Request $request)
     {
-        $jenjang = $request->query('jenjang'); // SD / SMP / SMA / null
+        $jenjang = $request->query('jenjang'); // SD / SMP / SMA
+        $mapelId = $request->query('mapel');   // mata_pelajaran_id
+
+        // ambil daftar mata pelajaran untuk dropdown
+        $mataPelajarans = DB::table('mata_pelajaran')
+            ->select('mata_pelajaran_id', 'nama_matapelajaran')
+            ->orderBy('nama_matapelajaran')
+            ->get();
 
         $query = DB::table('hasil_kuis')
             ->join('siswa', 'hasil_kuis.siswa_id', '=', 'siswa.siswa_id')
+            ->join('kuis', 'hasil_kuis.kuis_id', '=', 'kuis.kuis_id')
+            ->join('materi', 'kuis.materi_id', '=', 'materi.materi_id')
+            ->join('mata_pelajaran', 'materi.mata_pelajaran_id', '=', 'mata_pelajaran.mata_pelajaran_id')
             ->select(
                 'siswa.siswa_id',
                 'siswa.nama',
@@ -21,16 +31,26 @@ class LeaderboardController extends Controller
             )
             ->groupBy('siswa.siswa_id', 'siswa.nama', 'siswa.jenjang');
 
-        // 🔥 FILTER JENJANG
+        // 🔹 filter jenjang
         if ($jenjang) {
             $query->where('siswa.jenjang', $jenjang);
+        }
+
+        // 🔹 filter mata pelajaran
+        if ($mapelId) {
+            $query->where('mata_pelajaran.mata_pelajaran_id', $mapelId);
         }
 
         $leaderboard = $query
             ->orderByDesc('total_poin')
             ->get();
 
-        return view('leaderboard.index', compact('leaderboard', 'jenjang'));
+        return view('leaderboard.index', compact(
+            'leaderboard',
+            'mataPelajarans',
+            'jenjang',
+            'mapelId'
+        ));
     }
 
 }

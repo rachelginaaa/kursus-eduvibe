@@ -54,16 +54,35 @@
         </h2>
 
         <div class="d-flex justify-content-center mb-4">
-            <form method="GET" action="{{ route('leaderboard') }}" class="d-flex gap-2">
-                <select name="jenjang" class="form-select">
-                    <option value="">Semua Jenjang</option>
-                    <option value="SD" {{ request('jenjang') == 'SD' ? 'selected' : '' }}>SD</option>
-                    <option value="SMP" {{ request('jenjang') == 'SMP' ? 'selected' : '' }}>SMP</option>
-                    <option value="SMA" {{ request('jenjang') == 'SMA' ? 'selected' : '' }}>SMA</option>
-                </select>
-                <button class="btn btn-primary">Filter</button>
+            <form method="GET" action="{{ route('leaderboard') }}" class="row g-2">
+
+                <div class="col-md-4">
+                    <select name="jenjang" class="form-select">
+                        <option value="">Semua Jenjang</option>
+                        <option value="SD" {{ request('jenjang') == 'SD' ? 'selected' : '' }}>SD</option>
+                        <option value="SMP" {{ request('jenjang') == 'SMP' ? 'selected' : '' }}>SMP</option>
+                        <option value="SMA" {{ request('jenjang') == 'SMA' ? 'selected' : '' }}>SMA</option>
+                    </select>
+                </div>
+
+                <div class="col-md-5">
+                    <select name="mapel" class="form-select">
+                        <option value="">Semua Mata Pelajaran</option>
+                        @foreach($mataPelajarans as $mapel)
+                            <option value="{{ $mapel->mata_pelajaran_id }}" {{ request('mapel') == $mapel->mata_pelajaran_id ? 'selected' : '' }}>
+                                {{ $mapel->nama_matapelajaran }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="btn btn-primary w-100">Terapkan Filter</button>
+                </div>
+
             </form>
         </div>
+
 
         <div class="card p-4">
             <table class="table table-striped text-center align-middle">
