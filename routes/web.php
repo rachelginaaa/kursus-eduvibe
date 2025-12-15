@@ -18,6 +18,7 @@ use App\Http\Controllers\MentorKuisController;
 use App\Http\Controllers\SiswaKuisController;
 use App\Http\Controllers\AdminProfileController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\AdminMentorController;
 
 // =====================
 // LANDING
@@ -283,4 +284,20 @@ Route::post('/kuis/{kuis_id}/ulang', [SiswaKuisController::class, 'ulang'])->nam
 // =====================
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/profile', [AdminAuthCOntroller::class, 'index'])->name('Admin.admin_profile');
+});
+
+//Fitur admin-mentor
+Route::middleware('auth:admin')->prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/mentor/all', [AdminMentorController::class, 'index'])->name('mentor.index');
+    // Create Mentor
+    Route::get('/mentor/create', [AdminMentorController::class, 'create'])->name('mentor.create');
+    Route::post('/mentor', [AdminMentorController::class, 'store'])->name('mentor.store');
+
+    //Edit Mentor
+    Route::get('mentor/{id}/edit', [AdminMentorController::class, 'edit'])->name('mentor.edit');
+    Route::put('mentor/{id}', [AdminMentorController::class, 'update'])->name('mentor.update');
+
+    //hapus mentor
+    Route::delete('/mentor/delete/{id}', [AdminMentorController::class, 'destroy'])->name('mentor.destroy');
 });

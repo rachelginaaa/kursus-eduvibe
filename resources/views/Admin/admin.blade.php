@@ -97,7 +97,7 @@
                         alt="Kelola Mentor">
                     <h5 class="fw-bold">Kelola Mentor</h5>
                     <p class="text-muted">Pantau dan kelola akun mentor, termasuk verifikasi dan status aktif.</p>
-                    <button class="btn btn-primary" onclick="window.location.href='/admin/mentor'">Kelola
+                    <button class="btn btn-primary" onclick="window.location.href='/admin/mentor/all'">Kelola
                         Mentor</button>
                 </div>
             </div>

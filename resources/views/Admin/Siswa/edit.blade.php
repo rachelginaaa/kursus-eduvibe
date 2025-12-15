@@ -9,14 +9,8 @@
 
             <div class="mb-3">
                 <label>Nama</label>
-                <input
-                    type="text"
-                    name="nama"
-                    class="form-control"
-                    value="{{ $siswa->nama }}"
-                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
-                    required
-                >
+                <input type="text" name="nama" class="form-control" value="{{ $siswa->nama }}"
+                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
             </div>
 
             <div class="mb-3">
@@ -44,8 +38,10 @@
 
             <div class="mb-3">
                 <label>No HP</label>
-                <input type="text" name="no_hp" class="form-control" value="{{ $siswa->no_hp }}" required>
+                <input type="text" name="no_hp" class="form-control" value="{{ $siswa->no_hp }}"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
             </div>
+
 
             <button type="submit" class="btn btn-primary">Update Siswa</button>
             <a href="{{ route('admin.siswa.index') }}" class="btn btn-secondary">Batal</a>
