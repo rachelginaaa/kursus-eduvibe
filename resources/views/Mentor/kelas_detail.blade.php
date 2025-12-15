@@ -37,7 +37,6 @@
             background-color: #eefbff;
         }
 
-        /* Tombol utama biru */
         .btn-main-blue {
             background-color: #62b6cb !important;
             border: none !important;
@@ -47,6 +46,30 @@
         .btn-main-blue:hover {
             background-color: #439a86 !important;
             color: white !important;
+        }
+
+        /* Tombol Logout biru */
+        .btn-main-blue {
+            background-color: #62b6cb !important;
+            border: none !important;
+            color: white !important;
+        }
+
+        .btn-main-blue:hover {
+            background-color: #439a86 !important;
+            color: white !important;
+        }
+
+        .btn-soft-green {
+            background-color: #c7f2c5 !important;
+            border: 1px solid #a8d9a6 !important;
+            color: #2f6b2f !important;
+        }
+
+        .btn-soft-green:hover {
+            background-color: #b0e9ad !important;
+            border-color: #96cf94 !important;
+            color: #245a24 !important;
         }
 
         /* Tambah Materi — Soft Green */
@@ -72,35 +95,31 @@
             <a class="navbar-brand" href="#">EduVibe</a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/mentor/dashboard" class="nav-link text-dark fw-semibold">Home</a>
+                    <li class="nav-item"><a href="/mentor/dashboard" class="nav-link text-dark fw-semibold">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a>
+                    <li class="nav-item"><a href="/mentor/profile" class="nav-link text-dark fw-semibold">Profil</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="/" class="btn btn-main-blue ms-3">Logout</a>
-                    </li>
+                    <li class="nav-item"><a href="/" class="btn btn-main-blue ms-3">Logout</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
+
+    <!-- TITLE -->
     <div class="container mt-5">
-        <h2 class="fw-bold text-primary mb-4">
-            Kelola Materi: {{ $mata_pelajaran->nama_matapelajaran }}
-        </h2>
+        <h2 class="fw-bold text-primary mb-4">Kelola Materi: {{ $mata_pelajaran->nama_matapelajaran }}</h2>
 
         @if(session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
+
         <!-- FORM TAMBAH MATERI -->
         <div class="card mb-4 p-4 shadow-sm">
             <h5>Tambah Materi Baru</h5>
-
-            <form action="{{ route('mentor.materi.store', $mata_pelajaran->mata_pelajaran_id) }}"
-                  method="POST" enctype="multipart/form-data">
+            <form action="{{ route('mentor.materi.store', $mata_pelajaran->mata_pelajaran_id) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-3">
@@ -118,6 +137,7 @@
                     <input type="file" name="file" id="file" class="form-control" accept=".pdf,.docx,.zip">
                 </div>
 
+                <!-- Tambah Materi soft green -->
                 <button type="submit" class="btn btn-soft-green">Tambah Materi</button>
             </form>
         </div>
@@ -127,57 +147,63 @@
             <h5>Daftar Materi</h5>
 
             @if($materi->isEmpty())
-                <div class="alert alert-warning mt-3">Belum ada materi.</div>
+                <div class="alert alert-warning">Belum ada materi.</div>
             @else
-                <table class="table table-striped table-bordered mt-3">
-                    <thead class="text-center">
-                        <tr>
-                            <th>ID Materi</th>
-                            <th>Judul</th>
-                            <th>Deskripsi</th>
-                            <th>File</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
+                        <table class="table table-striped table-bordered mt-3">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>ID Materi</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
+                                    <th>File</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            @if($materi->isEmpty())
+                                <div class="alert alert-warning">Belum ada materi.</div>
+                            @else
+                                    <tbody>
+                                        @foreach($materi as $m)
+                                            <tr>
+                                                <td class="text-center">{{ $m->materi_id }}</td>
+                                                <td>{{ $m->judul_materi }}</td>
+                                                <td>{{ $m->deskripsi }}</td>
+                                                <td class="text-center">
+                                                    @if($m->file)
+                                                        <a href="{{ \Illuminate\Support\Facades\Storage::url($m->file) }}" target="_blank"
+                                                            class="btn btn-sm btn-info">
+                                                            Lihat File
+                                                        </a>
 
-                    <tbody>
-                        @foreach($materi as $m)
-                            <tr>
-                                <td class="text-center">{{ $m->materi_id }}</td>
-                                <td>{{ $m->judul_materi }}</td>
-                                <td>{{ $m->deskripsi }}</td>
+                                                        <a href="{{ \Illuminate\Support\Facades\Storage::url($m->file) }}" download
+                                                            class="btn btn-sm btn-secondary">
+                                                            Download
+                                                        </a>
+                                                    @else
+                                                        -
+                                                    @endif
+                                                </td>
+                                                <td class="text-center">
+                                                    <form
+                                                        action="{{ route('mentor.materi.destroy', [$mata_pelajaran->mata_pelajaran_id, $m->materi_id]) }}"
+                                                        method="POST" onsubmit="return confirm('Yakin hapus materi ini?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
-                                <td class="text-center">
-                                    @if($m->file)
-                                        <a href="{{ \Illuminate\Support\Facades\Storage::url($m->file) }}"
-                                           target="_blank" class="btn btn-sm btn-info">
-                                            Lihat File
-                                        </a>
 
-                                        <a href="{{ \Illuminate\Support\Facades\Storage::url($m->file) }}"
-                                           download class="btn btn-sm btn-secondary">
-                                            Download
-                                        </a>
-                                    @else
-                                        -
-                                    @endif
-                                </td>
-
-                                <td class="text-center">
-                                    <form action="{{ route('mentor.materi.destroy', [$mata_pelajaran->mata_pelajaran_id, $m->materi_id]) }}"
-                                          method="POST"
-                                          onsubmit="return confirm('Yakin hapus materi ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+                                </table>
+                            @endif
+                    </div>
+                </div>
                 </table>
+
             @endif
-        </div>
+    </div>
     </div>
 
     <footer class="text-center text-secondary">
@@ -185,4 +211,5 @@
     </footer>
 
 </body>
+
 </html>
